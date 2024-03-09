@@ -200,6 +200,7 @@ const DashboardHome = () => {
         onChangePerformance={(value) => setState(prevState => ({ ...prevState, selectedPerformance: value }))}
         selectedPerformance={state.selectedPerformance}
         onHandleSearch={getRecordSubmission}
+        isWeeklyOrFortnightly={isWeeklyOrFortnightly}
       />
       <Weekly0rFortnightly
         setIsWeeklyOrFortnightly={(value) => {

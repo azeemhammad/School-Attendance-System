@@ -28,10 +28,8 @@ const Filters = ({
   onChangePerformance,
   selectedPerformance,
   onHandleSearch,
+  isWeeklyOrFortnightly,
 }) => {
-  // const [startDate, setStartDate] = useState(new Date());
-  // const [endDate, setEndDate] = useState(new Date());
-
   const [state, setState] = useState({
     regionsData: [],
     ciscoData: [],
@@ -42,6 +40,15 @@ const Filters = ({
       { value: 3, label: "Low" },
     ],
   });
+
+  useEffect(() => {
+    if (isWeeklyOrFortnightly) {
+      onChangeRegions([]);
+      onChangeCisco([]);
+      onChangeZap([]);
+      onChangePerformance(null);
+    }
+  }, [isWeeklyOrFortnightly]);
 
   useEffect(() => {
     if (showRestFilters) getRegions();
