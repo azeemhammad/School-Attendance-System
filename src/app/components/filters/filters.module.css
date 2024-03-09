@@ -1,0 +1,59 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 2%;
+  border-bottom: 1px solid #e6e9f1;
+  padding-bottom: 2%;
+  padding-left: 2%;
+}
+.reactselect {
+  background-color: #f6f8fc;
+  height: 45px;
+  border-radius: 6px;
+}
+.searchbutton {
+  background-color: #008738;
+  border: none;
+  outline: none;
+  width: 40px;
+  height: 35px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.daterange {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.calenderbox {
+  background-color: #f6f8fc;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding: 5px;
+}
+.daterange input {
+  outline: none;
+  border: none;
+  background-color: #f6f8fc;
+  color: #008738;
+  font-weight: 700;
+  width: 90px;
+}
+.schedule__timeline__weekly__topbar__first__icon__left {
+  display: flex;
+  /* width: 40px;
+  height: 40px; */
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  padding: 0.6em 0.8em;
+  background-color: white;
+  margin-right: 10px;
+  border: 1px solid lightgray;
+  cursor: pointer;
+}

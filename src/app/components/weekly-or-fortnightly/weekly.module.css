@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  gap: 40px;
+  padding: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.underline {
+  text-decoration: underline 3px green;
+  text-underline-offset: 23px;
+  color: green;
+  font-size: 16px;
+  font-weight: 500;
+}

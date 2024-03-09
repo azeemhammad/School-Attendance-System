@@ -1,0 +1,2 @@
+export const USER_DATA = "USER_DATA";
+export const IS_WEEKLY_OR_FORTNIGHTLY = "IS_WEEKLY_OR_FORTNIGHTLY";

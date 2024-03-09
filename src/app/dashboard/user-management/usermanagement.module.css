@@ -1,0 +1,205 @@
+.wrapper {
+  background-color: #F6F8FC;
+  padding-bottom: 5%;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.addemployeebar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 2px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 1px -1px;
+  background-color: white;
+}
+.backbox {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.backbox span {
+  font-size: 20px;
+  font-weight: 500;
+}
+.backbutton {
+  height: 40px;
+  width: 40px;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.addbutton {
+  width: 151px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background-color: #008738;
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.addbutton:active {
+  transform: scale(0.98);
+}
+.addemployeemodal {
+  height: 590px;
+  width: 800px;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid #f2f2f2;
+  outline: none;
+  margin: 2% 0% 0% 20%;
+}
+.addemployeemodalcontainer {
+  display: flex;
+}
+.addemployeemodalheading {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid #f2f2f2;
+}
+.addemployeemodalheading span {
+  font-weight: 500;
+  font-size: 20px;
+}
+.addemployeemodalname {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #f2f2f2;
+}
+.addemployeemodalname span {
+  font-size: 16px;
+  font-weight: 500;
+  color: #9595ad;
+}
+.addemployeemodalname input {
+  width: 550px;
+  height: 48px;
+  border-radius: 10px;
+  background-color: #f6f8fc;
+  outline: none;
+  border: none;
+  padding-left: 20px;
+}
+.addemployeemodaldropdowns {
+  display: flex;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #f2f2f2;
+}
+.addemployeemodaldropdowns span {
+  font-size: 16px;
+  font-weight: 500;
+  color: #9595ad;
+}
+.reactselect {
+  width: 550px;
+  height: 48px;
+  border-radius: 10px;
+  background-color: #f6f8fc;
+  outline: none;
+  border: none;
+}
+.addemployeemodalcancel {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px;
+  gap: 40px;
+}
+.addemployeemodalcancel div {
+  width: 118px;
+  height: 47px;
+  background-color: #008738;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.addemployeemodalcancel div:active {
+  transform: scale(0.98);
+}
+.addemployeemodalcancel span {
+  color: #9595ad;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.deleteemployeemodal {
+  height: 270px;
+  width: 600px;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid #f2f2f2;
+  outline: none;
+  margin: 13% 0% 0% 28%;
+}
+.deleteemployeeheading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  border-bottom: 1px solid #f2f2f2;
+}
+.deleteemployeesubheading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #9595ad;
+  line-height: 1.6em;
+}
+.deleteemployeesubheading span {
+  text-align: center;
+}
+.deleteemployeecancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 40px;
+}
+.deleteemployeecancel div {
+  width: 118px;
+  height: 47px;
+  background-color: #d7090a;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.deleteemployeecancel div:active {
+  transform: scale(0.98);
+}
+.deleteemployeecancel span {
+  color: #9595ad;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}

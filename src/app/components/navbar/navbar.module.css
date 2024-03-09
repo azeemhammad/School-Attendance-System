@@ -1,0 +1,86 @@
+.wrapper {
+  display: flex;
+  border-bottom: 1px solid #e6e9f1;
+}
+.content {
+  width: 84%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 20px;
+}
+.logo {
+  display: flex;
+  justify-content: space-between;
+  border-right: 1px solid #e6e9f1;
+  width: 15%;
+  padding: 20px;
+}
+.calenderbox {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: -2%;
+}
+.calenderbox span {
+  font-size: 12px;
+  color: #6e6e6e;
+}
+.daterange {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+.daterange input {
+  color: green;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid rgb(85, 195, 85);
+}
+.daterange input:focus {
+  outline: none;
+}
+.personandlanguage {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.personaccount {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.personaccount span {
+  font-size: 16px;
+  font-weight: 500;
+}
+.language {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 30px;
+  width: 138px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #f8f7fa;
+}
+.language span {
+  font-size: 16px;
+  font-weight: 500;
+}
+.usermanagementbutton {
+  height: 40px;
+  width: 182px;
+  border: none;
+  outline: none;
+  background-color: #008738;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.usermanagementbutton:active {
+  transform: scale(0.98);
+}

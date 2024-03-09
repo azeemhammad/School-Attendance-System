@@ -1,0 +1,107 @@
+.lala {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  margin-right: 10px;
+}
+
+.employees {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px;
+  width: 100%;
+}
+.employee {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  min-width: 19.5%;
+  height: 61px;
+  background-color: #008738;
+  border-radius: 8px;
+}
+.employee2 {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  min-width: 15.5%;
+  height: 61px;
+  background-color: #008738;
+  border-radius: 8px;
+  margin-left: 5px;
+}
+.date {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dayandmonth {
+  display: flex;
+  flex-direction: column;
+}
+
+.attendance {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 10px;
+  min-width: 19.5%;
+  height: 88px;
+  background-color: white;
+  border-radius: 8px;
+  color: #9595ad;
+}
+.attendance2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 15px;
+  min-width: 15.5%;
+  height: 88px;
+  background-color: white;
+  border-radius: 8px;
+  margin-left: 5px;
+}
+.present {
+  color: #008738;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 15px;
+  min-width: 15.5%;
+  height: 88px;
+  background-color: white;
+  border-radius: 8px;
+  margin-left: 5px;
+  padding-top: 10px;
+}
+.absent {
+  color: red;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 15px;
+  min-width: 15.5%;
+  height: 88px;
+  background-color: #feeeee;
+  border-radius: 8px;
+  margin-left: 5px;
+}
+.reason {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.reason p {
+  color: #9595ad;
+  font-size: 16px;
+  font-weight: 400;
+  padding-left: 26px;
+}
+.iconandstatus {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}

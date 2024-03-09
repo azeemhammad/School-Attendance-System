@@ -1,0 +1,104 @@
+.lala {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.employees {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px;
+  width: 100%;
+  gap: 10px;
+}
+.employee {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  width: 19.5%;
+  height: 61px;
+  background-color: #008738;
+  border-radius: 8px;
+}
+.employee2 {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  width: 15.5%;
+  height: 61px;
+  background-color: #008738;
+  border-radius: 8px;
+}
+.date {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dayandmonth {
+  display: flex;
+  flex-direction: column;
+}
+
+.attendance {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 10px;
+  width: 19.5%;
+  height: 88px;
+  background-color: white;
+  border-radius: 8px;
+  color: #9595ad;
+}
+.attendance2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 15px;
+  width: 15.5%;
+  height: 88px;
+  background-color: white;
+  border-radius: 8px;
+}
+.present {
+  color: #008738;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 15px;
+  width: 15.5%;
+  height: 88px;
+  background-color: white;
+  border-radius: 8px;
+  padding-top: 10px;
+}
+.absent {
+  color: red;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 15px;
+  width: 15.5%;
+  height: 88px;
+  background-color: #feeeee;
+  border-radius: 8px;
+}
+.reason {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.reason p {
+  color: #9595ad;
+  font-size: 16px;
+  font-weight: 400;
+  padding-left: 35px;
+  margin-top: -2%;
+}
+.iconandstatus {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}

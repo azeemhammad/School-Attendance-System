@@ -1,0 +1,191 @@
+.wrapper {
+  /* display: flex; */
+  /* background-color: red; */
+  margin: 0 auto;
+}
+.sidebarContainer {
+  flex: 1;
+}
+.navbarContainer {
+  flex: 4;
+  /* margin-left: 18%; */
+}
+.navbarContainer > div {
+  /* padding: 20px; */
+}
+.container {
+  background-color: #e6e9f1;
+  min-height: 500px;
+  padding-bottom: 20px;
+}
+.performanceboxes {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 20px;
+}
+
+.performancebox {
+  display: flex;
+  background-color: white;
+  width: 25%;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  border-radius: 10px;
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.text span {
+  color: #8c8888;
+  width: 151px;
+}
+.text h2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+.schools {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  margin-top: 1%;
+  gap: 10px;
+}
+.school {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  justify-content: center;
+  width: 19.5%;
+  height: 61px;
+  background-color: #008738;
+  border-radius: 8px;
+}
+
+.schoolfortnightly {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  justify-content: center;
+  width: 39.5%;
+  height: 61px;
+  background-color: #008738;
+  border-radius: 8px;
+}
+
+.greenfield {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px;
+  gap: 10px;
+}
+.greenfieldcontent {
+  background-color: white;
+  width: 19.5%;
+  height: 124px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 8px;
+}
+.greenfieldcontentfortnightly {
+  background-color: white;
+  width: 39.5%;
+  height: 124px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 8px;
+}
+.schoolname {
+  color: #8c8888;
+  margin-top: 20%;
+  margin-left: 3%;
+}
+.countandpercentage {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 10px 10px 10px;
+}
+.countandpercentage span {
+  font-weight: 600;
+  font-size: 16px;
+}
+.countandpercentage p {
+  color: #8c8888;
+  font-size: 14px;
+}
+.highPerforming {
+  width: 115px;
+  height: 22px;
+  color: green;
+  background-color: #ecf9eb;
+  font-weight: 400;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  margin-left: 10px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.mediumPerforming {
+  width: 135px;
+  height: 22px;
+  color: #fbbc04;
+  background-color: #fefaef;
+  font-weight: 400;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  margin-left: 10px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.lowPerforming {
+  width: 115px;
+  height: 22px;
+  color: red;
+  background-color: #ffe4e4;
+  font-weight: 400;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-bottom: 15px;
+}
+.greenfieldbuttons {
+  border-top: 1px solid #d8d2d2;
+  display: flex;
+  justify-content: space-between;
+}
+.greenfieldbuttons div {
+  color: #06a5ff;
+  padding: 5px 5px 5px 10px;
+  width: 50%;
+  font-size: 12px;
+  font-weight: 500;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.link {
+  color: #06a5ff;
+  text-decoration: none;
+}
+
+.schoolDataContainer {
+  display: flex;
+
+  flex-direction: column;
+  overflow-x: auto;
+}

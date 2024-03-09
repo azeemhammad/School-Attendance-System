@@ -1,0 +1,35 @@
+.wrapper {
+  background-color: #e6e9f1;
+  min-height: 500px;
+  padding-bottom: 20px;
+}
+.schoolname {
+  padding: 30px 20px 20px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.schoolname span {
+  font-size: 20px;
+  font-weight: 500;
+}
+.location {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: -1% 0% 2% 5.5%;
+  color: #9595ad;
+  font-size: 14px;
+  font-weight: 400;
+}
+.backbutton {
+  height: 40px;
+  width: 40px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 8px;
+}

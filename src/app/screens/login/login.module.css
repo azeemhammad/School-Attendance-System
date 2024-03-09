@@ -1,0 +1,118 @@
+.wrapper {
+  display: flex;
+}
+.leftside {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  margin-top: 4%;
+}
+.leftsidecontent {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  gap: 15px;
+}
+.logo {
+  display: flex;
+  gap: 70px;
+  margin-bottom: 5%;
+}
+/* .logo img {
+  width: 120px;
+} */
+.pleaseenter {
+  color: #8b8b8b;
+}
+.inputfields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.inputfields span {
+  font-weight: 700;
+  font-size: 16px;
+}
+.inputwrapper {
+  height: 40px;
+  border: none;
+  outline: none;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  display: flex;
+  padding-left: 10px;
+  align-items: center;
+}
+.inputfields input {
+  border: none;
+  outline: none;
+  background-color: #f4f4f4;
+  width: 85%;
+  padding-left: 10px;
+}
+.inputfields input:focus {
+  outline: none;
+}
+.signinbutton {
+  border: none;
+  outline: none;
+  height: 40px;
+  background-color: #008738;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  /* transition: all ease-in 300ms; */
+}
+.signinbutton:active {
+  transform: scale(0.99);
+}
+.forgotpassword {
+  align-self: flex-end;
+  font-size: 14px;
+  color: #8b8b8b;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  cursor: pointer;
+  transition: all ease-in 200ms;
+}
+.forgotpassword:hover{
+  transform: scale(1.03);
+  text-decoration: underline #008738;
+  color: #008738;
+}
+.rightside {
+  background-image: url(../../../../public/logingreenphoto.svg);
+  height: 100vh;
+  width: 50%;
+}
+.rightimage {
+  display: flex;
+  justify-content: center;
+}
+.rightimage img {
+  width: 60%;
+  height: 60%;
+  margin-top: 20%;
+}
+.languagebox {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+}
+.language {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 30px;
+  width: 138px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #f8f7fa;
+}
+.language span {
+  font-size: 16px;
+  font-weight: 500;
+}
