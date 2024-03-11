@@ -22,6 +22,16 @@
   border-radius: 5px;
   cursor: pointer;
 }
+.reset__button {
+  background-color: red;
+  border: none;
+  outline: none;
+  width: 40px;
+  height: 35px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
 .daterange {
   display: flex;
   align-items: center;

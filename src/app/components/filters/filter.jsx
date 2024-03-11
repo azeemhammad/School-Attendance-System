@@ -3,6 +3,7 @@ import { DistrictOptions, PerformanceOptions, regionOptions } from "@/app/utils/
 import styles from "./filters.module.css";
 import Select from "react-select";
 import { FiSearch } from "react-icons/fi";
+import { MdOutlineClose } from "react-icons/md";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useEffect, useState } from "react";
@@ -28,6 +29,7 @@ const Filters = ({
   onChangePerformance,
   selectedPerformance,
   onHandleSearch,
+  onHandleReset,
   isWeeklyOrFortnightly,
 }) => {
   const [state, setState] = useState({
@@ -238,6 +240,14 @@ const Filters = ({
             value={selectedPerformance}
             onChange={(value) => onChangePerformance(value)}
           />
+          {selectedRegions.length > 0 ||
+          selectedCisco.length > 0 ||
+          selectedZap.length > 0 ||
+          selectedPerformance ? (
+            <button className={styles.reset__button} onClick={onHandleReset}>
+              <MdOutlineClose style={{ fontSize: "25px", fontWeight: "900" }} />
+            </button>
+          ) : null}
           <button className={styles.searchbutton} onClick={onHandleSearch}>
             <FiSearch style={{ fontSize: "25px", fontWeight: "900" }} />
           </button>

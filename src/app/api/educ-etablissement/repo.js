@@ -39,22 +39,36 @@ export const getAllZapByCiscoIdCall = (cisco, page, limit) => {
     return makeGetRequest("api/educ-etablissement/get-all-zap-by-cisco-id", params, null)
 };
 
-export const getGalleryCall = (image, role_id) => {
-    let params = {}
-    if (image) params.image = image;
-    if (role_id) params.role_id = role_id;
+// export const getGalleryCall = (image, role_id) => {
+//     let params = {}
+//     if (image) params.image = image;
+//     if (role_id) params.role_id = role_id;
 
-    // let params = "";
-    // for (let index = 0; index < images.length; index++) {
-    //     const element = images[index];
-    //     params += `image[${index}]=${element.gr_photo_photo}&`
-    // }
-    // params += `role_id=${role_id}`;
+//     // let params = "";
+//     // for (let index = 0; index < images.length; index++) {
+//     //     const element = images[index];
+//     //     params += `image[${index}]=${element.gr_photo_photo}&`
+//     // }
+//     // params += `role_id=${role_id}`;
 
-    let route = `https://datafetcher-school-system-worldbank.dsmeglobal.com/api/educ-etablissement/gallery`;
+//     let route = `https://datafetcher-school-system-worldbank.dsmeglobal.com/api/educ-etablissement/gallery`;
+//     console.log("route", route)
+
+//     return axios.get(route, {
+//         params
+//     })
+// };
+
+export const getGalleryCall = (images, role_id) => {
+    let params = "";
+    for (let index = 0; index < images.length; index++) {
+        const element = images[index];
+        params += `image[${index}]=${element.gr_photo_photo}&`
+    }
+    params += `role_id=${role_id}`;
+
+    let route = `https://datafetcher-school-system-worldbank.dsmeglobal.com/api/educ-etablissement/gallery?${params}`;
     console.log("route", route)
 
-    return axios.get(route, {
-        params
-    })
+    return axios.get(route)
 };

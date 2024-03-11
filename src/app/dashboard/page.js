@@ -16,7 +16,7 @@ import ProcessingLoader from "../components/processing-loader";
 const DashboardHome = () => {
   const [isWeeklyOrFortnightly, setIsWeeklyOrFortnightly] = useState(1);
 
-  const [state, setState] = useState({
+  let [state, setState] = useState({
     preformanceRecord: null,
     recordSubmissionData: [],
     selectedRegions: [],
@@ -200,6 +200,12 @@ const DashboardHome = () => {
         onChangePerformance={(value) => setState(prevState => ({ ...prevState, selectedPerformance: value }))}
         selectedPerformance={state.selectedPerformance}
         onHandleSearch={getRecordSubmission}
+        onHandleReset={() => {
+          setState(prevState => ({ ...prevState, selectedRegions: state.selectedRegions = [], selectedCisco: state.selectedCisco = [], selectedZap: state.selectedZap = [], selectedPerformance: state.selectedPerformance = null }));
+          setTimeout(() => {
+            getRecordSubmission();
+          }, 500);
+        }}
         isWeeklyOrFortnightly={isWeeklyOrFortnightly}
       />
       <Weekly0rFortnightly
