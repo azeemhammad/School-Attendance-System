@@ -20,6 +20,7 @@ const Gallery = () => {
   const navigate = useRouter();
 
   let [state, setState] = useState({
+    school_name: "",
     imagesNamesData: [],
     imagesData: [],
     selectedImage: [],
@@ -27,12 +28,11 @@ const Gallery = () => {
     endDate: new Date(),
   })
   const [isProcessing, setIsProcessing] = useState(false);
-  const [modalIsOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     let data = localStorage.getItem("galleryImagesData");
     data = JSON.parse(data);
-    setState(prevState => ({ ...prevState, startDate: new Date(data.start), endDate: new Date(data.end), imagesNamesData: data.imagesNameData }))
+    setState(prevState => ({ ...prevState, startDate: new Date(data.start), endDate: new Date(data.end), imagesNamesData: data.imagesNameData, school_name: data.school_name }))
   }, [])
 
   useEffect(() => {
@@ -55,6 +55,7 @@ const Gallery = () => {
           const element = data.result[index];
           let object = {
             image: `data:image/jpeg;base64,${element}`,
+            date: state.imagesNamesData[index].ends,
           };
           newArray.push(object);
         }
@@ -127,8 +128,8 @@ const Gallery = () => {
                     ...prevState, selectedImage: [{
                       original: item.image,
                       thumbnail: item.image,
-                      originalTitle: `${dayjs(state.startDate).format("YYYY-MM-DD hh:mm a")}`,
-                      description: `${dayjs(state.startDate).format("YYYY-MM-DD hh:mm a")}`,
+                      originalTitle: `${state.school_name} | ${dayjs(item.date).format("YYYY-MM-DD hh:mm a")}`,
+                      description: `${state.school_name} | ${dayjs(item.date).format("YYYY-MM-DD hh:mm a")}`,
                     }]
                   }))
                 }}
@@ -136,9 +137,9 @@ const Gallery = () => {
                 {/* <h3>{item.name}</h3> */}
                 <div className={styles.calandclock}>
                   <span><SlCalender /></span>
-                  <span>{dayjs(state.startDate).format("DD-MM-YYYY")}</span>
+                  <span>{dayjs(item.date).format("DD-MM-YYYY")}</span>
                   <span><CiClock2 /></span>
-                  <span>{dayjs(state.endDate).format("hh:mm a")}</span>
+                  <span>{dayjs(item.date).format("hh:mm a")}</span>
                 </div>
               </div>
             </div>

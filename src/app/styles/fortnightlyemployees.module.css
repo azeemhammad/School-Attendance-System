@@ -50,6 +50,7 @@
   background-color: white;
   border-radius: 8px;
   color: #9595ad;
+  word-break: break-all;
 }
 .attendance2 {
   display: flex;

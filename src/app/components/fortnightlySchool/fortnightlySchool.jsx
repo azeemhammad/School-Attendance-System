@@ -51,6 +51,7 @@ const FortnightlySchool = ({
             start: startDate,
             end: endDate,
             imagesNameData: data.result,
+            school_name: name_csb,
           };
           localStorage.setItem("galleryImagesData", JSON.stringify(object));
           navigate.push("/dashboard/gallery");
