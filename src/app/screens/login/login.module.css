@@ -77,7 +77,7 @@
   cursor: pointer;
   transition: all ease-in 200ms;
 }
-.forgotpassword:hover{
+.forgotpassword:hover {
   transform: scale(1.03);
   text-decoration: underline #008738;
   color: #008738;
@@ -98,8 +98,10 @@
 }
 .languagebox {
   display: flex;
+  /* display: inline-block; */
   justify-content: flex-end;
   padding: 20px;
+  position: relative;
 }
 .language {
   display: flex;
@@ -115,4 +117,31 @@
 .language span {
   font-size: 16px;
   font-weight: 500;
+}
+.languagebox__content {
+  display: none;
+  position: absolute;
+  /* left: 0;
+  right: 0; */
+  right: 0;
+  top: 40px;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 10px;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+.languagebox__content *:hover {
+  background-color: #008738;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+}
+
+.languagebox:hover .languagebox__content {
+  display: block;
 }

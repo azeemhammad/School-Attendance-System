@@ -239,7 +239,6 @@ const DashboardHome = () => {
         }
       </div>
       {isProcessing && <ProcessingLoader />}
-
     </>
   );
 };

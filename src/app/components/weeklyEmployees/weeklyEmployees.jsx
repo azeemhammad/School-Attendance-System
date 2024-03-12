@@ -70,9 +70,15 @@ const WeeklyEmployees = ({ employeeData, dates, startDate, endDate }) => {
 
       {employeeData.map((item, index) => (
         <div key={index} className={styles.employees}>
-          <div className={styles.attendance}>
+          <div
+            className={styles.attendance}
+            style={{
+              backgroundColor: item.employee_type == 1 ? "#C1E1C1" : "#FFFFE0",
+              color: "grey",
+            }}
+          >
             {/* <img src={item.image} style={{ width: "30px", height: "30px", borderRadius: 100 }} /> */}
-            <span style={{ fontWeight: "400" }}>{item.employee_name}</span>
+            <span style={{ fontWeight: "600" }}>{item.employee_name}</span>
           </div>
           {item.present.map((x, i) => (
             <div key={i} className={`${getColorForAttendance(x.is_present, x.reason)}`}>

@@ -5,6 +5,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { BsEye } from "react-icons/bs";
 import { BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
+import { lngs } from "@/app/utils/options";
 
 const LoginPage = () => {
   const navigate = useRouter();
@@ -101,6 +102,29 @@ const LoginPage = () => {
             <span>English</span>
             <IoIosArrowDown />
           </div>
+          {/* <div className={styles.languagebox__content}>
+            {lngs.map((lng) => {
+              console.log("lng", lng)
+              return (
+                <div
+                  style={{
+                    paddingTop: "1em",
+                    paddingLeft: "1em",
+                    paddingBottom: ".5em",
+                    height: "47px",
+                    display: "flex",
+                  }}
+                  key={lng.country_code}
+                  onClick={() => {
+                    // i18n.changeLanguage(lng.code);
+                    // localStorage.setItem("lang", lng.code);
+                  }}
+                >
+                  <span>{lng.nativeName}</span>
+                </div>
+              )
+            })}
+          </div> */}
         </div>
 
         <div className={styles.rightimage}>
