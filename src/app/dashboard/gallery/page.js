@@ -47,7 +47,10 @@ const Gallery = () => {
 
   function getImagesRecord(images) {
     setIsProcessing(true);
-    getGalleryCall(images, 1).then(({ data }) => {
+    let user = localStorage.getItem("user_data");
+    user = JSON.parse(user);
+    debugger;
+    getGalleryCall(images, user.role_id).then(({ data }) => {
       setIsProcessing(false);
       if (data.error_code == 0) {
         let newArray = [];

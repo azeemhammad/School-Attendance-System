@@ -68,7 +68,8 @@ const DashboardHome = () => {
           zapData: state.zapData = user.zap,
           selectedZap: state.selectedZap = user.zap,
         }));
-      }
+      } else
+        getRegions();
     } else
       getRegions();
   }, []);
