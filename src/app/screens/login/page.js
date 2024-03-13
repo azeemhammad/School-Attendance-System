@@ -5,7 +5,6 @@ import { IoIosArrowDown } from "react-icons/io";
 import { BsEye } from "react-icons/bs";
 import { BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
-import { lngs } from "@/app/utils/options";
 import { isInvalidEmail } from "@/app/utils/validations";
 import { employeeLoginCall } from "@/app/api/user/repo";
 

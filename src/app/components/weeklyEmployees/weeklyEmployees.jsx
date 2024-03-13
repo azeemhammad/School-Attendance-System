@@ -1,6 +1,4 @@
-import { employeeattendance, employees } from "@/app/utils/grid";
 import styles from "../../styles/weeklyemployees.module.css";
-import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { FaCircleCheck } from "react-icons/fa6";
 import { IoIosCloseCircle } from "react-icons/io";

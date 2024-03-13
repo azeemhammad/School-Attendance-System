@@ -1,5 +1,4 @@
 "use client";
-import { user_management } from "@/app/utils/user-management";
 import styles from "./usermanagement.module.css";
 import { IoArrowBack } from "react-icons/io5";
 import { GoPlus } from "react-icons/go";
@@ -7,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 import { IoMdClose } from "react-icons/io";
-import { regionOptions } from "@/app/utils/options";
 import Select from "react-select";
 import { addEmployeeCall, employeeDeleteCall, getAllUsersCall } from "@/app/api/user/repo";
 import ProcessingLoader from "@/app/components/processing-loader";
