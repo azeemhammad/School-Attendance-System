@@ -99,16 +99,17 @@ const LoginPage = () => {
           </div>
           <button
             className={styles.signinbutton}
+            disabled={isProcessing}
             onClick={() => onHandleLogin()}
           >
-            Sign in
+            {isProcessing ? "Processing..." : "Sign in"}
           </button>
-          <span
+          {/* <span
             className={styles.forgotpassword}
             onClick={() => navigate.push("/screens/forgotPassword")}
           >
             Forgot password?
-          </span>
+          </span> */}
         </div>
       </div>
       <div className={styles.rightside}>
