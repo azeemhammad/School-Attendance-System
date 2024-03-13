@@ -1,94 +1,36 @@
 "use client";
-import { DistrictOptions, PerformanceOptions, regionOptions } from "@/app/utils/options";
 import styles from "./filters.module.css";
 import Select from "react-select";
 import { FiSearch } from "react-icons/fi";
 import { MdOutlineClose } from "react-icons/md";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useEffect, useState } from "react";
-import {
-  getAllCiscoByRegionIdCall,
-  getAllRegionsCall,
-  getAllZapByCiscoIdCall,
-} from "@/app/api/educ-etablissement/repo";
 import ModelSelect from "../modelSelect/model-select";
+import { ACCESS_LEVELS } from "@/app/utils/constants";
 
 const Filters = ({
+  user,
   startDate,
   endDate,
   showRestFilters = true,
   onHandleClickLeft,
   onHandleClickRight,
+  regionsData,
   onChangeRegions,
   selectedRegions,
+  ciscoData,
   onChangeCisco,
   selectedCisco,
+  zapData,
   onChangeZap,
   selectedZap,
+  performanceData,
   onChangePerformance,
   selectedPerformance,
   onHandleSearch,
   onHandleReset,
   isWeeklyOrFortnightly,
 }) => {
-  const [state, setState] = useState({
-    regionsData: [],
-    ciscoData: [],
-    zapData: [],
-    performanceData: [
-      { value: 1, label: "High" },
-      { value: 2, label: "Medium" },
-      { value: 3, label: "Low" },
-    ],
-  });
-
-  useEffect(() => {
-    if (isWeeklyOrFortnightly) {
-      onChangeRegions([]);
-      onChangeCisco([]);
-      onChangeZap([]);
-      onChangePerformance(null);
-    }
-  }, [isWeeklyOrFortnightly]);
-
-  useEffect(() => {
-    if (showRestFilters) getRegions();
-  }, []);
-
-  function getRegions() {
-    getAllRegionsCall(1, 1000)
-      .then(({ data }) => {
-        if (data.error_code === 0)
-          setState((prevState) => ({ ...prevState, regionsData: data.result }));
-      })
-      .catch((err) => {
-        console.log("err", err);
-      });
-  }
-
-  function getCisco(value) {
-    getAllCiscoByRegionIdCall(value.map((x) => x.value).join(","), 1, 1000)
-      .then(({ data }) => {
-        if (data.error_code === 0)
-          setState((prevState) => ({ ...prevState, ciscoData: data.result }));
-      })
-      .catch((err) => {
-        console.log("err", err);
-      });
-  }
-
-  function getZap(value) {
-    getAllZapByCiscoIdCall(value.map((x) => x.value).join(","), 1, 1000)
-      .then(({ data }) => {
-        if (data.error_code === 0)
-          setState((prevState) => ({ ...prevState, zapData: data.result }));
-      })
-      .catch((err) => {
-        console.log("err", err);
-      });
-  }
-
   const Styles = {
     control: (provided) => ({
       display: "flex",
@@ -171,69 +113,50 @@ const Filters = ({
 
       {showRestFilters ? (
         <>
-          <ModelSelect
-            placeholder={"Region"}
-            isMulti
-            options={state.regionsData}
-            value={selectedRegions}
-            onChange={(value) => {
-              onChangeRegions(value);
-              setState((prevState) => ({ ...prevState, ciscoData: [], zapData: [] }));
-              if (value.length > 0) getCisco(value);
-              onChangeCisco([]);
-              onChangeZap([]);
-            }}
-          />
+          {user?.role_id == ACCESS_LEVELS.super_admin ||
+          user?.role_id == ACCESS_LEVELS.region_level ? (
+            <ModelSelect
+              placeholder={"Region"}
+              isMulti
+              options={regionsData}
+              value={selectedRegions}
+              onChange={(value) => {
+                onChangeRegions(value);
+              }}
+            />
+          ) : null}
 
-          <ModelSelect
-            placeholder={"Cisco"}
-            isMulti
-            options={state.ciscoData}
-            value={selectedCisco}
-            onChange={(value) => {
-              onChangeCisco(value);
-              setState((prevState) => ({ ...prevState, zapData: [] }));
-              if (value.length > 0) getZap(value);
-              onChangeZap([]);
-            }}
-          />
+          {user?.role_id == ACCESS_LEVELS.super_admin ||
+          user?.role_id == ACCESS_LEVELS.region_level ||
+          user?.role_id == ACCESS_LEVELS.cisco_level ? (
+            <ModelSelect
+              placeholder={"Cisco"}
+              isMulti
+              options={ciscoData}
+              value={selectedCisco}
+              onChange={(value) => {
+                onChangeCisco(value);
+              }}
+            />
+          ) : null}
 
-          <ModelSelect
-            placeholder={"Zap"}
-            isMulti
-            options={state.zapData}
-            value={selectedZap}
-            onChange={(value) => {
-              onChangeZap(value);
-            }}
-          />
+          {user?.role_id == ACCESS_LEVELS.super_admin ||
+          user?.role_id == ACCESS_LEVELS.region_level ||
+          user?.role_id == ACCESS_LEVELS.cisco_level ||
+          user?.role_id == ACCESS_LEVELS.zap_level ? (
+            <ModelSelect
+              placeholder={"Zap"}
+              isMulti
+              options={zapData}
+              value={selectedZap}
+              onChange={(value) => {
+                onChangeZap(value);
+              }}
+            />
+          ) : null}
 
-          {/* <Select
-        options={state.regionsData}
-        placeholder="Search by Region"
-        className={styles.reactselect}
-        styles={Styles}
-        isMulti
-        onChange={(value) => {
-          console.log("value", value);
-        }}
-      /> */}
-          {/* <Select
-        options={DistrictOptions}
-        placeholder="Search by Cisco"
-        className={styles.reactselect}
-        styles={Styles}
-        isMulti
-      /> */}
-          {/* <Select
-        options={DistrictOptions}
-        styles={Styles}
-        className={styles.reactselect}
-        placeholder="Search by Zap"
-        isMulti
-      /> */}
           <Select
-            options={state.performanceData}
+            options={performanceData}
             className={styles.reactselect}
             styles={Styles}
             placeholder="Search by Performance"

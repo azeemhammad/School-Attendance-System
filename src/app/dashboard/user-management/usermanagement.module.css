@@ -1,5 +1,5 @@
 .wrapper {
-  background-color: #F6F8FC;
+  background-color: #f6f8fc;
   padding-bottom: 5%;
 }
 .actions {
@@ -11,8 +11,7 @@
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 2px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 1px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 2px -1px, rgba(0, 0, 0, 0.3) 0px 1px 1px -1px;
   background-color: white;
 }
 .backbox {
@@ -53,7 +52,7 @@
   transform: scale(0.98);
 }
 .addemployeemodal {
-  height: 590px;
+  height: 700px;
   width: 800px;
   background-color: white;
   border-radius: 10px;
@@ -73,6 +72,12 @@
 .addemployeemodalheading span {
   font-weight: 500;
   font-size: 20px;
+}
+.add__employee__content__container {
+  display: flex;
+  flex-direction: column;
+  height: 550px;
+  overflow: auto;
 }
 .addemployeemodalname {
   display: flex;
@@ -110,7 +115,7 @@
 }
 .reactselect {
   width: 550px;
-  height: 48px;
+  min-height: 48px;
   border-radius: 10px;
   background-color: #f6f8fc;
   outline: none;

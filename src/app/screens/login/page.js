@@ -6,6 +6,8 @@ import { BsEye } from "react-icons/bs";
 import { BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
 import { lngs } from "@/app/utils/options";
+import { isInvalidEmail } from "@/app/utils/validations";
+import { employeeLoginCall } from "@/app/api/user/repo";
 
 const LoginPage = () => {
   const navigate = useRouter();
@@ -14,7 +16,7 @@ const LoginPage = () => {
     email: "",
     password: "",
   })
-
+  const [isProcessing, setIsProcessing] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   // useEffect(() => {
@@ -27,16 +29,30 @@ const LoginPage = () => {
 
   function isViewValid() {
     if (!state.email) alert("Please enter email.");
+    else if (isInvalidEmail(state.email)) alert("Please enter valid email address.");
     else if (!state.password) alert("Please enter password.");
-    else if (state.email != "gatekeeper@odkeye.site") alert("Wrong email address.");
-    else if (state.password != "SystemSentry007") alert("Wrong password.");
     else return true;
     return false
   }
 
   function onHandleLogin() {
-    if (isViewValid())
-      navigate.push("/dashboard")
+    if (isViewValid()) {
+      let object = {
+        "email": state.email,
+        "password": state.password
+      }
+      setIsProcessing(true);
+      employeeLoginCall(object).then(({ data }) => {
+        setIsProcessing(false);
+        if (data.error_code == 0) {
+          localStorage.setItem("user_data", JSON.stringify(data.result));
+          navigate.push("/dashboard")
+        } else alert(data.message);
+      }).catch(err => {
+        console.log("err", err);
+        setIsProcessing(false);
+      })
+    }
   }
 
   return (

@@ -2,10 +2,7 @@ import { PropagateLoader } from "react-spinners";
 
 export default function ProcessingLoader() {
   return (
-    <div
-      className="model__container__bigger"
-      style={{ justifyContent: "center", zIndex: "9999999" }}
-    >
+    <div className="model__container__bigger">
       <PropagateLoader
         loading={true}
         size={15}

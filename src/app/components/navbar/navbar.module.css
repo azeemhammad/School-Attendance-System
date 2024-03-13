@@ -84,3 +84,15 @@
 .usermanagementbutton:active {
   transform: scale(0.98);
 }
+.logout__button {
+  height: 40px;
+  padding: 0em 1em;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+}

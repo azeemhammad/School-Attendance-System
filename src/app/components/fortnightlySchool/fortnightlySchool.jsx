@@ -89,7 +89,7 @@ const FortnightlySchool = ({
               <span>
                 {item.fortnightly01_present_records} of {item.fortnightly01_total_records}
               </span>
-              <p>{item.fortnightly01_percentage}</p>
+              <p>{item.fortnightly01_percentage}%</p>
             </div>
             <div className={`${getColorForPerformance(item.fortnightly01_percentage)}`}>
               {item.fortnightly01_percentage <= 20
@@ -147,7 +147,7 @@ const FortnightlySchool = ({
               <span>
                 {item.fortnightly02_present_records} of {item.fortnightly02_total_records}
               </span>
-              <p>{item.fortnightly02_percentage}</p>
+              <p>{item.fortnightly02_percentage}%</p>
             </div>
             <div className={`${getColorForPerformance(item.fortnightly02_percentage)}`}>
               {item.fortnightly02_percentage <= 20

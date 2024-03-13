@@ -38,7 +38,7 @@ const WeeklySchool = ({
   };
 
   function getImagesRecord(startDate, endDate, item, name_csb) {
-    // setIsProcessing(true);
+    setIsProcessing(true);
     getAbsentEtabCall(
       dayjs(startDate).format("YYYY-MM-DD"),
       dayjs(endDate).format("YYYY-MM-DD"),

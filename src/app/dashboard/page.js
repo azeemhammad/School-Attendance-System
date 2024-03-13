@@ -7,21 +7,31 @@ import FortnightlySchool from "../components/fortnightlySchool/fortnightlySchool
 import PerformanceSchool from "../components/performanceSchool/performanceSchool";
 import WeeklyEmployees from "../components/weeklyEmployees/weeklyEmployees";
 import Filters from "../components/filters/filter";
-import { getRecordSubmissionCall } from "../api/educ-etablissement/repo";
+import { getAllCiscoByRegionIdCall, getAllRegionsCall, getAllZapByCiscoIdCall, getRecordSubmissionCall } from "../api/educ-etablissement/repo";
 import { eachWeekOfInterval, endOfMonth, startOfMonth } from "date-fns";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
 import ProcessingLoader from "../components/processing-loader";
+import { ACCESS_LEVELS } from "../utils/constants";
 
 const DashboardHome = () => {
   const [isWeeklyOrFortnightly, setIsWeeklyOrFortnightly] = useState(1);
 
   let [state, setState] = useState({
+    user: null,
     preformanceRecord: null,
     recordSubmissionData: [],
+    regionsData: [],
     selectedRegions: [],
+    ciscoData: [],
     selectedCisco: [],
+    zapData: [],
     selectedZap: [],
+    performanceData: [
+      { value: 1, label: "High" },
+      { value: 2, label: "Medium" },
+      { value: 3, label: "Low" },
+    ],
     selectedPerformance: null,
     dates: [],
     startDate: null,
@@ -34,6 +44,36 @@ const DashboardHome = () => {
   const [isProcessing, setIsProcessing] = useState(false);
 
   useEffect(() => {
+    let user = localStorage.getItem("user_data")
+    user = JSON.parse(user);
+    setState(prevState => ({ ...prevState, user: user }));
+    if (user) {
+      if (user.role_id == ACCESS_LEVELS.region_level) {
+        setState((prevState) => ({
+          ...prevState,
+          regionsData: state.regionsData = user.regions,
+          selectedRegions: state.selectedRegions = user.regions,
+        }));
+        getCisco(user.regions);
+      } else if (user.role_id == ACCESS_LEVELS.cisco_level) {
+        setState((prevState) => ({
+          ...prevState,
+          ciscoData: state.ciscoData = user.cisco,
+          selectedCisco: state.selectedCisco = user.cisco,
+        }));
+        getZap(user.cisco);
+      } else if (user.role_id == ACCESS_LEVELS.zap_level) {
+        setState((prevState) => ({
+          ...prevState,
+          zapData: state.zapData = user.zap,
+          selectedZap: state.selectedZap = user.zap,
+        }));
+      }
+    } else
+      getRegions();
+  }, []);
+
+  useEffect(() => {
     if (isWeeklyOrFortnightly === 1) {
       const currentDate = new Date();
       const year = currentDate.getFullYear();
@@ -41,9 +81,15 @@ const DashboardHome = () => {
 
       setState((prevState) => ({
         ...prevState,
-        startDate: new Date(year, month, 1),
-        endDate: new Date(year, month + 1, 0),
-        randomNumber: Math.random(),
+        startDate: state.startDate = new Date(year, month, 1),
+        endDate: state.endDate = new Date(year, month + 1, 0),
+        randomNumber: state.randomNumber = Math.random(),
+        // regionsData: [], 
+        // selectedRegions: [], 
+        // ciscoData: [], 
+        // selectedCisco: [], 
+        // zapData: [], 
+        // selectedZap: []
       }));
     }
   }, [isWeeklyOrFortnightly]);
@@ -81,7 +127,7 @@ const DashboardHome = () => {
     }
     setState((prevState) => ({
       ...prevState,
-      dates: newWeeksArray.length > 5 ? newWeeksArray.slice(0, 5) : newWeeksArray,
+      dates: state.dates = newWeeksArray.length > 5 ? newWeeksArray.slice(0, 5) : newWeeksArray,
     }));
   }
 
@@ -105,18 +151,36 @@ const DashboardHome = () => {
     }
     setState((prevState) => ({
       ...prevState,
-      dates: fortnightlyDateRanges,
-      startDate: fortnightlyDateRanges[0].start,
-      endDate: fortnightlyDateRanges[1].end,
+      dates: state.dates = fortnightlyDateRanges,
+      startDate: state.startDate = fortnightlyDateRanges[0].start,
+      endDate: state.endDate = fortnightlyDateRanges[1].end,
     }));
   };
 
   function getRecordSubmission() {
     setIsProcessing(true);
     getRecordSubmissionCall(
-      state.selectedRegions ? state.selectedRegions.map(x => x.value).join(",") : "",
-      state.selectedCisco ? state.selectedCisco.map(x => x.value).join(",") : "",
-      state.selectedZap ? state.selectedZap.map(x => x.value).join(",") : "",
+      state.selectedRegions.length > 0
+        ? state.selectedRegions.map((item) => item.value).join(",")
+        : state.user?.role_id == ACCESS_LEVELS.region_level ||
+          state.user?.role_id == ACCESS_LEVELS.cisco_level ||
+          state.user?.role_id == ACCESS_LEVELS.zap_level
+          ? state.user?.regions.map((item) => item.value).join(",")
+          : null, //state.selectedRegions ? state.selectedRegions.map(x => x.value).join(",") : "",
+      state.selectedCisco.length > 0
+        ? state.selectedCisco.map((item) => item.value).join(",")
+        : state.user?.role_id == ACCESS_LEVELS.region_level ||
+          state.user?.role_id == ACCESS_LEVELS.cisco_level ||
+          state.user?.role_id == ACCESS_LEVELS.zap_level
+          ? state.user?.cisco.map((item) => item.value).join(",")
+          : null,  //state.selectedCisco ? state.selectedCisco.map(x => x.value).join(",") : "",
+      state.selectedZap.length > 0
+        ? state.selectedZap.map((item) => item.value).join(",")
+        : state.user?.role_id == ACCESS_LEVELS.region_level ||
+          state.user?.role_id == ACCESS_LEVELS.cisco_level ||
+          state.user?.role_id == ACCESS_LEVELS.zap_level
+          ? state.user?.zap.map((item) => item.value).join(",")
+          : null,  //state.selectedZap ? state.selectedZap.map(x => x.value).join(",") : "",
       "",
       state.selectedPerformance ? state.selectedPerformance.value : null,
       isWeeklyOrFortnightly === 1 ? dayjs(state.dates[0].start).format("YYYY-MM-DD") : dayjs(state.startDate).format("YYYY-MM-DD"),
@@ -184,20 +248,68 @@ const DashboardHome = () => {
     }
   }
 
+  function getRegions() {
+    getAllRegionsCall(1, 1000)
+      .then(({ data }) => {
+        if (data.error_code === 0)
+          setState((prevState) => ({ ...prevState, regionsData: data.result }));
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  }
+
+  function getCisco(value) {
+    getAllCiscoByRegionIdCall(value.map((x) => x.value).join(","), 1, 1000)
+      .then(({ data }) => {
+        if (data.error_code === 0)
+          setState((prevState) => ({ ...prevState, ciscoData: state.ciscoData = data.result }));
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  }
+
+  function getZap(value) {
+    getAllZapByCiscoIdCall(value.map((x) => x.value).join(","), 1, 1000)
+      .then(({ data }) => {
+        if (data.error_code === 0)
+          setState((prevState) => ({ ...prevState, zapData: state.zapData = data.result }));
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  }
+
   return (
     <>
       <Filters
+        user={state.user}
         startDate={state.startDate}
         endDate={state.endDate}
         onHandleClickLeft={onHandleClickLeft}
         onHandleClickRight={onHandleClickRight}
-        onChangeRegions={(value) => setState(prevState => ({ ...prevState, selectedRegions: value }))}
+        regionsData={state.regionsData}
+        onChangeRegions={(value) => {
+          setState(prevState => ({ ...prevState, selectedRegions: value, ciscoData: [], selectedCisco: [], zapData: [], selectedZap: [] }))
+          if (value.length > 0) getCisco(value);
+        }}
         selectedRegions={state.selectedRegions}
-        onChangeCisco={(value) => setState(prevState => ({ ...prevState, selectedCisco: value }))}
+        ciscoData={state.ciscoData}
+        onChangeCisco={(value) => {
+          setState(prevState => ({ ...prevState, selectedCisco: value, zapData: [], selectedZap: [] }))
+          if (value.length > 0) getZap(value);
+        }}
         selectedCisco={state.selectedCisco}
-        onChangeZap={(value) => setState(prevState => ({ ...prevState, selectedZap: value }))}
+        zapData={state.zapData}
+        onChangeZap={(value) => {
+          setState(prevState => ({ ...prevState, selectedZap: value }))
+        }}
         selectedZap={state.selectedZap}
-        onChangePerformance={(value) => setState(prevState => ({ ...prevState, selectedPerformance: value }))}
+        performanceData={state.performanceData}
+        onChangePerformance={(value) => {
+          setState(prevState => ({ ...prevState, selectedPerformance: value }))
+        }}
         selectedPerformance={state.selectedPerformance}
         onHandleSearch={getRecordSubmission}
         onHandleReset={() => {
@@ -237,8 +349,8 @@ const DashboardHome = () => {
             onHandlePageChange={(value) => setState((prevState) => ({ ...prevState, page: value }))}
           />
         }
+        {isProcessing && <ProcessingLoader />}
       </div>
-      {isProcessing && <ProcessingLoader />}
     </>
   );
 };

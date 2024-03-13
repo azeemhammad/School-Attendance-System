@@ -1,7 +1,12 @@
 .wrapper {
   /* display: flex; */
   /* background-color: red; */
+  display: flex;
   margin: 0 auto;
+  height: 100vh;
+  /* background-color: red; */
+  position: relative;
+  /* overflow: hidden; */
 }
 .sidebarContainer {
   flex: 1;
@@ -15,8 +20,11 @@
 }
 .container {
   background-color: #e6e9f1;
-  min-height: 500px;
+  /* height: calc(100% - 30%); */
+  min-height: 600px;
+  max-height: 800px;
   padding-bottom: 20px;
+  overflow-y: auto;
 }
 .performanceboxes {
   display: flex;
