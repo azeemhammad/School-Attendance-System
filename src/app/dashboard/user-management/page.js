@@ -14,6 +14,7 @@ import { GrEdit } from "react-icons/gr";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { getAllCiscoByRegionIdCall, getAllRegionsCall, getAllZapByCiscoIdCall } from "@/app/api/educ-etablissement/repo";
 import { isInvalidEmail } from "@/app/utils/validations";
+import Pagination from "react-js-pagination";
 
 const UserManagenemt = () => {
   const navigate = useRouter();
@@ -39,7 +40,8 @@ const UserManagenemt = () => {
     password: "",
     confirmPassword: "",
     page: 1,
-    limit: 10
+    limit: 10,
+    totalRecords: 0
   })
   const [isProcessing, setIsProcessing] = useState(false);
   const [isProcessingAddEditUser, setIsProcessingAddEditUser] = useState(false);
@@ -52,7 +54,6 @@ const UserManagenemt = () => {
 
   useEffect(() => {
     if (state.selectedEmployee && isUserAddOrEditModel) {
-      debugger;
       if (state.selectedEmployee.regions.length > 0) getRegions();
       if (state.selectedEmployee.Cisco.length > 0) getCisco(state.selectedEmployee.regions);
       if (state.selectedEmployee.Zap.length > 0) getZap(state.selectedEmployee.Cisco);
@@ -83,13 +84,13 @@ const UserManagenemt = () => {
     getAllUsersCall(state.page, state.limit).then(({ data }) => {
       setIsProcessing(false);
       if (data.error_code == 0)
-        setState(prevState => ({ ...prevState, employees: data.result }))
+        setState(prevState => ({ ...prevState, employees: data.result, totalRecords: data.total_records }))
       else
-        setState(prevState => ({ ...prevState, employees: [] }))
+        setState(prevState => ({ ...prevState, employees: [], totalRecords: 0 }))
     }).catch(err => {
       console.log("err", err);
       setIsProcessing(false);
-      setState(prevState => ({ ...prevState, employees: [] }))
+      setState(prevState => ({ ...prevState, employees: [], totalRecords: 0 }))
     })
   }
 
@@ -128,7 +129,7 @@ const UserManagenemt = () => {
 
   const isViewValid = () => {
     if (!state.name) alertVisibility("Please enter name");
-    else if (!state.email) alertVisibility("Please enter name");
+    else if (!state.email) alertVisibility("Please enter email");
     else if (isInvalidEmail(state.email)) alertVisibility("Please enter valid email");
     else if (!state.selectedAccessLevel) alertVisibility("Please select access level");
     else if (
@@ -292,15 +293,30 @@ const UserManagenemt = () => {
         </tbody>
       </table>
 
+      {state.employees.length > 0 ? (
+        <div className={"list__container__pagination"}>
+          <Pagination
+            activePage={state.page}
+            itemsCountPerPage={state.limit}
+            totalItemsCount={state.totalRecords}
+            pageRangeDisplayed={5}
+            onChange={(value) => setState((prevState) => ({ ...prevState, page: value }))}
+          />
+        </div>
+      ) : null}
+
       <ReactModal
         isOpen={isUserAddOrEditModel}
         className={styles.addemployeemodal}
         style={{ overlay: { background: "rgba(0, 0, 0, 0.5)" } }}
       >
         <div className={styles.addemployeemodalheading}>
-          <span>Add Employee</span>
+          <span>{state.selectedEmployee ? "Edit" : "Add"} Employee</span>
           <IoMdClose
-            onClick={() => setIsUserAddOrEditModel(!isUserAddOrEditModel)}
+            onClick={() => {
+              setState(prevState => ({ ...prevState, selectedEmployee: null, name: "", email: "", selectedAccessLevel: null, regionsData: [], selectedRegions: [], ciscoData: [], selectedCiscos: [], zapData: [], selectedZaps: [], password: "", confirmPassword: "" }))
+              setIsUserAddOrEditModel(!isUserAddOrEditModel)
+            }}
             cursor={"pointer"}
             size={24}
           />
