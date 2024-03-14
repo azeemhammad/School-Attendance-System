@@ -133,17 +133,17 @@ const UserManagenemt = () => {
     else if (!state.selectedAccessLevel) alertVisibility("Please select access level");
     else if (
       state.selectedAccessLevel.value == ACCESS_LEVELS.region_level &&
-      !state.selectedRegions
+      state.selectedRegions.length == 0
     )
       alertVisibility("Please select regions");
     else if (
       state.selectedAccessLevel.value == ACCESS_LEVELS.cisco_level &&
-      !state.selectedCiscos
+      state.selectedCiscos.length == 0
     )
       alertVisibility("Please select ciscos");
     else if (
       state.selectedAccessLevel.value == ACCESS_LEVELS.zap_level &&
-      !state.selectedZaps
+      state.selectedZaps.length == 0
     )
       alertVisibility("Please select zaps");
     else if (!state.selectedEmployee) {
@@ -249,7 +249,7 @@ const UserManagenemt = () => {
             <th>EMPLOYEE NAME</th>
             <th>EMAIL</th>
             <th>ACCESS LEVEL</th>
-            <th>REGION</th>
+            <th  >REGION</th>
             <th>DISTRICT</th>
             <th>COMMUNES</th>
             <th>ACTIONS</th>
@@ -264,9 +264,9 @@ const UserManagenemt = () => {
               <td>{item.name}</td>
               <td>{item.email}</td>
               <td>{item.role_id == ACCESS_LEVELS.super_admin ? "Super Admin" : item.role_id == ACCESS_LEVELS.region_level ? "Region Level" : item.role_id == ACCESS_LEVELS.cisco_level ? "Cisco Level" : item.role_id == ACCESS_LEVELS.zap_level ? "Zap Level" : ""}</td>
-              <td>{item.regions.length > 0 ? item.regions.map((item) => item.label).join(", ") : ""}</td>
-              <td>{item.Cisco.length > 0 ? item.Cisco.map((item) => item.label).join(", ") : ""}</td>
-              <td>{item.Zap.length > 0 ? item.Zap.map((item) => item.label).join(", ") : ""}</td>
+              <td style={{ maxWidth: "400px" }} >{item.regions.length > 0 ? item.regions.map((item) => item.label).join(", ") : ""}</td>
+              <td style={{ maxWidth: "400px" }} >{item.Cisco.length > 0 ? item.Cisco.map((item) => item.label).join(", ") : ""}</td>
+              <td style={{ maxWidth: "400px" }} >{item.Zap.length > 0 ? item.Zap.map((item) => item.label).join(", ") : ""}</td>
               <td className={styles.actions}>
                 <div
                   onClick={() => {
