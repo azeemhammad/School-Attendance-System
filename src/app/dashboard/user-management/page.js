@@ -132,12 +132,12 @@ const UserManagenemt = () => {
     else if (isInvalidEmail(state.email)) alertVisibility("Please enter valid email");
     else if (!state.selectedAccessLevel) alertVisibility("Please select access level");
     else if (
-      state.selectedAccessLevel.value == ACCESS_LEVELS.region_level &&
+      (state.selectedAccessLevel.value == ACCESS_LEVELS.region_level || state.selectedAccessLevel.value == ACCESS_LEVELS.cisco_level || state.selectedAccessLevel.value == ACCESS_LEVELS.zap_level) &&
       state.selectedRegions.length == 0
     )
       alertVisibility("Please select regions");
     else if (
-      state.selectedAccessLevel.value == ACCESS_LEVELS.cisco_level &&
+      (state.selectedAccessLevel.value == ACCESS_LEVELS.cisco_level || state.selectedAccessLevel.value == ACCESS_LEVELS.zap_level) &&
       state.selectedCiscos.length == 0
     )
       alertVisibility("Please select ciscos");
