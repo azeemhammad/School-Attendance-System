@@ -49,7 +49,6 @@ const Gallery = () => {
     setIsProcessing(true);
     let user = localStorage.getItem("user_data");
     user = JSON.parse(user);
-    debugger;
     getGalleryCall(images, user.role_id).then(({ data }) => {
       setIsProcessing(false);
       if (data.error_code == 0) {

@@ -52,7 +52,7 @@
   transform: scale(0.98);
 }
 .addemployeemodal {
-  height: 700px;
+  max-height: 600px;
   width: 800px;
   background-color: white;
   border-radius: 10px;
@@ -66,7 +66,7 @@
 .addemployeemodalheading {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 10px;
   border-bottom: 1px solid #f2f2f2;
 }
 .addemployeemodalheading span {
@@ -76,7 +76,7 @@
 .add__employee__content__container {
   display: flex;
   flex-direction: column;
-  height: 550px;
+  max-height: 450px;
   overflow: auto;
 }
 .addemployeemodalname {
@@ -125,7 +125,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 20px;
+  padding: 10px;
   gap: 40px;
 }
 .addemployeemodalcancel div {
