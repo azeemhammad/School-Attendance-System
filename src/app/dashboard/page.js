@@ -10,11 +10,10 @@ import Filters from "../components/filters/filter";
 import { getAllCiscoByRegionIdCall, getAllRegionsCall, getAllZapByCiscoIdCall, getRecordSubmissionCall } from "../api/educ-etablissement/repo";
 import { eachWeekOfInterval, endOfMonth, startOfMonth } from "date-fns";
 import dayjs from "dayjs";
-import { useSelector } from "react-redux";
 import ProcessingLoader from "../components/processing-loader";
 import { ACCESS_LEVELS } from "../utils/constants";
 
-const DashboardHome = () => {
+const DashboardHome = ({ params: { lang } }) => {
   const [isWeeklyOrFortnightly, setIsWeeklyOrFortnightly] = useState(1);
 
   let [state, setState] = useState({
@@ -42,6 +41,9 @@ const DashboardHome = () => {
     randomNumber: 0,
   })
   const [isProcessing, setIsProcessing] = useState(false);
+  const storedIsEnglish = localStorage.getItem("isEnglish");
+  const initialIsEnglish = storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
+  const [isEnglish, setIsEnglish] = useState(initialIsEnglish);
 
   useEffect(() => {
     let user = localStorage.getItem("user_data")
@@ -320,6 +322,7 @@ const DashboardHome = () => {
           }, 500);
         }}
         isWeeklyOrFortnightly={isWeeklyOrFortnightly}
+        isEnglish={isEnglish}
       />
       <Weekly0rFortnightly
         setIsWeeklyOrFortnightly={(value) => {
@@ -327,9 +330,10 @@ const DashboardHome = () => {
           setIsWeeklyOrFortnightly(value);
         }}
         isWeeklyOrFortnightly={isWeeklyOrFortnightly}
+        isEnglish={isEnglish}
       />
       <div className={styles.container}>
-        <PerformanceSchool preformanceRecord={state.preformanceRecord} />
+        <PerformanceSchool preformanceRecord={state.preformanceRecord} isEnglish={isEnglish} />
         {isWeeklyOrFortnightly === 1 &&
           <WeeklySchool
             recordSubmissionData={state.recordSubmissionData}
@@ -338,6 +342,7 @@ const DashboardHome = () => {
             limit={state.limit}
             totalRecords={state.totalRecords}
             onHandlePageChange={(value) => setState((prevState) => ({ ...prevState, page: value }))}
+            isEnglish={isEnglish}
           />
         }
         {isWeeklyOrFortnightly === 2 &&
@@ -348,6 +353,7 @@ const DashboardHome = () => {
             limit={state.limit}
             totalRecords={state.totalRecords}
             onHandlePageChange={(value) => setState((prevState) => ({ ...prevState, page: value }))}
+            isEnglish={isEnglish}
           />
         }
         {isProcessing && <ProcessingLoader />}

@@ -1,8 +1,9 @@
 "use client";
 
+import translation from "@/app/lang/translation";
 import styles from "./weekly.module.css";
 
-const Weekly0rFortnightly = ({ setIsWeeklyOrFortnightly, isWeeklyOrFortnightly }) => {
+const Weekly0rFortnightly = ({ setIsWeeklyOrFortnightly, isWeeklyOrFortnightly, isEnglish }) => {
   const handleClick = (value) => {
     setIsWeeklyOrFortnightly(value);
   };
@@ -14,14 +15,14 @@ const Weekly0rFortnightly = ({ setIsWeeklyOrFortnightly, isWeeklyOrFortnightly }
         onClick={() => handleClick(1)}
         style={{ cursor: "pointer" }}
       >
-        Weekly
+        {isEnglish ? translation.en.weekly : translation.mg.weekly}
       </div>
       <div
         className={isWeeklyOrFortnightly === 2 ? styles.underline : ""}
         onClick={() => handleClick(2)}
         style={{ cursor: "pointer" }}
       >
-        Fortnightly
+        {isEnglish ? translation.en.fortnightly : translation.mg.fortnightly}
       </div>
     </div>
   );

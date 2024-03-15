@@ -1,9 +1,10 @@
+import translation from "@/app/lang/translation";
 import styles from "../../styles/fortnightlyemployees.module.css";
 import dayjs from "dayjs";
 import { FaCircleCheck } from "react-icons/fa6";
 import { IoIosCloseCircle } from "react-icons/io";
 
-const FortnightlyEmployees = ({ employeeData, dates, startDate, endDate }) => {
+const FortnightlyEmployees = ({ employeeData, dates, startDate, endDate, isEnglish }) => {
   const getColorForAttendance = (status, reason) => {
     if (status == 1 || status == 2) return styles.present;
     else if (status == 0 && !reason) return styles.absent;
@@ -14,7 +15,9 @@ const FortnightlyEmployees = ({ employeeData, dates, startDate, endDate }) => {
     <div className={styles.lala}>
       <div className={styles.employees}>
         <div className={styles.employee}>
-          <span style={{ color: "white", fontWeight: "600" }}>Employees</span>
+          <span style={{ color: "white", fontWeight: "600" }}>
+            {isEnglish ? translation.en.employees : translation.mg.employees}
+          </span>
         </div>
         {dates.map((x, i) => (
           <div className={styles.employee2}>
@@ -58,7 +61,13 @@ const FortnightlyEmployees = ({ employeeData, dates, startDate, endDate }) => {
 
       {employeeData.map((item) => (
         <div className={styles.employees}>
-          <div className={styles.attendance}>
+          <div
+            className={styles.attendance}
+            style={{
+              backgroundColor: item.employee_type == 1 ? "#C1E1C1" : "#FFFFE0",
+              color: "grey",
+            }}
+          >
             {/* <img src={item.image} style={{ width: "30px", height: "30px", borderRadius: 100 }} /> */}
             <span style={{ fontWeight: "400" }}>{item.employee_name}</span>
           </div>
@@ -73,9 +82,13 @@ const FortnightlyEmployees = ({ employeeData, dates, startDate, endDate }) => {
                   )}
                   <span>
                     {x.is_present == 1 || x.is_present == 2
-                      ? "Present"
+                      ? isEnglish
+                        ? translation.en.present
+                        : translation.mg.present
                       : x.is_present == 0
-                      ? "Absent"
+                      ? isEnglish
+                        ? translation.en.absent
+                        : translation.mg.absent
                       : ""}
                   </span>
                 </div>

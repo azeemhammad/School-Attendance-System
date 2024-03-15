@@ -15,6 +15,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { getAllCiscoByRegionIdCall, getAllRegionsCall, getAllZapByCiscoIdCall } from "@/app/api/educ-etablissement/repo";
 import { isInvalidEmail } from "@/app/utils/validations";
 import Pagination from "react-js-pagination";
+import translation from "@/app/lang/translation";
 
 const UserManagenemt = () => {
   const navigate = useRouter();
@@ -47,6 +48,9 @@ const UserManagenemt = () => {
   const [isProcessingAddEditUser, setIsProcessingAddEditUser] = useState(false);
   const [isUserAddOrEditModel, setIsUserAddOrEditModel] = useState(false);
   const [modalIsOpenDelete, setModelIsOpenDelete] = useState(false);
+  const storedIsEnglish = localStorage.getItem("isEnglish");
+  const initialIsEnglish = storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
+  const [isEnglish, setIsEnglish] = useState(initialIsEnglish);
 
   useEffect(() => {
     getUsers();
@@ -128,32 +132,32 @@ const UserManagenemt = () => {
   }
 
   const isViewValid = () => {
-    if (!state.name) alertVisibility("Please enter name");
-    else if (!state.email) alertVisibility("Please enter email");
-    else if (isInvalidEmail(state.email)) alertVisibility("Please enter valid email");
-    else if (!state.selectedAccessLevel) alertVisibility("Please select access level");
+    if (!state.name) alertVisibility(isEnglish ? translation.en.please_enter_name : translation.mg.please_enter_name);
+    else if (!state.email) alertVisibility(isEnglish ? translation.en.please_enter_email : translation.mg.please_enter_email);
+    else if (isInvalidEmail(state.email)) alertVisibility(isEnglish ? translation.en.please_enter_valid_email : translation.mg.please_enter_valid_email);
+    else if (!state.selectedAccessLevel) alertVisibility(isEnglish ? translation.en.please_select_access_level : translation.mg.please_select_access_level);
     else if (
       (state.selectedAccessLevel.value == ACCESS_LEVELS.region_level || state.selectedAccessLevel.value == ACCESS_LEVELS.cisco_level || state.selectedAccessLevel.value == ACCESS_LEVELS.zap_level) &&
       state.selectedRegions.length == 0
     )
-      alertVisibility("Please select regions");
+      alertVisibility(isEnglish ? translation.en.please_select_regions : translation.mg.please_select_regions);
     else if (
       (state.selectedAccessLevel.value == ACCESS_LEVELS.cisco_level || state.selectedAccessLevel.value == ACCESS_LEVELS.zap_level) &&
       state.selectedCiscos.length == 0
     )
-      alertVisibility("Please select ciscos");
+      alertVisibility(isEnglish ? translation.en.please_select_ciscos : translation.mg.please_select_ciscos);
     else if (
       state.selectedAccessLevel.value == ACCESS_LEVELS.zap_level &&
       state.selectedZaps.length == 0
     )
-      alertVisibility("Please select zaps");
+      alertVisibility(isEnglish ? translation.en.please_select_zaps : translation.mg.please_select_access_level);
     else if (!state.selectedEmployee) {
-      if (!state.password) alertVisibility("Please enter password");
+      if (!state.password) alertVisibility(isEnglish ? translation.en.please_enter_password : translation.mg.please_enter_password);
       else if (state.password.length < 6)
         alertVisibility("Please enter a password with a minimum of 6 characters");
-      else if (!state.confirmPassword) alertVisibility("Please enter confirm password");
+      else if (!state.confirmPassword) alertVisibility(isEnglish ? translation.en.enter_confirm_password : translation.mg.enter_confirm_password);
       else if (state.password != state.confirmPassword)
-        alertVisibility("Your password didn't matched");
+        alertVisibility(isEnglish ? translation.en.Password_does_not_match : translation.mg.Password_does_not_match);
       else return true;
     } else return true;
     return false;
@@ -230,7 +234,7 @@ const UserManagenemt = () => {
           >
             <IoArrowBack style={{ color: "grey" }} />
           </div>
-          <span>Employees</span>
+          <span>{isEnglish ? translation.en.employees : translation.mg.employees}</span>
         </div>
         <div
           className={styles.addbutton}
@@ -240,20 +244,20 @@ const UserManagenemt = () => {
           }}
         >
           <GoPlus style={{ fontSize: "1.4rem", fontWeight: "900" }} />
-          <span>Add Employee</span>
+          <span>{isEnglish ? translation.en.add_employee : translation.mg.add_employee}</span>
         </div>
       </div>
       <table>
         <thead>
           <tr>
             <th>S/N</th>
-            <th>EMPLOYEE NAME</th>
+            <th>{isEnglish ? translation.en.employee_name : translation.mg.employee_name}</th>
             <th>EMAIL</th>
-            <th>ACCESS LEVEL</th>
-            <th  >REGION</th>
-            <th>DISTRICT</th>
-            <th>COMMUNES</th>
-            <th>ACTIONS</th>
+            <th>{isEnglish ? translation.en.access_level_header : translation.mg.access_level_header}</th>
+            <th>{isEnglish ? translation.en.region : translation.mg.region}</th>
+            <th>{isEnglish ? translation.en.cisco : translation.mg.cisco}</th>
+            <th>{isEnglish ? translation.en.zap : translation.mg.zap}</th>
+            <th>{isEnglish ? translation.en.actions : translation.mg.actions}</th>
           </tr>
         </thead>
         <tbody>
@@ -264,7 +268,7 @@ const UserManagenemt = () => {
               </td>
               <td>{item.name}</td>
               <td>{item.email}</td>
-              <td>{item.role_id == ACCESS_LEVELS.super_admin ? "Super Admin" : item.role_id == ACCESS_LEVELS.region_level ? "Region Level" : item.role_id == ACCESS_LEVELS.cisco_level ? "Cisco Level" : item.role_id == ACCESS_LEVELS.zap_level ? "Zap Level" : ""}</td>
+              <td>{item.role_id == ACCESS_LEVELS.super_admin ? "Super Admin" : item.role_id == ACCESS_LEVELS.region_level ? isEnglish ? translation.en.region_level : translation.mg.region_level : item.role_id == ACCESS_LEVELS.cisco_level ? "Cisco Level" : item.role_id == ACCESS_LEVELS.zap_level ? "Zap Level" : ""}</td>
               <td style={{ maxWidth: "400px" }} >{item.regions.length > 0 ? item.regions.map((item) => item.label).join(", ") : ""}</td>
               <td style={{ maxWidth: "400px" }} >{item.Cisco.length > 0 ? item.Cisco.map((item) => item.label).join(", ") : ""}</td>
               <td style={{ maxWidth: "400px" }} >{item.Zap.length > 0 ? item.Zap.map((item) => item.label).join(", ") : ""}</td>
@@ -311,7 +315,7 @@ const UserManagenemt = () => {
         style={{ overlay: { background: "rgba(0, 0, 0, 0.5)" } }}
       >
         <div className={styles.addemployeemodalheading}>
-          <span>{state.selectedEmployee ? "Edit" : "Add"} Employee</span>
+          <span>{state.selectedEmployee ? isEnglish ? translation.en.edit_employee : translation.mg.edit_employee : isEnglish ? translation.en.add_employee : translation.mg.add_employee}</span>
           <IoMdClose
             onClick={() => {
               setState(prevState => ({ ...prevState, selectedEmployee: null, name: "", email: "", selectedAccessLevel: null, regionsData: [], selectedRegions: [], ciscoData: [], selectedCiscos: [], zapData: [], selectedZaps: [], password: "", confirmPassword: "" }))
@@ -323,29 +327,29 @@ const UserManagenemt = () => {
         </div>
         <div className={styles.add__employee__content__container} >
           <div className={styles.addemployeemodalname}>
-            <span>Name</span>
+            <span>{isEnglish ? translation.en.employees_name : translation.mg.employees_name}</span>
             <input
               type="text"
-              placeholder="Enter Employee Name"
+              placeholder={isEnglish ? translation.en.enter_employee_name : translation.mg.enter_employee_name}
               value={state.name}
               onChange={(e) => setState(prevState => ({ ...prevState, name: e.target.value }))}
             />
           </div>
           <div className={styles.addemployeemodalname}>
-            <span>Email</span>
+            <span>{isEnglish ? translation.en.Email_Address : translation.mg.Email_Address}</span>
             <input
               type="email"
-              placeholder="Enter Employee Email"
+              placeholder={isEnglish ? translation.en.Email_Address : translation.mg.Email_Address}
               value={state.email}
               onChange={(e) => setState(prevState => ({ ...prevState, email: e.target.value }))}
             />
           </div>
           <div className={styles.addemployeemodaldropdowns}>
-            <span>Access Level</span>
+            <span>{isEnglish ? translation.en.access_level : translation.mg.access_level}</span>
             <Select
               className={styles.reactselect}
               styles={Styles}
-              placeholder="Select Access Level"
+              placeholder={"Select " + isEnglish ? translation.en.access_level : translation.mg.access_level}
               options={state.accessLevels}
               value={state.selectedAccessLevel}
               onChange={(value) => {
@@ -368,11 +372,11 @@ const UserManagenemt = () => {
               state.selectedAccessLevel.value == ACCESS_LEVELS.cisco_level ||
               state.selectedAccessLevel.value == ACCESS_LEVELS.zap_level) ? (
             <div className={styles.addemployeemodaldropdowns}>
-              <span>Regions</span>
+              <span>{isEnglish ? translation.en.region : translation.mg.region}</span>
               <Select
                 className={styles.reactselect}
                 styles={Styles}
-                placeholder="Select Regions"
+                placeholder={"Select " + isEnglish ? translation.en.region : translation.mg.region}
                 isMulti
                 options={state.regionsData}
                 value={state.selectedRegions}
@@ -395,11 +399,11 @@ const UserManagenemt = () => {
             (state.selectedAccessLevel.value == ACCESS_LEVELS.cisco_level ||
               state.selectedAccessLevel.value == ACCESS_LEVELS.zap_level) ? (
             <div className={styles.addemployeemodaldropdowns}>
-              <span>Cisco</span>
+              <span>{isEnglish ? translation.en.cisco : translation.mg.cisco}</span>
               <Select
                 className={styles.reactselect}
                 styles={Styles}
-                placeholder="Select Ciscos"
+                placeholder={"Select " + isEnglish ? translation.en.cisco : translation.mg.cisco}
                 isMulti
                 options={state.ciscoData}
                 value={state.selectedCiscos}
@@ -419,11 +423,11 @@ const UserManagenemt = () => {
           {state.selectedAccessLevel &&
             state.selectedAccessLevel.value == ACCESS_LEVELS.zap_level && (
               <div className={styles.addemployeemodaldropdowns}>
-                <span>Zap</span>
+                <span>{isEnglish ? translation.en.zap : translation.mg.zap}</span>
                 <Select
                   className={styles.reactselect}
                   styles={Styles}
-                  placeholder="Select Zaps"
+                  placeholder={"Select " + isEnglish ? translation.en.cisco : translation.mg.cisco}
                   isMulti
                   options={state.zapData}
                   value={state.selectedZaps}
@@ -437,19 +441,19 @@ const UserManagenemt = () => {
           {!state.selectedEmployee ? (
             <>
               <div className={styles.addemployeemodalname}>
-                <span>Password</span>
+                <span>{isEnglish ? translation.en.Password : translation.mg.Password}</span>
                 <input
                   type="password"
-                  placeholder="Enter Password"
+                  placeholder={isEnglish ? translation.en.Password : translation.mg.Password}
                   value={state.password}
                   onChange={(e) => setState(prevState => ({ ...prevState, password: e.target.value }))}
                 />
               </div>
               <div className={styles.addemployeemodalname}>
-                <span>Confirm Password</span>
+                <span>{isEnglish ? translation.en.confirm_password : translation.mg.confirm_password}</span>
                 <input
                   type="password"
-                  placeholder="Enter Confirm Password"
+                  placeholder={isEnglish ? translation.en.confirm_password : translation.mg.confirm_password}
                   value={state.confirmPassword}
                   onChange={(e) => setState(prevState => ({ ...prevState, confirmPassword: e.target.value }))}
                 />
@@ -462,12 +466,12 @@ const UserManagenemt = () => {
           <span onClick={() => {
             setState(prevState => ({ ...prevState, selectedEmployee: null, name: "", email: "", selectedAccessLevel: null, regionsData: [], selectedRegions: [], ciscoData: [], selectedCiscos: [], zapData: [], selectedZaps: [], password: "", confirmPassword: "" }))
             setIsUserAddOrEditModel(!isUserAddOrEditModel);
-          }}>Cancel</span>
+          }}>{isEnglish ? translation.en.Cancel : translation.mg.Cancel}</span>
           <div onClick={() => {
             if (!isProcessingAddEditUser)
               onHandleSubmit()
           }} >
-            {isProcessingAddEditUser ? "Processing..." : state.selectedEmployee ? "Edit" : "Add"}
+            {isProcessingAddEditUser ? "Processing..." : isEnglish ? translation.en.submit : translation.mg.submit}
           </div>
         </div>
       </ReactModal>
@@ -478,12 +482,12 @@ const UserManagenemt = () => {
         style={{ overlay: { background: "rgba(0, 0, 0, 0.5)" } }}
       >
         <div className={styles.deleteemployeeheading}>
-          <span>Delete Employee</span>
+          <span>{isEnglish ? translation.en.delete_employee : translation.mg.delete_employee}</span>
         </div>
         <div className={styles.deleteemployeesubheading}>
           <span>
-            Do you confirm your intention to delete this Employee? <br />
-            Please note that this action cannot be undone.
+            {isEnglish ? translation.en["do_you_confirm_your_intention_to_delete_this_employee?"] : translation.mg["do_you_confirm_your_intention_to_delete_this_employee?"]} <br />
+            {isEnglish ? translation.en.please_note_that_this_action_cannot_be_undone : translation.mg.please_note_that_this_action_cannot_be_undone}
           </span>
         </div>
         <div className={styles.deleteemployeecancel}>
@@ -491,12 +495,12 @@ const UserManagenemt = () => {
             setState(prevState => ({ ...prevState, selectedEmployee: null }))
             setModelIsOpenDelete(!modalIsOpenDelete);
           }}>
-            No, Keep it
+            {isEnglish ? translation.en.no_keep_it : translation.mg.no_keep_it}
           </span>
           <div onClick={(e) => {
             setModelIsOpenDelete(!modalIsOpenDelete);
             onHandleDeleteEmployee();
-          }} >Yes, Delete</div>
+          }} >{isEnglish ? translation.en.yes_delete : translation.mg.yes_delete}</div>
         </div>
       </ReactModal>
 

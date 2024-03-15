@@ -1,7 +1,5 @@
-
 import { Inter } from "next/font/google";
 import "./globals.css";
-import ProcessingLoader from "./components/processing-loader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,10 +8,12 @@ export const metadata = {
   description: "World Bank School Attendance System",
 };
 
-const RootLayout = ({ children }) => {
+const RootLayout = ({ children, params }) => {
   return (
     <html lang="en">
-      <body className={inter.className} >{children}</body>
+      <body className={inter.className} >
+        {children}
+      </body>
     </html>
   );
 }
@@ -26,4 +26,4 @@ const RootLayout = ({ children }) => {
 //   );
 // }
 
-export default RootLayout
+export default RootLayout;

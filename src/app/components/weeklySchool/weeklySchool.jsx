@@ -7,6 +7,7 @@ import dayjs from "dayjs";
 import Pagination from "react-js-pagination";
 import { getAbsentEtabCall } from "@/app/api/educ-presence-photogroupe/repo";
 import ProcessingLoader from "../processing-loader";
+import translation from "@/app/lang/translation";
 
 const WeeklySchool = ({
   recordSubmissionData,
@@ -15,6 +16,7 @@ const WeeklySchool = ({
   limit,
   totalRecords,
   onHandlePageChange,
+  isEnglish,
 }) => {
   const navigate = useRouter();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -67,7 +69,9 @@ const WeeklySchool = ({
     <div>
       <div className={styles.schools}>
         <div className={styles.school}>
-          <span style={{ color: "white", fontWeight: "600" }}>School</span>
+          <span style={{ color: "white", fontWeight: "600" }}>
+            {isEnglish ? translation.en.schools : translation.mg.schools}
+          </span>
         </div>
         {dates.map((item) => (
           <div className={styles.school}>
@@ -93,11 +97,17 @@ const WeeklySchool = ({
             </div>
             <div className={`${getColorForPerformance(item.week01_percentage)}`}>
               {item.week01_percentage <= 20
-                ? "Low Performing"
+                ? isEnglish
+                  ? translation.en.low_performing
+                  : translation.mg.low_performing
                 : item.week01_percentage > 20 && item.week01_percentage <= 60
-                ? "Medium Performing"
+                ? isEnglish
+                  ? translation.en.medium_performing
+                  : translation.mg.medium_performing
                 : item.week01_percentage > 60
-                ? "High Performing"
+                ? isEnglish
+                  ? translation.en.high_performing
+                  : translation.mg.high_performing
                 : ""}
             </div>
             <div className={styles.greenfieldbuttons}>
@@ -109,7 +119,7 @@ const WeeklySchool = ({
                   } else alert("No images to show.");
                 }}
               >
-                View Gallery
+                {isEnglish ? translation.en.view_gallery : translation.mg.view_gallery}
               </div>
               <div
                 style={{ borderRight: "1px solid #d8d2d2" }}
@@ -126,19 +136,8 @@ const WeeklySchool = ({
                   } else alert("No records to show.");
                 }}
               >
-                View Records
+                {isEnglish ? translation.en.view_records : translation.mg.view_records}
               </div>
-              {/* <div>
-                <Link
-                  href={{
-                    pathname: "/dashboard/employees",
-                    query: { schoolname: item.name_etab, timeperiod: 1 },
-                  }}
-                  className={styles.link}
-                >
-                  View Records
-                </Link>
-              </div> */}
             </div>
           </div>
 
@@ -151,11 +150,17 @@ const WeeklySchool = ({
             </div>
             <div className={`${getColorForPerformance(item.week02_percentage)}`}>
               {item.week02_percentage <= 20
-                ? "Low Performing"
+                ? isEnglish
+                  ? translation.en.low_performing
+                  : translation.mg.low_performing
                 : item.week02_percentage > 20 && item.week02_percentage <= 60
-                ? "Medium Performing"
+                ? isEnglish
+                  ? translation.en.medium_performing
+                  : translation.mg.medium_performing
                 : item.week02_percentage > 60
-                ? "High Performing"
+                ? isEnglish
+                  ? translation.en.high_performing
+                  : translation.mg.high_performing
                 : ""}
             </div>
             <div className={styles.greenfieldbuttons}>
@@ -167,7 +172,7 @@ const WeeklySchool = ({
                   } else alert("No images to show.");
                 }}
               >
-                View Gallery
+                {isEnglish ? translation.en.view_gallery : translation.mg.view_gallery}
               </div>
               <div
                 style={{ borderRight: "1px solid #d8d2d2" }}
@@ -184,7 +189,7 @@ const WeeklySchool = ({
                   } else alert("No records to show.");
                 }}
               >
-                View Records
+                {isEnglish ? translation.en.view_records : translation.mg.view_records}
               </div>
             </div>
           </div>
@@ -198,11 +203,17 @@ const WeeklySchool = ({
             </div>
             <div className={`${getColorForPerformance(item.week03_percentage)}`}>
               {item.week03_percentage <= 20
-                ? "Low Performing"
+                ? isEnglish
+                  ? translation.en.low_performing
+                  : translation.mg.low_performing
                 : item.week03_percentage > 20 && item.week03_percentage <= 60
-                ? "Medium Performing"
+                ? isEnglish
+                  ? translation.en.medium_performing
+                  : translation.mg.medium_performing
                 : item.week03_percentage > 60
-                ? "High Performing"
+                ? isEnglish
+                  ? translation.en.high_performing
+                  : translation.mg.high_performing
                 : ""}
             </div>
             <div className={styles.greenfieldbuttons}>
@@ -214,7 +225,7 @@ const WeeklySchool = ({
                   } else alert("No images to show.");
                 }}
               >
-                View Gallery
+                {isEnglish ? translation.en.view_gallery : translation.mg.view_gallery}
               </div>
               <div
                 style={{ borderRight: "1px solid #d8d2d2" }}
@@ -231,7 +242,7 @@ const WeeklySchool = ({
                   } else alert("No records to show.");
                 }}
               >
-                View Records
+                {isEnglish ? translation.en.view_records : translation.mg.view_records}
               </div>
             </div>
           </div>
@@ -245,11 +256,17 @@ const WeeklySchool = ({
             </div>
             <div className={`${getColorForPerformance(item.week04_percentage)}`}>
               {item.week04_percentage <= 20
-                ? "Low Performing"
+                ? isEnglish
+                  ? translation.en.low_performing
+                  : translation.mg.low_performing
                 : item.week04_percentage > 20 && item.week04_percentage <= 60
-                ? "Medium Performing"
+                ? isEnglish
+                  ? translation.en.medium_performing
+                  : translation.mg.medium_performing
                 : item.week04_percentage > 60
-                ? "High Performing"
+                ? isEnglish
+                  ? translation.en.high_performing
+                  : translation.mg.high_performing
                 : ""}
             </div>
             <div className={styles.greenfieldbuttons}>
@@ -261,7 +278,7 @@ const WeeklySchool = ({
                   } else alert("No images to show.");
                 }}
               >
-                View Gallery
+                {isEnglish ? translation.en.view_gallery : translation.mg.view_gallery}
               </div>
               <div
                 style={{ borderRight: "1px solid #d8d2d2" }}
@@ -278,7 +295,7 @@ const WeeklySchool = ({
                   } else alert("No records to show.");
                 }}
               >
-                View Records
+                {isEnglish ? translation.en.view_records : translation.mg.view_records}
               </div>
             </div>
           </div>
@@ -292,11 +309,17 @@ const WeeklySchool = ({
             </div>
             <div className={`${getColorForPerformance(item.week05_percentage)}`}>
               {item.week05_percentage <= 20
-                ? "Low Performing"
+                ? isEnglish
+                  ? translation.en.low_performing
+                  : translation.mg.low_performing
                 : item.week05_percentage > 20 && item.week05_percentage <= 60
-                ? "Medium Performing"
+                ? isEnglish
+                  ? translation.en.medium_performing
+                  : translation.mg.medium_performing
                 : item.week05_percentage > 60
-                ? "High Performing"
+                ? isEnglish
+                  ? translation.en.high_performing
+                  : translation.mg.high_performing
                 : ""}
             </div>
             <div className={styles.greenfieldbuttons}>
@@ -308,7 +331,7 @@ const WeeklySchool = ({
                   } else alert("No images to show.");
                 }}
               >
-                View Gallery
+                {isEnglish ? translation.en.view_gallery : translation.mg.view_gallery}
               </div>
               <div
                 style={{ borderRight: "1px solid #d8d2d2" }}
@@ -325,7 +348,7 @@ const WeeklySchool = ({
                   } else alert("No records to show.");
                 }}
               >
-                View Records
+                {isEnglish ? translation.en.view_records : translation.mg.view_records}
               </div>
             </div>
           </div>

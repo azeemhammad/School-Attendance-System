@@ -3,11 +3,15 @@ import { useRouter } from "next/navigation";
 import styles from "./navbar.module.css";
 import { IoIosArrowDown } from "react-icons/io";
 import { useEffect, useState } from "react";
-import { ACCESS_LEVELS } from "@/app/utils/constants";
+import { ACCESS_LEVELS, LNGS } from "@/app/utils/constants";
+import translation from "../../lang/translation";
 
 const Navbar = () => {
   const navigate = useRouter();
   const [user, setUser] = useState(null);
+  const storedIsEnglish = localStorage.getItem("isEnglish");
+  const initialIsEnglish = storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
+  const [isEnglish, setIsEnglish] = useState(initialIsEnglish);
 
   useEffect(() => {
     const data = localStorage.getItem("user_data");
@@ -39,27 +43,58 @@ const Navbar = () => {
               className={styles.usermanagementbutton}
               onClick={() => navigate.push("/dashboard/user-management")}
             >
-              User Management
+              {isEnglish ? translation.en.user_management : translation.mg.user_management}
             </button>
           )}
           {/* <div className={styles.personaccount}>
             <img src="/personicon.svg" />
             <span>Burhan Rasool</span>
           </div> */}
-          {/* <div className={styles.language}>
-            <img src="/ukflag.svg" />
-            <span>English</span>
-            <IoIosArrowDown />
-          </div> */}
+          <div className={styles.languagebox}>
+            <div className={styles.language}>
+              <div>
+                <img
+                  src={isEnglish ? "/ukflag.svg" : "/madgascar_flag.svg"}
+                  style={{ width: "18px", height: "18px" }}
+                />
+                <span>{isEnglish ? "English" : "Madgascar"}</span>
+              </div>
+              <IoIosArrowDown />
+            </div>
+
+            <div className={styles.languagebox__content}>
+              {LNGS.map((lng) => {
+                return (
+                  <div
+                    style={{
+                      paddingTop: "1em",
+                      paddingLeft: "1em",
+                      paddingBottom: ".5em",
+                      height: "47px",
+                      display: "flex",
+                    }}
+                    key={lng.country_code}
+                    onClick={async () => {
+                      localStorage.setItem("isEnglish", lng.code == "en" ? true : false);
+                      window.location.reload();
+                      // setIsEnglish(lng.code == "en" ? true : false);
+                    }}
+                  >
+                    <span>{lng.nativeName}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
           <button
             className={styles.logout__button}
             onClick={() => {
-              // navigate.push("/")
               localStorage.removeItem("user_data");
               navigate.push("/", undefined, { shallow: true });
             }}
           >
-            Logout
+            {isEnglish ? translation.en.logout : translation.mg.logout}
           </button>
         </div>
       </div>

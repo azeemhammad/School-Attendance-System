@@ -1,9 +1,10 @@
+import translation from "@/app/lang/translation";
 import styles from "../../styles/weeklyemployees.module.css";
 import dayjs from "dayjs";
 import { FaCircleCheck } from "react-icons/fa6";
 import { IoIosCloseCircle } from "react-icons/io";
 
-const WeeklyEmployees = ({ employeeData, dates, startDate, endDate }) => {
+const WeeklyEmployees = ({ employeeData, dates, startDate, endDate, isEnglish }) => {
   const getColorForAttendance = (status, reason) => {
     if (status == 1 || status == 2) return styles.present;
     else if (status == 0 && !reason) return styles.absent;
@@ -23,7 +24,9 @@ const WeeklyEmployees = ({ employeeData, dates, startDate, endDate }) => {
       {/* {employees.map((item) => ( */}
       <div className={styles.employees}>
         <div className={styles.employee}>
-          <span style={{ color: "white", fontWeight: "600" }}>Employees</span>
+          <span style={{ color: "white", fontWeight: "600" }}>
+            {isEnglish ? translation.en.employees : translation.mg.employees}
+          </span>
         </div>
         {dates.map((x, i) => (
           <div className={styles.employee2}>
@@ -91,9 +94,13 @@ const WeeklyEmployees = ({ employeeData, dates, startDate, endDate }) => {
                   </div>
                   <span>
                     {x.is_present == 1 || x.is_present == 2
-                      ? "Present"
+                      ? isEnglish
+                        ? translation.en.present
+                        : translation.mg.present
                       : x.is_present == 0
-                      ? "Absent"
+                      ? isEnglish
+                        ? translation.en.absent
+                        : translation.mg.absent
                       : ""}
                   </span>
                 </div>

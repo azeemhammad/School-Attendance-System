@@ -6,6 +6,12 @@ const ACCESS_LEVELS =
     zap_level: 4
 }
 
+const LNGS = [
+    { code: "en", nativeName: "English", country_code: "eng" },
+    { code: "mg", nativeName: "Malagasy", country_code: "madgascar" },
+];
+
 export {
-    ACCESS_LEVELS
+    ACCESS_LEVELS,
+    LNGS
 }

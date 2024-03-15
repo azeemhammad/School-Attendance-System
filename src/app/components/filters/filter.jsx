@@ -7,6 +7,7 @@ import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ModelSelect from "../modelSelect/model-select";
 import { ACCESS_LEVELS } from "@/app/utils/constants";
+import translation from "@/app/lang/translation";
 
 const Filters = ({
   user,
@@ -30,6 +31,7 @@ const Filters = ({
   onHandleSearch,
   onHandleReset,
   isWeeklyOrFortnightly,
+  isEnglish,
 }) => {
   const Styles = {
     control: (provided) => ({
@@ -101,7 +103,7 @@ const Filters = ({
             // onChange={(date) => setStartDate(date)}
           />
 
-          <span>to</span>
+          <span>{isEnglish ? translation.en.to : translation.mg.to}</span>
           <ReactDatePicker
             dateFormat="MMM d, yyyy"
             selected={endDate}
@@ -116,7 +118,7 @@ const Filters = ({
           {user?.role_id == ACCESS_LEVELS.super_admin ||
           user?.role_id == ACCESS_LEVELS.region_level ? (
             <ModelSelect
-              placeholder={"Region"}
+              placeholder={isEnglish ? translation.en.region : translation.mg.region}
               isMulti
               options={regionsData}
               value={selectedRegions}
@@ -130,7 +132,7 @@ const Filters = ({
           user?.role_id == ACCESS_LEVELS.region_level ||
           user?.role_id == ACCESS_LEVELS.cisco_level ? (
             <ModelSelect
-              placeholder={"Cisco"}
+              placeholder={isEnglish ? translation.en.cisco : translation.mg.cisco}
               isMulti
               options={ciscoData}
               value={selectedCisco}
@@ -145,7 +147,7 @@ const Filters = ({
           user?.role_id == ACCESS_LEVELS.cisco_level ||
           user?.role_id == ACCESS_LEVELS.zap_level ? (
             <ModelSelect
-              placeholder={"Zap"}
+              placeholder={isEnglish ? translation.en.zap : translation.mg.zap}
               isMulti
               options={zapData}
               value={selectedZap}
@@ -159,7 +161,11 @@ const Filters = ({
             options={performanceData}
             className={styles.reactselect}
             styles={Styles}
-            placeholder="Search by Performance"
+            placeholder={
+              isEnglish
+                ? translation.en.search_by_performance
+                : translation.mg.search_by_performance
+            }
             value={selectedPerformance}
             onChange={(value) => onChangePerformance(value)}
           />

@@ -12,6 +12,7 @@ import { IoArrowBack } from "react-icons/io5";
 import { getEtabAttendanceCall } from "@/app/api/educ-presence-photogroupe/repo";
 import dayjs from "dayjs";
 import ProcessingLoader from "@/app/components/processing-loader";
+import translation from "@/app/lang/translation";
 
 const Employees = () => {
   const navigate = useRouter();
@@ -26,6 +27,9 @@ const Employees = () => {
   })
   const [isProcessing, setIsProcessing] = useState(false);
   const [isWeeklyOrFortnightly, setIsWeeklyOrFortnightly] = useState(2);
+  const storedIsEnglish = localStorage.getItem("isEnglish");
+  const initialIsEnglish = storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
+  const [isEnglish, setIsEnglish] = useState(initialIsEnglish)
 
   useEffect(() => {
     let data = localStorage.getItem("employeeObject");
@@ -89,12 +93,12 @@ const Employees = () => {
           <span>{state.schoolData?.name_etab}</span>
         </div>
         <div className={styles.location}>
-          <span>Home</span>
+          <span>{isEnglish ? translation.en.home : translation.mg.home}</span>
           <IoIosArrowForward />
-          {isWeeklyOrFortnightly === 1 && <span>Weekly</span>}
-          {isWeeklyOrFortnightly === 2 && <span>Fortnightly</span>}
+          {isWeeklyOrFortnightly === 1 && <span>{isEnglish ? translation.en.weekly : translation.mg.weekly}</span>}
+          {isWeeklyOrFortnightly === 2 && <span>{isEnglish ? translation.en.fortnightly : translation.mg.fortnightly}</span>}
           <IoIosArrowForward />
-          <span>Employees</span>
+          <span>{isEnglish ? translation.en.employees : translation.mg.employees}</span>
         </div>
         <div style={{ marginTop: "10px" }}>
           {isWeeklyOrFortnightly === 1 &&
@@ -103,6 +107,7 @@ const Employees = () => {
               dates={state.dates}
               startDate={state.startDate}
               endDate={state.endDate}
+              isEnglish={isEnglish}
             />}
           {isWeeklyOrFortnightly === 2 &&
             <FortnightlyEmployees
@@ -110,6 +115,7 @@ const Employees = () => {
               dates={state.dates}
               startDate={state.startDate}
               endDate={state.endDate}
+              isEnglish={isEnglish}
             />}
         </div>
       </div>

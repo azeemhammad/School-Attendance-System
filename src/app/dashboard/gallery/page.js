@@ -15,6 +15,7 @@ import { MdOutlineClose } from "react-icons/md";
 import ImageGallery from "react-image-gallery";
 // # css file import
 import "react-image-gallery/styles/css/image-gallery.css";
+import translation from "@/app/lang/translation";
 
 const Gallery = () => {
   const navigate = useRouter();
@@ -28,6 +29,17 @@ const Gallery = () => {
     endDate: new Date(),
   })
   const [isProcessing, setIsProcessing] = useState(false);
+  const storedIsEnglish = localStorage.getItem("isEnglish");
+  const initialIsEnglish = storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
+  const [isEnglish, setIsEnglish] = useState(initialIsEnglish)
+
+  useEffect(() => {
+    setInterval(() => {
+      const storedIsEnglish = localStorage.getItem("isEnglish");
+      const initialIsEnglish = storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
+      setIsEnglish(initialIsEnglish)
+    }, 1000);
+  }, [])
 
   useEffect(() => {
     let data = localStorage.getItem("galleryImagesData");
@@ -104,12 +116,12 @@ const Gallery = () => {
           >
             <IoArrowBack style={{ color: 'grey' }} />
           </div>
-          <span>Gallery</span>
+          <span>{isEnglish ? translation.en.Gallery : translation.mg.Gallery}</span>
         </div>
         <div className={styles.location}>
-          <span>Home</span>
+          <span>{isEnglish ? translation.en.home : translation.mg.home}</span>
           <IoIosArrowForward />
-          <span>Gallery</span>
+          <span>{isEnglish ? translation.en.Gallery : translation.mg.Gallery}</span>
         </div>
         <div className={styles.gallery}>
           {state.imagesData.map((item, index) => (

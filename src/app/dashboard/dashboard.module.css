@@ -128,8 +128,9 @@
   font-size: 14px;
 }
 .highPerforming {
-  width: 115px;
-  height: 22px;
+  min-width: 115px;
+  max-width: 150px;
+  height: 28px;
   color: green;
   background-color: #ecf9eb;
   font-weight: 400;
@@ -140,10 +141,12 @@
   margin-left: 10px;
   align-items: center;
   margin-bottom: 15px;
+  padding-left: 5px;
 }
 .mediumPerforming {
-  width: 135px;
-  height: 22px;
+  min-width: 135px;
+  max-width: 150px;
+  height: 28px;
   color: #fbbc04;
   background-color: #fefaef;
   font-weight: 400;
@@ -154,10 +157,12 @@
   margin-left: 10px;
   align-items: center;
   margin-bottom: 15px;
+  padding-left: 5px;
 }
 .lowPerforming {
-  width: 115px;
-  height: 22px;
+  min-width: 115px;
+  max-width: 150px;
+  height: 28px;
   color: red;
   background-color: #ffe4e4;
   font-weight: 400;
@@ -168,6 +173,7 @@
   border-radius: 5px;
   margin-left: 10px;
   margin-bottom: 15px;
+  padding-left: 5px;
 }
 .greenfieldbuttons {
   border-top: 1px solid #d8d2d2;

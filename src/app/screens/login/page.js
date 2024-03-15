@@ -7,6 +7,9 @@ import { BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
 import { isInvalidEmail } from "@/app/utils/validations";
 import { employeeLoginCall } from "@/app/api/user/repo";
+import { LNGS } from "@/app/utils/constants";
+import setLanguage from 'next-translate/setLanguage'
+import translation from "../../lang/translation"
 
 const LoginPage = () => {
   const navigate = useRouter();
@@ -17,6 +20,9 @@ const LoginPage = () => {
   })
   const [isProcessing, setIsProcessing] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const storedIsEnglish = localStorage.getItem("isEnglish");
+  const initialIsEnglish = storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
+  const [isEnglish, setIsEnglish] = useState(initialIsEnglish)
 
   // useEffect(() => {
   //   localStorage.clear();
@@ -27,9 +33,9 @@ const LoginPage = () => {
   };
 
   function isViewValid() {
-    if (!state.email) alert("Please enter email.");
-    else if (isInvalidEmail(state.email)) alert("Please enter valid email address.");
-    else if (!state.password) alert("Please enter password.");
+    if (!state.email) alert(isEnglish ? translation.en.please_enter_email : translation.mg.please_enter_email);
+    else if (isInvalidEmail(state.email)) alert(isEnglish ? translation.en.please_enter_valid_email : translation.mg.please_enter_valid_email);
+    else if (!state.password) alert(isEnglish ? translation.en.please_enter_password : translation.mg.please_enter_password);
     else return true;
     return false
   }
@@ -62,29 +68,29 @@ const LoginPage = () => {
             <img src="/logo.svg" width={110} />
             <img src="/logo2.svg" width={120} />
           </div>
-          <h1>Welcome</h1>
+          <h1>{isEnglish ? translation.en.Welcome : translation.mg.Welcome}</h1>
           <span className={styles.pleaseenter}>
-            Please enter the email and password and login to your account
+            {isEnglish ? translation.en.Provide_your_login_details_to_continue : translation.mg.Provide_your_login_details_to_continue}
           </span>
           <div className={styles.inputfields}>
-            <span>Email</span>
+            <span>{isEnglish ? translation.en.Email_Address : translation.mg.Email_Address}</span>
             <div className={styles.inputwrapper}>
               <img src="/email.svg" />
               <input
                 type="text"
-                placeholder="Email"
+                placeholder={isEnglish ? translation.en.Email_Address : translation.mg.Email_Address}
                 value={state.email}
                 onChange={(e) => setState(prevState => ({ ...prevState, email: e.target.value }))}
               />
             </div>
           </div>
           <div className={styles.inputfields}>
-            <span>Password</span>
+            <span>{isEnglish ? translation.en.Password : translation.mg.Password}</span>
             <div className={styles.inputwrapper}>
               <img src="/Password.svg" />
               <input
                 type={showPassword ? "text" : "password"}
-                placeholder="Password"
+                placeholder={isEnglish ? translation.en.Password : translation.mg.Password}
                 value={state.password}
                 onChange={(e) => setState(prevState => ({ ...prevState, password: e.target.value }))}
               />
@@ -101,7 +107,7 @@ const LoginPage = () => {
             disabled={isProcessing}
             onClick={() => onHandleLogin()}
           >
-            {isProcessing ? "Processing..." : "Sign in"}
+            {isProcessing ? "Processing..." : isEnglish ? translation.en.Sign_in : translation.mg.Sign_in}
           </button>
           {/* <span
             className={styles.forgotpassword}
@@ -114,13 +120,14 @@ const LoginPage = () => {
       <div className={styles.rightside}>
         <div className={styles.languagebox}>
           <div className={styles.language}>
-            <img src="/ukflag.svg" />
-            <span>English</span>
+            <div>
+              <img src={isEnglish ? "/ukflag.svg" : "/madgascar_flag.svg"} style={{ width: "18px", height: "18px" }} />
+              <span>{isEnglish ? "English" : "Madgascar"}</span>
+            </div>
             <IoIosArrowDown />
           </div>
-          {/* <div className={styles.languagebox__content}>
-            {lngs.map((lng) => {
-              console.log("lng", lng)
+          <div className={styles.languagebox__content}>
+            {LNGS.map((lng) => {
               return (
                 <div
                   style={{
@@ -131,16 +138,16 @@ const LoginPage = () => {
                     display: "flex",
                   }}
                   key={lng.country_code}
-                  onClick={() => {
-                    // i18n.changeLanguage(lng.code);
-                    // localStorage.setItem("lang", lng.code);
+                  onClick={async () => {
+                    localStorage.setItem("isEnglish", lng.code == "en" ? true : false);
+                    setIsEnglish(lng.code == "en" ? true : false)
                   }}
                 >
                   <span>{lng.nativeName}</span>
                 </div>
               )
             })}
-          </div> */}
+          </div>
         </div>
 
         <div className={styles.rightimage}>

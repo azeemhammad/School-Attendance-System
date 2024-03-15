@@ -7,6 +7,7 @@ import Pagination from "react-js-pagination";
 import { getAbsentEtabCall } from "@/app/api/educ-presence-photogroupe/repo";
 import { useState } from "react";
 import ProcessingLoader from "../processing-loader";
+import translation from "@/app/lang/translation";
 
 const FortnightlySchool = ({
   recordSubmissionData,
@@ -15,6 +16,7 @@ const FortnightlySchool = ({
   limit,
   totalRecords,
   onHandlePageChange,
+  isEnglish,
 }) => {
   const navigate = useRouter();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -67,11 +69,15 @@ const FortnightlySchool = ({
     <div>
       <div className={styles.schools}>
         <div className={styles.school}>
-          <span style={{ color: "white", fontWeight: "600" }}>School</span>
+          <span style={{ color: "white", fontWeight: "600" }}>
+            {isEnglish ? translation.en.schools : translation.mg.schools}
+          </span>
         </div>
         {dates.map((item) => (
           <div className={styles.schoolfortnightly}>
-            <span style={{ color: "white", fontWeight: "600" }}>Fortnightly</span>
+            <span style={{ color: "white", fontWeight: "600" }}>
+              {isEnglish ? translation.en.fortnightly : translation.mg.fortnightly}
+            </span>
             <span style={{ color: "#FBBC04", fontSize: "14px" }}>
               {dayjs(item.start).format("DD MMM, YYYY")}
             </span>
@@ -93,11 +99,17 @@ const FortnightlySchool = ({
             </div>
             <div className={`${getColorForPerformance(item.fortnightly01_percentage)}`}>
               {item.fortnightly01_percentage <= 20
-                ? "Low Performing"
+                ? isEnglish
+                  ? translation.en.low_performing
+                  : translation.mg.low_performing
                 : item.fortnightly01_percentage > 20 && item.fortnightly01_percentage <= 60
-                ? "Medium Performing"
+                ? isEnglish
+                  ? translation.en.medium_performing
+                  : translation.mg.medium_performing
                 : item.fortnightly01_percentage > 60
-                ? "High Performing"
+                ? isEnglish
+                  ? translation.en.high_performing
+                  : translation.mg.high_performing
                 : ""}
             </div>
             <div className={styles.greenfieldbuttons}>
@@ -109,7 +121,7 @@ const FortnightlySchool = ({
                   } else alert("No images to show.");
                 }}
               >
-                View Gallery
+                {isEnglish ? translation.en.view_gallery : translation.mg.view_gallery}
               </div>
               <div
                 style={{ borderRight: "1px solid #d8d2d2" }}
@@ -126,7 +138,7 @@ const FortnightlySchool = ({
                   }
                 }}
               >
-                View Records
+                {isEnglish ? translation.en.view_records : translation.mg.view_records}
               </div>
               {/* <div>
                 <Link
@@ -151,11 +163,17 @@ const FortnightlySchool = ({
             </div>
             <div className={`${getColorForPerformance(item.fortnightly02_percentage)}`}>
               {item.fortnightly02_percentage <= 20
-                ? "Low Performing"
+                ? isEnglish
+                  ? translation.en.low_performing
+                  : translation.mg.low_performing
                 : item.fortnightly02_percentage > 20 && item.fortnightly02_percentage <= 60
-                ? "Medium Performing"
+                ? isEnglish
+                  ? translation.en.medium_performing
+                  : translation.mg.medium_performing
                 : item.fortnightly02_percentage > 60
-                ? "High Performing"
+                ? isEnglish
+                  ? translation.en.high_performing
+                  : translation.mg.high_performing
                 : ""}
             </div>
             <div className={styles.greenfieldbuttons}>
@@ -167,7 +185,7 @@ const FortnightlySchool = ({
                   } else alert("No images to show.");
                 }}
               >
-                View Gallery
+                {isEnglish ? translation.en.view_gallery : translation.mg.view_gallery}
               </div>
               <div
                 style={{ borderRight: "1px solid #d8d2d2" }}
@@ -184,7 +202,7 @@ const FortnightlySchool = ({
                   }
                 }}
               >
-                View Records
+                {isEnglish ? translation.en.view_records : translation.mg.view_records}
               </div>
             </div>
           </div>
