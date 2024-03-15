@@ -8,7 +8,6 @@ import { useState } from "react";
 import { isInvalidEmail } from "@/app/utils/validations";
 import { employeeLoginCall } from "@/app/api/user/repo";
 import { LNGS } from "@/app/utils/constants";
-import setLanguage from 'next-translate/setLanguage'
 import translation from "../../lang/translation"
 
 const LoginPage = () => {
