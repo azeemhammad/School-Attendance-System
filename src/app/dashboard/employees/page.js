@@ -27,9 +27,13 @@ const Employees = () => {
   })
   const [isProcessing, setIsProcessing] = useState(false);
   const [isWeeklyOrFortnightly, setIsWeeklyOrFortnightly] = useState(2);
-  const storedIsEnglish = localStorage.getItem("isEnglish");
-  const initialIsEnglish = storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
-  const [isEnglish, setIsEnglish] = useState(initialIsEnglish)
+  const [isEnglish, setIsEnglish] = useState(true)
+
+  useEffect(() => {
+    const storedIsEnglish = localStorage.getItem("isEnglish");
+    const initialIsEnglish = storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
+    setIsEnglish(initialIsEnglish);
+  }, []);
 
   useEffect(() => {
     let data = localStorage.getItem("employeeObject");

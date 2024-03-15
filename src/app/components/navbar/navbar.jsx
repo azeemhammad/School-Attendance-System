@@ -9,9 +9,13 @@ import translation from "../../lang/translation";
 const Navbar = () => {
   const navigate = useRouter();
   const [user, setUser] = useState(null);
-  const storedIsEnglish = localStorage.getItem("isEnglish");
-  const initialIsEnglish = storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
-  const [isEnglish, setIsEnglish] = useState(initialIsEnglish);
+  const [isEnglish, setIsEnglish] = useState(true);
+
+  useEffect(() => {
+    const storedIsEnglish = localStorage.getItem("isEnglish");
+    const initialIsEnglish = storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
+    setIsEnglish(initialIsEnglish);
+  }, []);
 
   useEffect(() => {
     const data = localStorage.getItem("user_data");
@@ -77,7 +81,6 @@ const Navbar = () => {
                     onClick={async () => {
                       localStorage.setItem("isEnglish", lng.code == "en" ? true : false);
                       window.location.reload();
-                      // setIsEnglish(lng.code == "en" ? true : false);
                     }}
                   >
                     <span>{lng.nativeName}</span>

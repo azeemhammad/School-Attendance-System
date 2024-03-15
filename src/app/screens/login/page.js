@@ -4,7 +4,7 @@ import styles from "./login.module.css";
 import { IoIosArrowDown } from "react-icons/io";
 import { BsEye } from "react-icons/bs";
 import { BsEyeSlash } from "react-icons/bs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { isInvalidEmail } from "@/app/utils/validations";
 import { employeeLoginCall } from "@/app/api/user/repo";
 import { LNGS } from "@/app/utils/constants";
@@ -19,9 +19,13 @@ const LoginPage = () => {
   })
   const [isProcessing, setIsProcessing] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const storedIsEnglish = localStorage.getItem("isEnglish");
-  const initialIsEnglish = storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
-  const [isEnglish, setIsEnglish] = useState(initialIsEnglish)
+  const [isEnglish, setIsEnglish] = useState(true)
+
+  useEffect(() => {
+    const storedIsEnglish = localStorage.getItem("isEnglish");
+    const initialIsEnglish = storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
+    setIsEnglish(initialIsEnglish);
+  }, []);
 
   // useEffect(() => {
   //   localStorage.clear();

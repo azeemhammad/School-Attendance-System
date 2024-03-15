@@ -41,9 +41,13 @@ const DashboardHome = ({ params: { lang } }) => {
     randomNumber: 0,
   })
   const [isProcessing, setIsProcessing] = useState(false);
-  const storedIsEnglish = localStorage.getItem("isEnglish");
-  const initialIsEnglish = storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
-  const [isEnglish, setIsEnglish] = useState(initialIsEnglish);
+  const [isEnglish, setIsEnglish] = useState(true);
+
+  useEffect(() => {
+    const storedIsEnglish = localStorage.getItem("isEnglish");
+    const initialIsEnglish = storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
+    setIsEnglish(initialIsEnglish);
+  }, []);
 
   useEffect(() => {
     let user = localStorage.getItem("user_data")

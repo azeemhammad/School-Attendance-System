@@ -48,9 +48,13 @@ const UserManagenemt = () => {
   const [isProcessingAddEditUser, setIsProcessingAddEditUser] = useState(false);
   const [isUserAddOrEditModel, setIsUserAddOrEditModel] = useState(false);
   const [modalIsOpenDelete, setModelIsOpenDelete] = useState(false);
-  const storedIsEnglish = localStorage.getItem("isEnglish");
-  const initialIsEnglish = storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
-  const [isEnglish, setIsEnglish] = useState(initialIsEnglish);
+  const [isEnglish, setIsEnglish] = useState(true);
+
+  useEffect(() => {
+    const storedIsEnglish = localStorage.getItem("isEnglish");
+    const initialIsEnglish = storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
+    setIsEnglish(initialIsEnglish);
+  }, []);
 
   useEffect(() => {
     getUsers();
