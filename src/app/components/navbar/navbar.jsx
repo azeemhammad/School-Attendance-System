@@ -61,7 +61,7 @@ const Navbar = () => {
                   src={isEnglish ? "/ukflag.svg" : "/madgascar_flag.svg"}
                   style={{ width: "18px", height: "18px" }}
                 />
-                <span>{isEnglish ? "English" : "Madgascar"}</span>
+                <span>{isEnglish ? "English" : "Malagasy"}</span>
               </div>
               <IoIosArrowDown />
             </div>

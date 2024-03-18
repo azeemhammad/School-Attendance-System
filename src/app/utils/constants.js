@@ -8,7 +8,7 @@ const ACCESS_LEVELS =
 
 const LNGS = [
     { code: "en", nativeName: "English", country_code: "eng" },
-    { code: "mg", nativeName: "Madgascar", country_code: "madgascar" },
+    { code: "mg", nativeName: "Malagasy", country_code: "madgascar" },
 ];
 
 export {

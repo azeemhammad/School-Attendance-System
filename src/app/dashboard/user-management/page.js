@@ -238,7 +238,7 @@ const UserManagenemt = () => {
           >
             <IoArrowBack style={{ color: "grey" }} />
           </div>
-          <span>{isEnglish ? translation.en.employees : translation.mg.employees}</span>
+          <span>{isEnglish ? translation.en.monitoring_employees : translation.mg.monitoring_employees}</span>
         </div>
         <div
           className={styles.addbutton}
