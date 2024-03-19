@@ -83,6 +83,7 @@ const Employees = () => {
       <Filters
         startDate={state.startDate}
         endDate={state.endDate}
+        isEnglish={isEnglish}
         showRestFilters={false}
       />
       {/* <Weekly0rFortnightly setIsWeeklyOrFortnightly={setIsWeeklyOrFortnightly} isWeeklyOrFortnightly={isWeeklyOrFortnightly} /> */}
