@@ -86,7 +86,7 @@ const FortnightlySchool = ({
       </div>
       {recordSubmissionData.map((item, index) => (
         <div key={index} className={styles.greenfield}>
-          <div className={styles.greenfieldcontent}>
+          <div className={styles.green__field__content__fortnightly__school__name}>
             <span className={styles.schoolname}>{item.name_etab}</span>
           </div>
 

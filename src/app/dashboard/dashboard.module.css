@@ -91,6 +91,15 @@
   padding: 5px 20px;
   gap: 10px;
 }
+.green__field__content__school__name {
+  background-color: white;
+  width: 19.5%;
+  height: 124px;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  border-radius: 8px;
+}
 .greenfieldcontent {
   background-color: white;
   width: 19.5%;
@@ -98,6 +107,15 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-radius: 8px;
+}
+.green__field__content__fortnightly__school__name {
+  background-color: white;
+  width: 39.5%;
+  height: 124px;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
   border-radius: 8px;
 }
 .greenfieldcontentfortnightly {
@@ -111,7 +129,7 @@
 }
 .schoolname {
   color: #8c8888;
-  margin-top: 20%;
+  /* margin-top: 20%; */
   margin-left: 3%;
 }
 .countandpercentage {
