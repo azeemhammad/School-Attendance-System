@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Schools Attendance Dashboard",
-  description: "School Attendance Monitoring Dashboard  is poised to deliver actionable insights and facilitate effective attendance monitoring in educational institutions.",
+  description: "School Attendance Monitoring Dashboard is poised to deliver actionable insights and facilitate effective attendance monitoring in educational institutions.",
 };
 
 const RootLayout = ({ children, params }) => {
@@ -16,7 +16,7 @@ const RootLayout = ({ children, params }) => {
         <title>Schools Attendance Dashboard</title>
         <meta
           name="description"
-          content="School Attendance Monitoring Dashboard  is poised to deliver actionable insights and facilitate effective attendance monitoring in educational institutions."
+          content="School Attendance Monitoring Dashboard is poised to deliver actionable insights and facilitate effective attendance monitoring in educational institutions."
         />
       </Head>
 

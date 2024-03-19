@@ -116,6 +116,7 @@ const Filters = ({
       {showRestFilters ? (
         <>
           {user?.role_id == ACCESS_LEVELS.super_admin ||
+          user?.role_id == ACCESS_LEVELS.country_level ||
           user?.role_id == ACCESS_LEVELS.region_level ? (
             <ModelSelect
               placeholder={isEnglish ? translation.en.region : translation.mg.region}
@@ -129,6 +130,7 @@ const Filters = ({
           ) : null}
 
           {user?.role_id == ACCESS_LEVELS.super_admin ||
+          user?.role_id == ACCESS_LEVELS.country_level ||
           user?.role_id == ACCESS_LEVELS.region_level ||
           user?.role_id == ACCESS_LEVELS.cisco_level ? (
             <ModelSelect
@@ -143,6 +145,7 @@ const Filters = ({
           ) : null}
 
           {user?.role_id == ACCESS_LEVELS.super_admin ||
+          user?.role_id == ACCESS_LEVELS.country_level ||
           user?.role_id == ACCESS_LEVELS.region_level ||
           user?.role_id == ACCESS_LEVELS.cisco_level ||
           user?.role_id == ACCESS_LEVELS.zap_level ? (

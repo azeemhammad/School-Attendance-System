@@ -26,7 +26,7 @@ const UserManagenemt = () => {
     name: "",
     email: "",
     accessLevels: [
-      { label: "Super Admin Level", value: ACCESS_LEVELS.super_admin },
+      { label: "Country Level", value: ACCESS_LEVELS.country_level },
       { label: "Region Level", value: ACCESS_LEVELS.region_level },
       { label: "Cisco Level", value: ACCESS_LEVELS.cisco_level },
       { label: "Zap Level", value: ACCESS_LEVELS.zap_level },
@@ -71,8 +71,8 @@ const UserManagenemt = () => {
         email: state.selectedEmployee.email,
         selectedAccessLevel: {
           label:
-            state.selectedEmployee.role_id == ACCESS_LEVELS.super_admin
-              ? "Super Admin Level"
+            state.selectedEmployee.role_id == ACCESS_LEVELS.country_level
+              ? "Country Level"
               : state.selectedEmployee.role_id == ACCESS_LEVELS.region_level
                 ? "Region Level"
                 : state.selectedEmployee.role_id == ACCESS_LEVELS.cisco_level
@@ -248,14 +248,14 @@ const UserManagenemt = () => {
           }}
         >
           <GoPlus style={{ fontSize: "1.4rem", fontWeight: "900" }} />
-          <span>{isEnglish ? translation.en.add_employee : translation.mg.add_employee}</span>
+          <span>{isEnglish ? translation.en.add_user : translation.mg.add_user}</span>
         </div>
       </div>
       <table>
         <thead>
           <tr>
             <th>S/N</th>
-            <th>{isEnglish ? translation.en.employee_name : translation.mg.employee_name}</th>
+            <th>{isEnglish ? translation.en.user_name : translation.mg.user_name}</th>
             <th>EMAIL</th>
             <th>{isEnglish ? translation.en.access_level_header : translation.mg.access_level_header}</th>
             <th>{isEnglish ? translation.en.region : translation.mg.region}</th>
@@ -272,7 +272,7 @@ const UserManagenemt = () => {
               </td>
               <td>{item.name}</td>
               <td>{item.email}</td>
-              <td>{item.role_id == ACCESS_LEVELS.super_admin ? "Super Admin" : item.role_id == ACCESS_LEVELS.region_level ? isEnglish ? translation.en.region_level : translation.mg.region_level : item.role_id == ACCESS_LEVELS.cisco_level ? "Cisco Level" : item.role_id == ACCESS_LEVELS.zap_level ? "Zap Level" : ""}</td>
+              <td>{item.role_id == ACCESS_LEVELS.super_admin ? "Super Admin" : item.role_id == ACCESS_LEVELS.country_level ? "Country Level" : item.role_id == ACCESS_LEVELS.region_level ? isEnglish ? translation.en.region_level : translation.mg.region_level : item.role_id == ACCESS_LEVELS.cisco_level ? "Cisco Level" : item.role_id == ACCESS_LEVELS.zap_level ? "Zap Level" : ""}</td>
               <td style={{ maxWidth: "400px" }} >{item.regions.length > 0 ? item.regions.map((item) => item.label).join(", ") : ""}</td>
               <td style={{ maxWidth: "400px" }} >{item.Cisco.length > 0 ? item.Cisco.map((item) => item.label).join(", ") : ""}</td>
               <td style={{ maxWidth: "400px" }} >{item.Zap.length > 0 ? item.Zap.map((item) => item.label).join(", ") : ""}</td>
@@ -319,7 +319,7 @@ const UserManagenemt = () => {
         style={{ overlay: { background: "rgba(0, 0, 0, 0.5)" } }}
       >
         <div className={styles.addemployeemodalheading}>
-          <span>{state.selectedEmployee ? isEnglish ? translation.en.edit_employee : translation.mg.edit_employee : isEnglish ? translation.en.add_employee : translation.mg.add_employee}</span>
+          <span>{state.selectedEmployee ? isEnglish ? translation.en.edit_user : translation.mg.edit_user : isEnglish ? translation.en.add_user : translation.mg.add_user}</span>
           <IoMdClose
             onClick={() => {
               setState(prevState => ({ ...prevState, selectedEmployee: null, name: "", email: "", selectedAccessLevel: null, regionsData: [], selectedRegions: [], ciscoData: [], selectedCiscos: [], zapData: [], selectedZaps: [], password: "", confirmPassword: "" }))
@@ -366,7 +366,7 @@ const UserManagenemt = () => {
                   zapData: state.zapData = [],
                   selectedZaps: state.selectedZaps = []
                 }));
-                if (value.value != ACCESS_LEVELS.super_admin) getRegions();
+                if (value.value != ACCESS_LEVELS.country_level) getRegions();
               }}
             />
           </div>
@@ -486,7 +486,7 @@ const UserManagenemt = () => {
         style={{ overlay: { background: "rgba(0, 0, 0, 0.5)" } }}
       >
         <div className={styles.deleteemployeeheading}>
-          <span>{isEnglish ? translation.en.delete_employee : translation.mg.delete_employee}</span>
+          <span>{isEnglish ? translation.en.delete_user : translation.mg.delete_user}</span>
         </div>
         <div className={styles.deleteemployeesubheading}>
           <span>
