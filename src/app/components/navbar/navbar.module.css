@@ -1,7 +1,12 @@
 .wrapper {
+  width: 100%;
+
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-bottom: 1px solid #e6e9f1;
 }
+
 .content {
   width: 84%;
   display: flex;
@@ -9,6 +14,7 @@
   justify-content: space-between;
   padding-left: 20px;
 }
+
 .logo {
   display: flex;
   justify-content: space-between;
@@ -16,44 +22,53 @@
   width: 15%;
   padding: 20px;
 }
+
 .calenderbox {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-top: -2%;
 }
+
 .calenderbox span {
   font-size: 12px;
   color: #6e6e6e;
 }
+
 .daterange {
   display: flex;
   gap: 25px;
   align-items: center;
 }
+
 .daterange input {
   color: green;
   height: 30px;
   border-radius: 5px;
   border: 1px solid rgb(85, 195, 85);
 }
+
 .daterange input:focus {
   outline: none;
 }
+
 .personandlanguage {
   display: flex;
   align-items: center;
   gap: 10px;
 }
+
 .personaccount {
   display: flex;
   align-items: center;
   gap: 15px;
 }
+
 .personaccount span {
   font-size: 16px;
   font-weight: 500;
 }
+
 .languagebox {
   display: flex;
   /* display: inline-block; */
@@ -61,6 +76,7 @@
   padding: 20px;
   position: relative;
 }
+
 .language {
   display: flex;
   align-items: center;
@@ -72,16 +88,19 @@
   border-radius: 10px;
   background-color: #f8f7fa;
 }
+
 .language div {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
 }
+
 .language span {
   font-size: 16px;
   font-weight: 500;
 }
+
 .languagebox__content {
   display: none;
   position: absolute;
@@ -109,6 +128,7 @@
 .languagebox:hover .languagebox__content {
   display: block;
 }
+
 .usermanagementbutton {
   height: 40px;
   width: 182px;
@@ -121,10 +141,13 @@
   border-radius: 8px;
   cursor: pointer;
 }
+
 .usermanagementbutton:active {
   transform: scale(0.98);
 }
+
 .logout__button {
+  margin-right: 20px;
   height: 40px;
   padding: 0em 1em;
   border: none;
@@ -136,3 +159,50 @@
   border-radius: 8px;
   cursor: pointer;
 }
+
+
+.handburger {
+  cursor: pointer;
+  margin-right: 30px;
+}
+
+
+
+
+@media (max-width: 320px) {}
+
+@media (min-width: 321px) and (max-width: 480px) {}
+
+@media (min-width: 481px) and (max-width: 576px) {}
+
+@media (min-width: 576px) and (max-width: 768px) {}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .personandlanguage {
+    /* flex-direction: column; */
+  }
+
+  .logout__button {
+    display: none;
+  }
+
+  .usermanagementbutton {
+    display: none;
+  }
+
+  .handburger {
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1024px) {}
+
+@media (min-width: 1024px) and (max-width: 1200px) {}
+
+@media (min-width: 1200px) and (max-width: 1384px) {}
+
+@media (min-width: 1384px) and (max-width: 1440px) {}
+
+@media (min-width: 1440px) and (max-width: 1650px) {}
+
+@media (min-width: 1650px) {}

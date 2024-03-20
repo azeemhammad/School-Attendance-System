@@ -5,6 +5,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useEffect, useState } from "react";
 import { ACCESS_LEVELS, LNGS } from "@/app/utils/constants";
 import translation from "../../lang/translation";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const Navbar = () => {
   const navigate = useRouter();
@@ -13,7 +14,8 @@ const Navbar = () => {
 
   useEffect(() => {
     const storedIsEnglish = localStorage.getItem("isEnglish");
-    const initialIsEnglish = storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
+    const initialIsEnglish =
+      storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
     setIsEnglish(initialIsEnglish);
   }, []);
 
@@ -47,7 +49,9 @@ const Navbar = () => {
               className={styles.usermanagementbutton}
               onClick={() => navigate.push("/dashboard/user-management")}
             >
-              {isEnglish ? translation.en.user_management : translation.mg.user_management}
+              {isEnglish
+                ? translation.en.user_management
+                : translation.mg.user_management}
             </button>
           )}
           {/* <div className={styles.personaccount}>
@@ -79,7 +83,10 @@ const Navbar = () => {
                     }}
                     key={lng.country_code}
                     onClick={async () => {
-                      localStorage.setItem("isEnglish", lng.code == "en" ? true : false);
+                      localStorage.setItem(
+                        "isEnglish",
+                        lng.code == "en" ? true : false
+                      );
                       window.location.reload();
                     }}
                   >
@@ -99,6 +106,8 @@ const Navbar = () => {
           >
             {isEnglish ? translation.en.logout : translation.mg.logout}
           </button>
+
+          <RxHamburgerMenu className={styles.handburger} />
         </div>
       </div>
     </div>

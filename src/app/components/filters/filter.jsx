@@ -46,145 +46,164 @@ const Filters = ({
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.calenderbox}>
-        {showRestFilters ? (
-          <div style={{ display: "flex", flexDirection: "row" }}>
-            <div
-              className={styles.schedule__timeline__weekly__topbar__first__icon__left}
-              onClick={onHandleClickLeft}
-            >
-              <svg
-                width="8"
-                height="14"
-                viewBox="0 0 8 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+      <div className={styles.wrapperChild}>
+        <div className={styles.calenderbox}>
+          {showRestFilters ? (
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <div
+                className={
+                  styles.schedule__timeline__weekly__topbar__first__icon__left
+                }
+                onClick={onHandleClickLeft}
               >
-                <path
-                  d="M7 13L2.06061 8.06061C1.47727 7.47727 1.47727 6.52273 2.06061 5.93939L7 1"
-                  stroke="#CA3202"
-                  stroke-width="1.5"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </div>
-            <div
-              className={styles.schedule__timeline__weekly__topbar__first__icon__left}
-              onClick={onHandleClickRight}
-            >
-              <svg
-                width="8"
-                height="14"
-                viewBox="0 0 8 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+                <svg
+                  width="8"
+                  height="14"
+                  viewBox="0 0 8 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7 13L2.06061 8.06061C1.47727 7.47727 1.47727 6.52273 2.06061 5.93939L7 1"
+                    stroke="#CA3202"
+                    stroke-width="1.5"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <div
+                className={
+                  styles.schedule__timeline__weekly__topbar__first__icon__left
+                }
+                onClick={onHandleClickRight}
               >
-                <path
-                  d="M1 13L5.93939 8.06061C6.52273 7.47727 6.52273 6.52273 5.93939 5.93939L1 1"
-                  stroke="#CA3202"
-                  stroke-width="1.5"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
+                <svg
+                  width="8"
+                  height="14"
+                  viewBox="0 0 8 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 13L5.93939 8.06061C6.52273 7.47727 6.52273 6.52273 5.93939 5.93939L1 1"
+                    stroke="#CA3202"
+                    stroke-width="1.5"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
             </div>
-          </div>
-        ) : null}
-        <div className={styles.daterange}>
-          <img src="/calender.svg" />
-          <span>From</span>
-          <ReactDatePicker
-            dateFormat="MMM d, yyyy"
-            selected={startDate}
-            disabled
-            // onChange={(date) => setStartDate(date)}
-          />
+          ) : null}
+          <div className={styles.daterange}>
+            <img src="/calender.svg" />
+            <span>From</span>
+            <ReactDatePicker
+              dateFormat="MMM d, yyyy"
+              selected={startDate}
+              disabled
+              // onChange={(date) => setStartDate(date)}
+            />
 
-          <span>{isEnglish ? translation.en.to : translation.mg.to}</span>
-          <ReactDatePicker
-            dateFormat="MMM d, yyyy"
-            selected={endDate}
-            disabled
-            // onChange={(date) => setEndDate(date)}
-          />
+            <span>{isEnglish ? translation.en.to : translation.mg.to}</span>
+            <ReactDatePicker
+              dateFormat="MMM d, yyyy"
+              selected={endDate}
+              disabled
+              // onChange={(date) => setEndDate(date)}
+            />
+          </div>
         </div>
+
+        {showRestFilters ? (
+          <>
+            {user?.role_id == ACCESS_LEVELS.super_admin ||
+            user?.role_id == ACCESS_LEVELS.country_level ||
+            user?.role_id == ACCESS_LEVELS.region_level ? (
+              <ModelSelect
+                placeholder={
+                  isEnglish ? translation.en.region : translation.mg.region
+                }
+                isMulti
+                options={regionsData}
+                value={selectedRegions}
+                onChange={(value) => {
+                  onChangeRegions(value);
+                }}
+              />
+            ) : null}
+
+            {user?.role_id == ACCESS_LEVELS.super_admin ||
+            user?.role_id == ACCESS_LEVELS.country_level ||
+            user?.role_id == ACCESS_LEVELS.region_level ||
+            user?.role_id == ACCESS_LEVELS.cisco_level ? (
+              <ModelSelect
+                placeholder={
+                  isEnglish ? translation.en.cisco : translation.mg.cisco
+                }
+                isMulti
+                options={ciscoData}
+                value={selectedCisco}
+                onChange={(value) => {
+                  onChangeCisco(value);
+                }}
+              />
+            ) : null}
+
+            {user?.role_id == ACCESS_LEVELS.super_admin ||
+            user?.role_id == ACCESS_LEVELS.country_level ||
+            user?.role_id == ACCESS_LEVELS.region_level ||
+            user?.role_id == ACCESS_LEVELS.cisco_level ||
+            user?.role_id == ACCESS_LEVELS.zap_level ? (
+              <ModelSelect
+                placeholder={
+                  isEnglish ? translation.en.zap : translation.mg.zap
+                }
+                isMulti
+                options={zapData}
+                value={selectedZap}
+                onChange={(value) => {
+                  onChangeZap(value);
+                }}
+              />
+            ) : null}
+
+            <Select
+              options={performanceData}
+              className={styles.reactselect}
+              styles={Styles}
+              placeholder={
+                isEnglish
+                  ? translation.en.search_by_performance
+                  : translation.mg.search_by_performance
+              }
+              value={selectedPerformance}
+              onChange={(value) => onChangePerformance(value)}
+            />
+            {selectedRegions.length > 0 ||
+            selectedCisco.length > 0 ||
+            selectedZap.length > 0 ||
+            selectedPerformance ? (
+              <button className={styles.reset__button} onClick={onHandleReset}>
+                <MdOutlineClose
+                  style={{ fontSize: "25px", fontWeight: "900" }}
+                />
+              </button>
+            ) : null}
+          </>
+        ) : null}
       </div>
 
-      {showRestFilters ? (
-        <>
-          {user?.role_id == ACCESS_LEVELS.super_admin ||
-          user?.role_id == ACCESS_LEVELS.country_level ||
-          user?.role_id == ACCESS_LEVELS.region_level ? (
-            <ModelSelect
-              placeholder={isEnglish ? translation.en.region : translation.mg.region}
-              isMulti
-              options={regionsData}
-              value={selectedRegions}
-              onChange={(value) => {
-                onChangeRegions(value);
-              }}
-            />
-          ) : null}
-
-          {user?.role_id == ACCESS_LEVELS.super_admin ||
-          user?.role_id == ACCESS_LEVELS.country_level ||
-          user?.role_id == ACCESS_LEVELS.region_level ||
-          user?.role_id == ACCESS_LEVELS.cisco_level ? (
-            <ModelSelect
-              placeholder={isEnglish ? translation.en.cisco : translation.mg.cisco}
-              isMulti
-              options={ciscoData}
-              value={selectedCisco}
-              onChange={(value) => {
-                onChangeCisco(value);
-              }}
-            />
-          ) : null}
-
-          {user?.role_id == ACCESS_LEVELS.super_admin ||
-          user?.role_id == ACCESS_LEVELS.country_level ||
-          user?.role_id == ACCESS_LEVELS.region_level ||
-          user?.role_id == ACCESS_LEVELS.cisco_level ||
-          user?.role_id == ACCESS_LEVELS.zap_level ? (
-            <ModelSelect
-              placeholder={isEnglish ? translation.en.zap : translation.mg.zap}
-              isMulti
-              options={zapData}
-              value={selectedZap}
-              onChange={(value) => {
-                onChangeZap(value);
-              }}
-            />
-          ) : null}
-
-          <Select
-            options={performanceData}
-            className={styles.reactselect}
-            styles={Styles}
-            placeholder={
-              isEnglish
-                ? translation.en.search_by_performance
-                : translation.mg.search_by_performance
-            }
-            value={selectedPerformance}
-            onChange={(value) => onChangePerformance(value)}
-          />
-          {selectedRegions.length > 0 ||
-          selectedCisco.length > 0 ||
-          selectedZap.length > 0 ||
-          selectedPerformance ? (
-            <button className={styles.reset__button} onClick={onHandleReset}>
-              <MdOutlineClose style={{ fontSize: "25px", fontWeight: "900" }} />
-            </button>
-          ) : null}
+      <div className={styles.wrapperChild2}>
+        {showRestFilters ? (
           <button className={styles.searchbutton} onClick={onHandleSearch}>
             <FiSearch style={{ fontSize: "25px", fontWeight: "900" }} />
           </button>
-        </>
-      ) : null}
+        ) : null}
+      </div>
     </div>
   );
 };
