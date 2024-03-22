@@ -8,27 +8,40 @@
   position: relative;
   /* overflow: hidden; */
 }
+
 .sidebarContainer {
   flex: 1;
 }
+
 .navbarContainer {
   flex: 4;
   /* margin-left: 18%; */
 }
-.navbarContainer > div {
+
+.navbarContainer>div {
   /* padding: 20px; */
 }
+
 .container {
   background-color: #e6e9f1;
   /* height: calc(100% - 30%); */
   min-height: 600px;
   max-height: 800px;
+  max-width: 100%;
   padding-bottom: 20px;
   overflow-y: auto;
+  overflow: auto;
+
 }
+
 .performanceboxes {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 20px;
   padding-top: 20px;
 }
@@ -36,39 +49,61 @@
 .performancebox {
   display: flex;
   background-color: white;
-  width: 25%;
+  width: 300px;
+  padding: 10px;
   height: 100px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   gap: 15px;
   border-radius: 10px;
 }
+
+.performanceboxImgContainer {
+  width: 40%;
+}
+
+.performanceboxImg {
+  width: 100%;
+}
+
 .text {
+  width: 50%;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
+
 .text span {
   color: #8c8888;
-  width: 151px;
+  /* width: 151px; */
 }
+
 .text h2 {
   font-size: 20px;
   font-weight: 700;
 }
+
+.weeklySchoolMain {
+  overflow: auto;
+}
+
 .schools {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 20px;
   margin-top: 1%;
   gap: 10px;
+
 }
+
 .school {
   display: flex;
   flex-direction: column;
   padding-left: 10px;
   justify-content: center;
-  width: 19.5%;
+  /* width: 19.5%; */
+  width: 200px;
   height: 61px;
   background-color: #008738;
   border-radius: 8px;
@@ -88,9 +123,11 @@
 .greenfield {
   display: flex;
   justify-content: space-between;
+  /* align-items: center; */
   padding: 5px 20px;
   gap: 10px;
 }
+
 .green__field__content__school__name {
   background-color: white;
   width: 19.5%;
@@ -100,6 +137,7 @@
   align-items: center;
   border-radius: 8px;
 }
+
 .greenfieldcontent {
   background-color: white;
   width: 19.5%;
@@ -109,6 +147,7 @@
   justify-content: space-between;
   border-radius: 8px;
 }
+
 .green__field__content__fortnightly__school__name {
   background-color: white;
   width: 39.5%;
@@ -118,6 +157,7 @@
   align-items: center;
   border-radius: 8px;
 }
+
 .greenfieldcontentfortnightly {
   background-color: white;
   width: 39.5%;
@@ -127,24 +167,29 @@
   justify-content: space-between;
   border-radius: 8px;
 }
+
 .schoolname {
   color: #8c8888;
   /* margin-top: 20%; */
   margin-left: 3%;
 }
+
 .countandpercentage {
   display: flex;
   justify-content: space-between;
   padding: 18px 10px 10px 10px;
 }
+
 .countandpercentage span {
   font-weight: 600;
   font-size: 16px;
 }
+
 .countandpercentage p {
   color: #8c8888;
   font-size: 14px;
 }
+
 .highPerforming {
   min-width: 115px;
   max-width: 150px;
@@ -161,6 +206,7 @@
   margin-bottom: 15px;
   padding-left: 5px;
 }
+
 .mediumPerforming {
   min-width: 135px;
   max-width: 150px;
@@ -177,6 +223,7 @@
   margin-bottom: 15px;
   padding-left: 5px;
 }
+
 .lowPerforming {
   min-width: 115px;
   max-width: 150px;
@@ -193,11 +240,13 @@
   margin-bottom: 15px;
   padding-left: 5px;
 }
+
 .greenfieldbuttons {
   border-top: 1px solid #d8d2d2;
   display: flex;
   justify-content: space-between;
 }
+
 .greenfieldbuttons div {
   color: #06a5ff;
   padding: 5px 5px 5px 10px;
@@ -210,6 +259,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .link {
   color: #06a5ff;
   text-decoration: none;

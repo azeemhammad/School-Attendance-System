@@ -2,8 +2,11 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  max-width: 100vw;
   /* position: relative; */
 }
+
+body {}
 
 table {
   width: 97%;
@@ -27,6 +30,7 @@ td {
   padding: 20px;
   border-top: none;
 }
+
 tbody {
   color: #9595ad;
   background-color: white;
@@ -110,10 +114,12 @@ tbody tr:not(:first-child) {
   background-color: rgba(0, 0, 0, 0.5);
   animation: model__container__bigger 0.3s ease-in-out;
 }
+
 @keyframes model__container__bigger {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }

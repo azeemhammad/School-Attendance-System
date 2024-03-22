@@ -5,7 +5,10 @@ const PerformanceSchool = ({ preformanceRecord, isEnglish }) => {
   return (
     <div className={styles.performanceboxes}>
       <div className={styles.performancebox}>
-        <img src="/Frame 3.svg" height={40} />
+        <div className={styles.performanceboxImgContainer}>
+          <img src="/Frame 3.svg" className={styles.performanceboxImg} />
+        </div>
+
         <div className={styles.text}>
           <span>
             {isEnglish
@@ -16,7 +19,9 @@ const PerformanceSchool = ({ preformanceRecord, isEnglish }) => {
         </div>
       </div>
       <div className={styles.performancebox}>
-        <img src="/Frame 4.svg" height={40} />
+        <div className={styles.performanceboxImgContainer}>
+          <img src="/Frame 4.svg" className={styles.performanceboxImg} />
+        </div>
         <div className={styles.text}>
           <span>
             {isEnglish
@@ -27,7 +32,9 @@ const PerformanceSchool = ({ preformanceRecord, isEnglish }) => {
         </div>
       </div>
       <div className={styles.performancebox}>
-        <img src="/Frame 5.svg" height={40} />
+        <div className={styles.performanceboxImgContainer}>
+          <img src="/Frame 5.svg" className={styles.performanceboxImg} />
+        </div>
         <div className={styles.text}>
           <span>
             {isEnglish

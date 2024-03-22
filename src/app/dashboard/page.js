@@ -7,7 +7,12 @@ import FortnightlySchool from "../components/fortnightlySchool/fortnightlySchool
 import PerformanceSchool from "../components/performanceSchool/performanceSchool";
 import WeeklyEmployees from "../components/weeklyEmployees/weeklyEmployees";
 import Filters from "../components/filters/filter";
-import { getAllCiscoByRegionIdCall, getAllRegionsCall, getAllZapByCiscoIdCall, getRecordSubmissionCall } from "../api/educ-etablissement/repo";
+import {
+  getAllCiscoByRegionIdCall,
+  getAllRegionsCall,
+  getAllZapByCiscoIdCall,
+  getRecordSubmissionCall,
+} from "../api/educ-etablissement/repo";
 import { eachWeekOfInterval, endOfMonth, startOfMonth } from "date-fns";
 import dayjs from "dayjs";
 import ProcessingLoader from "../components/processing-loader";
@@ -39,45 +44,44 @@ const DashboardHome = ({ params: { lang } }) => {
     limit: 10,
     totalRecords: 0,
     randomNumber: 0,
-  })
+  });
   const [isProcessing, setIsProcessing] = useState(false);
   const [isEnglish, setIsEnglish] = useState(true);
 
   useEffect(() => {
     const storedIsEnglish = localStorage.getItem("isEnglish");
-    const initialIsEnglish = storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
+    const initialIsEnglish =
+      storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
     setIsEnglish(initialIsEnglish);
   }, []);
 
   useEffect(() => {
-    let user = localStorage.getItem("user_data")
+    let user = localStorage.getItem("user_data");
     user = JSON.parse(user);
-    setState(prevState => ({ ...prevState, user: user }));
+    setState((prevState) => ({ ...prevState, user: user }));
     if (user) {
       if (user.role_id == ACCESS_LEVELS.region_level) {
         setState((prevState) => ({
           ...prevState,
-          regionsData: state.regionsData = user.regions,
-          selectedRegions: state.selectedRegions = user.regions,
+          regionsData: (state.regionsData = user.regions),
+          selectedRegions: (state.selectedRegions = user.regions),
         }));
         getCisco(user.regions);
       } else if (user.role_id == ACCESS_LEVELS.cisco_level) {
         setState((prevState) => ({
           ...prevState,
-          ciscoData: state.ciscoData = user.cisco,
-          selectedCisco: state.selectedCisco = user.cisco,
+          ciscoData: (state.ciscoData = user.cisco),
+          selectedCisco: (state.selectedCisco = user.cisco),
         }));
         getZap(user.cisco);
       } else if (user.role_id == ACCESS_LEVELS.zap_level) {
         setState((prevState) => ({
           ...prevState,
-          zapData: state.zapData = user.zap,
-          selectedZap: state.selectedZap = user.zap,
+          zapData: (state.zapData = user.zap),
+          selectedZap: (state.selectedZap = user.zap),
         }));
-      } else
-        getRegions();
-    } else
-      getRegions();
+      } else getRegions();
+    } else getRegions();
   }, []);
 
   useEffect(() => {
@@ -88,14 +92,14 @@ const DashboardHome = ({ params: { lang } }) => {
 
       setState((prevState) => ({
         ...prevState,
-        startDate: state.startDate = new Date(year, month, 1),
-        endDate: state.endDate = new Date(year, month + 1, 0),
-        randomNumber: state.randomNumber = Math.random(),
-        // regionsData: [], 
-        // selectedRegions: [], 
-        // ciscoData: [], 
-        // selectedCisco: [], 
-        // zapData: [], 
+        startDate: (state.startDate = new Date(year, month, 1)),
+        endDate: (state.endDate = new Date(year, month + 1, 0)),
+        randomNumber: (state.randomNumber = Math.random()),
+        // regionsData: [],
+        // selectedRegions: [],
+        // ciscoData: [],
+        // selectedCisco: [],
+        // zapData: [],
         // selectedZap: []
       }));
     }
@@ -110,13 +114,17 @@ const DashboardHome = ({ params: { lang } }) => {
 
   useEffect(() => {
     if (state.startDate && state.endDate && state.dates.length > 0)
-      getRecordSubmission()
-  }, [isWeeklyOrFortnightly, state.dates, state.page])
+      getRecordSubmission();
+  }, [isWeeklyOrFortnightly, state.dates, state.page]);
 
   function getWeeksInMonth() {
     let currentDate = new Date(state.startDate);
-    let startDate = startOfMonth(new Date(currentDate.getFullYear(), currentDate.getMonth(), 1));
-    let endDate = endOfMonth(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0));
+    let startDate = startOfMonth(
+      new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
+    );
+    let endDate = endOfMonth(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0)
+    );
     const weeksInYear = eachWeekOfInterval({ start: startDate, end: endDate });
     let newWeeksArray = [];
     for (let index = 0; index < weeksInYear.length; index++) {
@@ -134,7 +142,8 @@ const DashboardHome = ({ params: { lang } }) => {
     }
     setState((prevState) => ({
       ...prevState,
-      dates: state.dates = newWeeksArray.length > 5 ? newWeeksArray.slice(0, 5) : newWeeksArray,
+      dates: (state.dates =
+        newWeeksArray.length > 5 ? newWeeksArray.slice(0, 5) : newWeeksArray),
     }));
   }
 
@@ -158,9 +167,9 @@ const DashboardHome = ({ params: { lang } }) => {
     }
     setState((prevState) => ({
       ...prevState,
-      dates: state.dates = fortnightlyDateRanges,
-      startDate: state.startDate = fortnightlyDateRanges[0].start,
-      endDate: state.endDate = fortnightlyDateRanges[1].end,
+      dates: (state.dates = fortnightlyDateRanges),
+      startDate: (state.startDate = fortnightlyDateRanges[0].start),
+      endDate: (state.endDate = fortnightlyDateRanges[1].end),
     }));
   };
 
@@ -172,39 +181,55 @@ const DashboardHome = ({ params: { lang } }) => {
         : state.user?.role_id == ACCESS_LEVELS.region_level ||
           state.user?.role_id == ACCESS_LEVELS.cisco_level ||
           state.user?.role_id == ACCESS_LEVELS.zap_level
-          ? state.user?.regions.map((item) => item.value).join(",")
-          : null, //state.selectedRegions ? state.selectedRegions.map(x => x.value).join(",") : "",
+        ? state.user?.regions.map((item) => item.value).join(",")
+        : null, //state.selectedRegions ? state.selectedRegions.map(x => x.value).join(",") : "",
       state.selectedCisco.length > 0
         ? state.selectedCisco.map((item) => item.value).join(",")
         : state.user?.role_id == ACCESS_LEVELS.region_level ||
           state.user?.role_id == ACCESS_LEVELS.cisco_level ||
           state.user?.role_id == ACCESS_LEVELS.zap_level
-          ? state.user?.cisco.map((item) => item.value).join(",")
-          : null,  //state.selectedCisco ? state.selectedCisco.map(x => x.value).join(",") : "",
+        ? state.user?.cisco.map((item) => item.value).join(",")
+        : null, //state.selectedCisco ? state.selectedCisco.map(x => x.value).join(",") : "",
       state.selectedZap.length > 0
         ? state.selectedZap.map((item) => item.value).join(",")
         : state.user?.role_id == ACCESS_LEVELS.region_level ||
           state.user?.role_id == ACCESS_LEVELS.cisco_level ||
           state.user?.role_id == ACCESS_LEVELS.zap_level
-          ? state.user?.zap.map((item) => item.value).join(",")
-          : null,  //state.selectedZap ? state.selectedZap.map(x => x.value).join(",") : "",
+        ? state.user?.zap.map((item) => item.value).join(",")
+        : null, //state.selectedZap ? state.selectedZap.map(x => x.value).join(",") : "",
       "",
       state.selectedPerformance ? state.selectedPerformance.value : null,
-      isWeeklyOrFortnightly === 1 ? dayjs(state.dates[0].start).format("YYYY-MM-DD") : dayjs(state.startDate).format("YYYY-MM-DD"),
-      isWeeklyOrFortnightly === 1 ? dayjs(state.dates[4].end).format("YYYY-MM-DD") : dayjs(state.endDate).format("YYYY-MM-DD"),
+      isWeeklyOrFortnightly === 1
+        ? dayjs(state.dates[0].start).format("YYYY-MM-DD")
+        : dayjs(state.startDate).format("YYYY-MM-DD"),
+      isWeeklyOrFortnightly === 1
+        ? dayjs(state.dates[4].end).format("YYYY-MM-DD")
+        : dayjs(state.endDate).format("YYYY-MM-DD"),
       isWeeklyOrFortnightly,
       state.page,
       state.limit
-    ).then(({ data }) => {
-      setIsProcessing(false);
-      if (data.error_code == 0)
-        setState(prevState => ({ ...prevState, recordSubmissionData: data.result.result, preformanceRecord: data.result.preference, totalRecords: data.total_records }))
-      else
-        setState(prevState => ({ ...prevState, recordSubmissionData: [], preformanceRecord: null, totalRecords: 0 }))
-    }).catch(err => {
-      console.log("err", err);
-      setIsProcessing(false);
-    })
+    )
+      .then(({ data }) => {
+        setIsProcessing(false);
+        if (data.error_code == 0)
+          setState((prevState) => ({
+            ...prevState,
+            recordSubmissionData: data.result.result,
+            preformanceRecord: data.result.preference,
+            totalRecords: data.total_records,
+          }));
+        else
+          setState((prevState) => ({
+            ...prevState,
+            recordSubmissionData: [],
+            preformanceRecord: null,
+            totalRecords: 0,
+          }));
+      })
+      .catch((err) => {
+        console.log("err", err);
+        setIsProcessing(false);
+      });
   }
 
   function onHandleClickLeft() {
@@ -214,8 +239,16 @@ const DashboardHome = ({ params: { lang } }) => {
 
       setState((prevState) => ({
         ...prevState,
-        endDate: new Date(newStartDate.getFullYear(), newStartDate.getMonth(), 0),
-        startDate: new Date(newEndDate.getFullYear(), newEndDate.getMonth() - 1, 1),
+        endDate: new Date(
+          newStartDate.getFullYear(),
+          newStartDate.getMonth(),
+          0
+        ),
+        startDate: new Date(
+          newEndDate.getFullYear(),
+          newEndDate.getMonth() - 1,
+          1
+        ),
         dates: [],
         page: 1,
         randomNumber: Math.random(),
@@ -238,8 +271,16 @@ const DashboardHome = ({ params: { lang } }) => {
 
       setState((prevState) => ({
         ...prevState,
-        endDate: new Date(newStartDate.getFullYear(), newStartDate.getMonth() + 2, 0),
-        startDate: new Date(newEndDate.getFullYear(), newEndDate.getMonth() + 1, 1),
+        endDate: new Date(
+          newStartDate.getFullYear(),
+          newStartDate.getMonth() + 2,
+          0
+        ),
+        startDate: new Date(
+          newEndDate.getFullYear(),
+          newEndDate.getMonth() + 1,
+          1
+        ),
         dates: [],
         page: 1,
         randomNumber: Math.random(),
@@ -270,7 +311,10 @@ const DashboardHome = ({ params: { lang } }) => {
     getAllCiscoByRegionIdCall(value.map((x) => x.value).join(","), 1, 1000)
       .then(({ data }) => {
         if (data.error_code === 0)
-          setState((prevState) => ({ ...prevState, ciscoData: state.ciscoData = data.result }));
+          setState((prevState) => ({
+            ...prevState,
+            ciscoData: (state.ciscoData = data.result),
+          }));
       })
       .catch((err) => {
         console.log("err", err);
@@ -281,7 +325,10 @@ const DashboardHome = ({ params: { lang } }) => {
     getAllZapByCiscoIdCall(value.map((x) => x.value).join(","), 1, 1000)
       .then(({ data }) => {
         if (data.error_code === 0)
-          setState((prevState) => ({ ...prevState, zapData: state.zapData = data.result }));
+          setState((prevState) => ({
+            ...prevState,
+            zapData: (state.zapData = data.result),
+          }));
       })
       .catch((err) => {
         console.log("err", err);
@@ -298,29 +345,50 @@ const DashboardHome = ({ params: { lang } }) => {
         onHandleClickRight={onHandleClickRight}
         regionsData={state.regionsData}
         onChangeRegions={(value) => {
-          setState(prevState => ({ ...prevState, selectedRegions: value, ciscoData: [], selectedCisco: [], zapData: [], selectedZap: [] }))
+          setState((prevState) => ({
+            ...prevState,
+            selectedRegions: value,
+            ciscoData: [],
+            selectedCisco: [],
+            zapData: [],
+            selectedZap: [],
+          }));
           if (value.length > 0) getCisco(value);
         }}
         selectedRegions={state.selectedRegions}
         ciscoData={state.ciscoData}
         onChangeCisco={(value) => {
-          setState(prevState => ({ ...prevState, selectedCisco: value, zapData: [], selectedZap: [] }))
+          setState((prevState) => ({
+            ...prevState,
+            selectedCisco: value,
+            zapData: [],
+            selectedZap: [],
+          }));
           if (value.length > 0) getZap(value);
         }}
         selectedCisco={state.selectedCisco}
         zapData={state.zapData}
         onChangeZap={(value) => {
-          setState(prevState => ({ ...prevState, selectedZap: value }))
+          setState((prevState) => ({ ...prevState, selectedZap: value }));
         }}
         selectedZap={state.selectedZap}
         performanceData={state.performanceData}
         onChangePerformance={(value) => {
-          setState(prevState => ({ ...prevState, selectedPerformance: value }))
+          setState((prevState) => ({
+            ...prevState,
+            selectedPerformance: value,
+          }));
         }}
         selectedPerformance={state.selectedPerformance}
         onHandleSearch={getRecordSubmission}
         onHandleReset={() => {
-          setState(prevState => ({ ...prevState, selectedRegions: state.selectedRegions = [], selectedCisco: state.selectedCisco = [], selectedZap: state.selectedZap = [], selectedPerformance: state.selectedPerformance = null }));
+          setState((prevState) => ({
+            ...prevState,
+            selectedRegions: (state.selectedRegions = []),
+            selectedCisco: (state.selectedCisco = []),
+            selectedZap: (state.selectedZap = []),
+            selectedPerformance: (state.selectedPerformance = null),
+          }));
           setTimeout(() => {
             getRecordSubmission();
           }, 500);
@@ -330,36 +398,56 @@ const DashboardHome = ({ params: { lang } }) => {
       />
       <Weekly0rFortnightly
         setIsWeeklyOrFortnightly={(value) => {
-          setState(prevState => ({ ...prevState, recordSubmissionData: [], preformanceRecord: null, totalRecords: 0, startDate: value === 1 ? null : startOfMonth(new Date(new Date().getFullYear(), new Date().getMonth(), 1)), endDate: null, dates: [] }))
+          setState((prevState) => ({
+            ...prevState,
+            recordSubmissionData: [],
+            preformanceRecord: null,
+            totalRecords: 0,
+            startDate:
+              value === 1
+                ? null
+                : startOfMonth(
+                    new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+                  ),
+            endDate: null,
+            dates: [],
+          }));
           setIsWeeklyOrFortnightly(value);
         }}
         isWeeklyOrFortnightly={isWeeklyOrFortnightly}
         isEnglish={isEnglish}
       />
       <div className={styles.container}>
-        <PerformanceSchool preformanceRecord={state.preformanceRecord} isEnglish={isEnglish} />
-        {isWeeklyOrFortnightly === 1 &&
+        <PerformanceSchool
+          preformanceRecord={state.preformanceRecord}
+          isEnglish={isEnglish}
+        />
+        {isWeeklyOrFortnightly === 1 && (
           <WeeklySchool
             recordSubmissionData={state.recordSubmissionData}
             dates={state.dates}
             page={state.page}
             limit={state.limit}
             totalRecords={state.totalRecords}
-            onHandlePageChange={(value) => setState((prevState) => ({ ...prevState, page: value }))}
+            onHandlePageChange={(value) =>
+              setState((prevState) => ({ ...prevState, page: value }))
+            }
             isEnglish={isEnglish}
           />
-        }
-        {isWeeklyOrFortnightly === 2 &&
+        )}
+        {isWeeklyOrFortnightly === 2 && (
           <FortnightlySchool
             recordSubmissionData={state.recordSubmissionData}
             dates={state.dates}
             page={state.page}
             limit={state.limit}
             totalRecords={state.totalRecords}
-            onHandlePageChange={(value) => setState((prevState) => ({ ...prevState, page: value }))}
+            onHandlePageChange={(value) =>
+              setState((prevState) => ({ ...prevState, page: value }))
+            }
             isEnglish={isEnglish}
           />
-        }
+        )}
         {isProcessing && <ProcessingLoader />}
       </div>
     </>

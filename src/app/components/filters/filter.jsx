@@ -49,7 +49,7 @@ const Filters = ({
       <div className={styles.wrapperChild}>
         <div className={styles.calenderbox}>
           {showRestFilters ? (
-            <div style={{ display: "flex", flexDirection: "row" }}>
+            <div style={{ display: "flex" }}>
               <div
                 className={
                   styles.schedule__timeline__weekly__topbar__first__icon__left

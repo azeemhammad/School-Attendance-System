@@ -1,19 +1,25 @@
 .wrapper {
+  width: 100%;
   background-color: #f6f8fc;
   display: flex;
   flex-direction: column;
   /* min-height: 800px; */
+  height: 100%;
+  /* height: 85vh; */
 }
+
 .backbox {
   display: flex;
   align-items: center;
   gap: 20px;
   padding: 10px;
 }
+
 .backbox span {
   font-size: 20px;
   font-weight: 500;
 }
+
 .backbutton {
   height: 40px;
   width: 40px;
@@ -25,6 +31,7 @@
   cursor: pointer;
   border-radius: 8px;
 }
+
 .location {
   display: flex;
   align-items: center;
@@ -34,6 +41,7 @@
   font-size: 14px;
   font-weight: 400;
 }
+
 .gallery {
   display: flex;
   padding-bottom: 20px;
@@ -44,6 +52,7 @@
   margin-right: 2em; */
   width: 100%;
 }
+
 .galleryview {
   display: flex;
   align-items: center;
@@ -51,6 +60,7 @@
   padding: 10px 10px 10px 10px;
   /* margin-top: -1%; */
 }
+
 .imagecontent {
   display: flex;
   flex-direction: column;
@@ -61,14 +71,17 @@
   transition: all ease-in 300ms;
   cursor: pointer;
 }
+
 .imagecontent:hover {
   transform: scale(0.98);
 }
+
 .imagecontent h3 {
   font-size: 18px;
   font-weight: 500;
   color: white;
 }
+
 .calandclock {
   display: flex;
   align-items: center;
@@ -78,6 +91,7 @@
   padding: 5px;
   border-radius: 5px;
 }
+
 .modal {
   display: flex;
   align-items: center;

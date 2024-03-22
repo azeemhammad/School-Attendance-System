@@ -23,7 +23,8 @@ const WeeklySchool = ({
 
   const getColorForPerformance = (performance) => {
     if (performance <= 20) return styles.lowPerforming;
-    else if (performance > 20 && performance <= 60) return styles.mediumPerforming;
+    else if (performance > 20 && performance <= 60)
+      return styles.mediumPerforming;
     else if (performance > 60) return styles.highPerforming;
     else return "";
 
@@ -66,7 +67,7 @@ const WeeklySchool = ({
   }
 
   return (
-    <div>
+    <div className={styles.weeklySchoolMain}>
       <div className={styles.schools}>
         <div className={styles.school}>
           <span style={{ color: "white", fontWeight: "600" }}>
@@ -75,7 +76,9 @@ const WeeklySchool = ({
         </div>
         {dates.map((item) => (
           <div className={styles.school}>
-            <span style={{ color: "white", fontWeight: "600" }}>{item.label}</span>
+            <span style={{ color: "white", fontWeight: "600" }}>
+              {item.label}
+            </span>
             <span style={{ color: "#FBBC04", fontSize: "14px" }}>
               {dayjs(item.start).format("DD MMM, YYYY")}
             </span>
@@ -95,7 +98,9 @@ const WeeklySchool = ({
               </span>
               <p>{item.week01_percentage}%</p>
             </div>
-            <div className={`${getColorForPerformance(item.week01_percentage)}`}>
+            <div
+              className={`${getColorForPerformance(item.week01_percentage)}`}
+            >
               {item.week01_percentage <= 20
                 ? isEnglish
                   ? translation.en.low_performing
@@ -115,11 +120,18 @@ const WeeklySchool = ({
                 style={{ borderRight: "1px solid #d8d2d2" }}
                 onClick={() => {
                   if (item.week01_percentage > 0) {
-                    getImagesRecord(dates[0].start, dates[0].end, item, item.name_etab);
+                    getImagesRecord(
+                      dates[0].start,
+                      dates[0].end,
+                      item,
+                      item.name_etab
+                    );
                   } else alert("No images to show.");
                 }}
               >
-                {isEnglish ? translation.en.view_gallery : translation.mg.view_gallery}
+                {isEnglish
+                  ? translation.en.view_gallery
+                  : translation.mg.view_gallery}
               </div>
               <div
                 style={{ borderRight: "1px solid #d8d2d2" }}
@@ -131,12 +143,17 @@ const WeeklySchool = ({
                       schoolData: item,
                       numberOfWeeks: 7,
                     };
-                    localStorage.setItem("employeeObject", JSON.stringify(object));
+                    localStorage.setItem(
+                      "employeeObject",
+                      JSON.stringify(object)
+                    );
                     navigate.push(`/dashboard/employees?${item.name_etab}`);
                   } else alert("No records to show.");
                 }}
               >
-                {isEnglish ? translation.en.view_records : translation.mg.view_records}
+                {isEnglish
+                  ? translation.en.view_records
+                  : translation.mg.view_records}
               </div>
             </div>
           </div>
@@ -148,7 +165,9 @@ const WeeklySchool = ({
               </span>
               <p>{item.week02_percentage}%</p>
             </div>
-            <div className={`${getColorForPerformance(item.week02_percentage)}`}>
+            <div
+              className={`${getColorForPerformance(item.week02_percentage)}`}
+            >
               {item.week02_percentage <= 20
                 ? isEnglish
                   ? translation.en.low_performing
@@ -168,11 +187,18 @@ const WeeklySchool = ({
                 style={{ borderRight: "1px solid #d8d2d2" }}
                 onClick={() => {
                   if (item.week02_percentage > 0) {
-                    getImagesRecord(dates[1].start, dates[1].end, item, item.name_etab);
+                    getImagesRecord(
+                      dates[1].start,
+                      dates[1].end,
+                      item,
+                      item.name_etab
+                    );
                   } else alert("No images to show.");
                 }}
               >
-                {isEnglish ? translation.en.view_gallery : translation.mg.view_gallery}
+                {isEnglish
+                  ? translation.en.view_gallery
+                  : translation.mg.view_gallery}
               </div>
               <div
                 style={{ borderRight: "1px solid #d8d2d2" }}
@@ -184,12 +210,17 @@ const WeeklySchool = ({
                       schoolData: item,
                       numberOfWeeks: 7,
                     };
-                    localStorage.setItem("employeeObject", JSON.stringify(object));
+                    localStorage.setItem(
+                      "employeeObject",
+                      JSON.stringify(object)
+                    );
                     navigate.push(`/dashboard/employees?${item.name_etab}`);
                   } else alert("No records to show.");
                 }}
               >
-                {isEnglish ? translation.en.view_records : translation.mg.view_records}
+                {isEnglish
+                  ? translation.en.view_records
+                  : translation.mg.view_records}
               </div>
             </div>
           </div>
@@ -201,7 +232,9 @@ const WeeklySchool = ({
               </span>
               <p>{item.week03_percentage}%</p>
             </div>
-            <div className={`${getColorForPerformance(item.week03_percentage)}`}>
+            <div
+              className={`${getColorForPerformance(item.week03_percentage)}`}
+            >
               {item.week03_percentage <= 20
                 ? isEnglish
                   ? translation.en.low_performing
@@ -221,11 +254,18 @@ const WeeklySchool = ({
                 style={{ borderRight: "1px solid #d8d2d2" }}
                 onClick={() => {
                   if (item.week03_percentage > 0) {
-                    getImagesRecord(dates[2].start, dates[2].end, item, item.name_etab);
+                    getImagesRecord(
+                      dates[2].start,
+                      dates[2].end,
+                      item,
+                      item.name_etab
+                    );
                   } else alert("No images to show.");
                 }}
               >
-                {isEnglish ? translation.en.view_gallery : translation.mg.view_gallery}
+                {isEnglish
+                  ? translation.en.view_gallery
+                  : translation.mg.view_gallery}
               </div>
               <div
                 style={{ borderRight: "1px solid #d8d2d2" }}
@@ -237,12 +277,17 @@ const WeeklySchool = ({
                       schoolData: item,
                       numberOfWeeks: 7,
                     };
-                    localStorage.setItem("employeeObject", JSON.stringify(object));
+                    localStorage.setItem(
+                      "employeeObject",
+                      JSON.stringify(object)
+                    );
                     navigate.push(`/dashboard/employees?${item.name_etab}`);
                   } else alert("No records to show.");
                 }}
               >
-                {isEnglish ? translation.en.view_records : translation.mg.view_records}
+                {isEnglish
+                  ? translation.en.view_records
+                  : translation.mg.view_records}
               </div>
             </div>
           </div>
@@ -254,7 +299,9 @@ const WeeklySchool = ({
               </span>
               <p>{item.week04_percentage}%</p>
             </div>
-            <div className={`${getColorForPerformance(item.week04_percentage)}`}>
+            <div
+              className={`${getColorForPerformance(item.week04_percentage)}`}
+            >
               {item.week04_percentage <= 20
                 ? isEnglish
                   ? translation.en.low_performing
@@ -274,11 +321,18 @@ const WeeklySchool = ({
                 style={{ borderRight: "1px solid #d8d2d2" }}
                 onClick={() => {
                   if (item.week04_percentage > 0) {
-                    getImagesRecord(dates[3].start, dates[3].end, item, item.name_etab);
+                    getImagesRecord(
+                      dates[3].start,
+                      dates[3].end,
+                      item,
+                      item.name_etab
+                    );
                   } else alert("No images to show.");
                 }}
               >
-                {isEnglish ? translation.en.view_gallery : translation.mg.view_gallery}
+                {isEnglish
+                  ? translation.en.view_gallery
+                  : translation.mg.view_gallery}
               </div>
               <div
                 style={{ borderRight: "1px solid #d8d2d2" }}
@@ -290,12 +344,17 @@ const WeeklySchool = ({
                       schoolData: item,
                       numberOfWeeks: 7,
                     };
-                    localStorage.setItem("employeeObject", JSON.stringify(object));
+                    localStorage.setItem(
+                      "employeeObject",
+                      JSON.stringify(object)
+                    );
                     navigate.push(`/dashboard/employees?${item.name_etab}`);
                   } else alert("No records to show.");
                 }}
               >
-                {isEnglish ? translation.en.view_records : translation.mg.view_records}
+                {isEnglish
+                  ? translation.en.view_records
+                  : translation.mg.view_records}
               </div>
             </div>
           </div>
@@ -307,7 +366,9 @@ const WeeklySchool = ({
               </span>
               <p>{item.week05_percentage}%</p>
             </div>
-            <div className={`${getColorForPerformance(item.week05_percentage)}`}>
+            <div
+              className={`${getColorForPerformance(item.week05_percentage)}`}
+            >
               {item.week05_percentage <= 20
                 ? isEnglish
                   ? translation.en.low_performing
@@ -327,11 +388,18 @@ const WeeklySchool = ({
                 style={{ borderRight: "1px solid #d8d2d2" }}
                 onClick={() => {
                   if (item.week05_percentage > 0) {
-                    getImagesRecord(dates[4].start, dates[4].end, item, item.name_etab);
+                    getImagesRecord(
+                      dates[4].start,
+                      dates[4].end,
+                      item,
+                      item.name_etab
+                    );
                   } else alert("No images to show.");
                 }}
               >
-                {isEnglish ? translation.en.view_gallery : translation.mg.view_gallery}
+                {isEnglish
+                  ? translation.en.view_gallery
+                  : translation.mg.view_gallery}
               </div>
               <div
                 style={{ borderRight: "1px solid #d8d2d2" }}
@@ -343,12 +411,17 @@ const WeeklySchool = ({
                       schoolData: item,
                       numberOfWeeks: 7,
                     };
-                    localStorage.setItem("employeeObject", JSON.stringify(object));
+                    localStorage.setItem(
+                      "employeeObject",
+                      JSON.stringify(object)
+                    );
                     navigate.push(`/dashboard/employees?${item.name_etab}`);
                   } else alert("No records to show.");
                 }}
               >
-                {isEnglish ? translation.en.view_records : translation.mg.view_records}
+                {isEnglish
+                  ? translation.en.view_records
+                  : translation.mg.view_records}
               </div>
             </div>
           </div>
