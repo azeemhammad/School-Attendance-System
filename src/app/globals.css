@@ -14,6 +14,7 @@ table {
   margin: 20px 0px 20px 20px;
   border: 0.3px solid #f6f8fc;
   border-radius: 8px;
+
 }
 
 th {
@@ -51,12 +52,16 @@ tbody tr:not(:first-child) {
   /* margin-left: -2em; */
   margin-top: 2.5em;
   padding-bottom: 2em;
+
+
+
 }
 
 .list__container__pagination .pagination,
 .scroll__animate .pagination {
   display: flex;
   align-items: center;
+  justify-content: center;
   background-color: transparent !important;
 }
 
@@ -122,5 +127,32 @@ tbody tr:not(:first-child) {
 
   100% {
     opacity: 1;
+  }
+}
+
+
+
+
+@media (max-width: 320px) {
+  .list__container__pagination {
+    margin-left: 15%;
+  }
+}
+
+@media (min-width: 321px) and (max-width: 480px) {
+  .list__container__pagination {
+    margin-left: 15%;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 576px) {
+  .list__container__pagination {
+    margin-left: 20%;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .list__container__pagination {
+    margin-left: 20%;
   }
 }

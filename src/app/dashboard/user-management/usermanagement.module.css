@@ -1,12 +1,25 @@
 .wrapper {
   background-color: #f6f8fc;
   padding-bottom: 5%;
+
 }
+
+.tableContainer {
+  overflow: hidden;
+  overflow-x: scroll;
+  width: 100%;
+  max-width: 100vw;
+  display: flex;
+  justify-content: center;
+
+}
+
 .actions {
   display: flex;
   align-items: center;
   gap: 15px;
 }
+
 .addemployeebar {
   display: flex;
   justify-content: space-between;
@@ -14,15 +27,18 @@
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 2px -1px, rgba(0, 0, 0, 0.3) 0px 1px 1px -1px;
   background-color: white;
 }
+
 .backbox {
   display: flex;
   align-items: center;
   gap: 20px;
 }
+
 .backbox span {
   font-size: 20px;
   font-weight: 500;
 }
+
 .backbutton {
   height: 40px;
   width: 40px;
@@ -34,6 +50,7 @@
   cursor: pointer;
   border-radius: 8px;
 }
+
 .addbutton {
   width: 151px;
   height: 40px;
@@ -48,37 +65,48 @@
   border-radius: 8px;
   cursor: pointer;
 }
+
 .addbutton:active {
   transform: scale(0.98);
 }
+
 .addemployeemodal {
   max-height: 600px;
-  width: 800px;
+  /* width: 800px; */
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
   background-color: white;
   border-radius: 10px;
   border: 1px solid #f2f2f2;
   outline: none;
-  margin: 2% 0% 0% 20%;
+  /* margin: 2% 0% 0% 20%; */
 }
+
 .addemployeemodalcontainer {
   display: flex;
 }
+
 .addemployeemodalheading {
   display: flex;
   justify-content: space-between;
   padding: 10px;
   border-bottom: 1px solid #f2f2f2;
 }
+
 .addemployeemodalheading span {
   font-weight: 500;
   font-size: 20px;
 }
+
 .add__employee__content__container {
   display: flex;
   flex-direction: column;
   max-height: 450px;
   overflow: auto;
 }
+
 .addemployeemodalname {
   display: flex;
   justify-content: space-between;
@@ -86,11 +114,13 @@
   padding: 20px;
   border-bottom: 1px solid #f2f2f2;
 }
+
 .addemployeemodalname span {
   font-size: 16px;
   font-weight: 500;
   color: #9595ad;
 }
+
 .addemployeemodalname input {
   width: 550px;
   height: 48px;
@@ -100,6 +130,7 @@
   border: none;
   padding-left: 20px;
 }
+
 .addemployeemodaldropdowns {
   display: flex;
   display: flex;
@@ -108,11 +139,13 @@
   padding: 20px;
   border-bottom: 1px solid #f2f2f2;
 }
+
 .addemployeemodaldropdowns span {
   font-size: 16px;
   font-weight: 500;
   color: #9595ad;
 }
+
 .reactselect {
   width: 550px;
   min-height: 48px;
@@ -121,6 +154,7 @@
   outline: none;
   border: none;
 }
+
 .addemployeemodalcancel {
   display: flex;
   align-items: center;
@@ -128,6 +162,7 @@
   padding: 10px;
   gap: 40px;
 }
+
 .addemployeemodalcancel div {
   width: 118px;
   height: 47px;
@@ -140,24 +175,32 @@
   align-items: center;
   cursor: pointer;
 }
+
 .addemployeemodalcancel div:active {
   transform: scale(0.98);
 }
+
 .addemployeemodalcancel span {
   color: #9595ad;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
 }
+
 .deleteemployeemodal {
   height: 270px;
-  width: 600px;
+  /* width: 600px; */
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 13%;
   background-color: white;
   border-radius: 10px;
   border: 1px solid #f2f2f2;
   outline: none;
-  margin: 13% 0% 0% 28%;
+  /* margin: 13% 0% 0% 28%; */
 }
+
 .deleteemployeeheading {
   display: flex;
   justify-content: center;
@@ -167,6 +210,7 @@
   font-weight: 600;
   border-bottom: 1px solid #f2f2f2;
 }
+
 .deleteemployeesubheading {
   display: flex;
   justify-content: center;
@@ -177,9 +221,11 @@
   color: #9595ad;
   line-height: 1.6em;
 }
+
 .deleteemployeesubheading span {
   text-align: center;
 }
+
 .deleteemployeecancel {
   display: flex;
   align-items: center;
@@ -187,6 +233,7 @@
   padding: 20px;
   gap: 40px;
 }
+
 .deleteemployeecancel div {
   width: 118px;
   height: 47px;
@@ -199,12 +246,64 @@
   align-items: center;
   cursor: pointer;
 }
+
 .deleteemployeecancel div:active {
   transform: scale(0.98);
 }
+
 .deleteemployeecancel span {
   color: #9595ad;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+}
+
+/* .userManagementTable {
+  overflow-x: auto;
+} */
+
+
+
+@media (max-width: 320px) {
+  .addemployeemodal {
+    width: 90%;
+    /* margin: 2% 5% 0% 5%; */
+  }
+
+  .deleteemployeemodal {
+    width: 80%;
+    height: 320px;
+  }
+}
+
+@media (min-width: 321px) and (max-width: 480px) {
+  .addemployeemodal {
+    width: 90%;
+  }
+
+  .deleteemployeemodal {
+    width: 80%;
+    height: 300px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 576px) {
+  .addemployeemodal {
+    width: 90%;
+  }
+
+  .deleteemployeemodal {
+    width: 80%;
+    height: 300px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .addemployeemodal {
+    width: 90%;
+  }
+
+  .deleteemployeemodal {
+    width: 80%;
+  }
 }

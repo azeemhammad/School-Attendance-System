@@ -23,7 +23,8 @@ const FortnightlySchool = ({
 
   const getColorForPerformance = (performance) => {
     if (performance <= 20) return styles.lowPerforming;
-    else if (performance > 20 && performance <= 60) return styles.mediumPerforming;
+    else if (performance > 20 && performance <= 60)
+      return styles.mediumPerforming;
     else if (performance > 60) return styles.highPerforming;
     else return "";
 
@@ -68,7 +69,7 @@ const FortnightlySchool = ({
   return (
     <div>
       <div className={styles.schools}>
-        <div className={styles.school}>
+        <div className={styles.fortnightlyschool}>
           <span style={{ color: "white", fontWeight: "600" }}>
             {isEnglish ? translation.en.schools : translation.mg.schools}
           </span>
@@ -76,7 +77,9 @@ const FortnightlySchool = ({
         {dates.map((item) => (
           <div className={styles.schoolfortnightly}>
             <span style={{ color: "white", fontWeight: "600" }}>
-              {isEnglish ? translation.en.fortnightly : translation.mg.fortnightly}
+              {isEnglish
+                ? translation.en.fortnightly
+                : translation.mg.fortnightly}
             </span>
             <span style={{ color: "#FBBC04", fontSize: "14px" }}>
               {dayjs(item.start).format("DD MMM, YYYY")}
@@ -86,23 +89,31 @@ const FortnightlySchool = ({
       </div>
       {recordSubmissionData.map((item, index) => (
         <div key={index} className={styles.greenfield}>
-          <div className={styles.green__field__content__fortnightly__school__name}>
+          <div
+            className={styles.green__field__content__fortnightly__school__name}
+          >
             <span className={styles.schoolname}>{item.name_etab}</span>
           </div>
 
           <div className={styles.greenfieldcontentfortnightly}>
             <div className={styles.countandpercentage}>
               <span>
-                {item.fortnightly01_present_records} of {item.fortnightly01_total_records}
+                {item.fortnightly01_present_records} of{" "}
+                {item.fortnightly01_total_records}
               </span>
               <p>{item.fortnightly01_percentage}%</p>
             </div>
-            <div className={`${getColorForPerformance(item.fortnightly01_percentage)}`}>
+            <div
+              className={`${getColorForPerformance(
+                item.fortnightly01_percentage
+              )}`}
+            >
               {item.fortnightly01_percentage <= 20
                 ? isEnglish
                   ? translation.en.low_performing
                   : translation.mg.low_performing
-                : item.fortnightly01_percentage > 20 && item.fortnightly01_percentage <= 60
+                : item.fortnightly01_percentage > 20 &&
+                  item.fortnightly01_percentage <= 60
                 ? isEnglish
                   ? translation.en.medium_performing
                   : translation.mg.medium_performing
@@ -117,11 +128,18 @@ const FortnightlySchool = ({
                 style={{ borderRight: "1px solid #d8d2d2" }}
                 onClick={() => {
                   if (item.fortnightly01_percentage > 0) {
-                    getImagesRecord(dates[0].start, dates[0].end, item, item.name_etab);
+                    getImagesRecord(
+                      dates[0].start,
+                      dates[0].end,
+                      item,
+                      item.name_etab
+                    );
                   } else alert("No images to show.");
                 }}
               >
-                {isEnglish ? translation.en.view_gallery : translation.mg.view_gallery}
+                {isEnglish
+                  ? translation.en.view_gallery
+                  : translation.mg.view_gallery}
               </div>
               <div
                 style={{ borderRight: "1px solid #d8d2d2" }}
@@ -133,12 +151,17 @@ const FortnightlySchool = ({
                       schoolData: item,
                       numberOfWeeks: 14,
                     };
-                    localStorage.setItem("employeeObject", JSON.stringify(object));
+                    localStorage.setItem(
+                      "employeeObject",
+                      JSON.stringify(object)
+                    );
                     navigate.push(`/dashboard/employees?${item.name_etab}`);
                   }
                 }}
               >
-                {isEnglish ? translation.en.view_records : translation.mg.view_records}
+                {isEnglish
+                  ? translation.en.view_records
+                  : translation.mg.view_records}
               </div>
               {/* <div>
                 <Link
@@ -157,16 +180,22 @@ const FortnightlySchool = ({
           <div className={styles.greenfieldcontentfortnightly}>
             <div className={styles.countandpercentage}>
               <span>
-                {item.fortnightly02_present_records} of {item.fortnightly02_total_records}
+                {item.fortnightly02_present_records} of{" "}
+                {item.fortnightly02_total_records}
               </span>
               <p>{item.fortnightly02_percentage}%</p>
             </div>
-            <div className={`${getColorForPerformance(item.fortnightly02_percentage)}`}>
+            <div
+              className={`${getColorForPerformance(
+                item.fortnightly02_percentage
+              )}`}
+            >
               {item.fortnightly02_percentage <= 20
                 ? isEnglish
                   ? translation.en.low_performing
                   : translation.mg.low_performing
-                : item.fortnightly02_percentage > 20 && item.fortnightly02_percentage <= 60
+                : item.fortnightly02_percentage > 20 &&
+                  item.fortnightly02_percentage <= 60
                 ? isEnglish
                   ? translation.en.medium_performing
                   : translation.mg.medium_performing
@@ -181,11 +210,18 @@ const FortnightlySchool = ({
                 style={{ borderRight: "1px solid #d8d2d2" }}
                 onClick={() => {
                   if (item.fortnightly02_percentage > 0) {
-                    getImagesRecord(dates[1].start, dates[1].end, item, item.name_etab);
+                    getImagesRecord(
+                      dates[1].start,
+                      dates[1].end,
+                      item,
+                      item.name_etab
+                    );
                   } else alert("No images to show.");
                 }}
               >
-                {isEnglish ? translation.en.view_gallery : translation.mg.view_gallery}
+                {isEnglish
+                  ? translation.en.view_gallery
+                  : translation.mg.view_gallery}
               </div>
               <div
                 style={{ borderRight: "1px solid #d8d2d2" }}
@@ -197,12 +233,17 @@ const FortnightlySchool = ({
                       schoolData: item,
                       numberOfWeeks: 14,
                     };
-                    localStorage.setItem("employeeObject", JSON.stringify(object));
+                    localStorage.setItem(
+                      "employeeObject",
+                      JSON.stringify(object)
+                    );
                     navigate.push(`/dashboard/employees?${item.name_etab}`);
                   }
                 }}
               >
-                {isEnglish ? translation.en.view_records : translation.mg.view_records}
+                {isEnglish
+                  ? translation.en.view_records
+                  : translation.mg.view_records}
               </div>
             </div>
           </div>

@@ -153,6 +153,25 @@
   transform: scale(0.98);
 }
 
+.responsiveUserManagementbutton {
+  height: 40px;
+  width: 170px;
+  border: 1px solid lightgray;
+  outline: none;
+  background-color: white;
+  color: black;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.responsiveUserManagementbutton:active {
+  transform: scale(0.98);
+}
+
+
+
 .logout__button {
   margin-right: 20px;
   height: 40px;
@@ -161,6 +180,20 @@
   outline: none;
   background-color: red;
   color: white;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.responsive__logout__button {
+  width: 170px;
+  height: 40px;
+  padding: 0em 1em;
+  border: 1px solid lightgray;
+  outline: none;
+  background-color: white;
+  color: black;
   font-size: 16px;
   font-weight: 500;
   border-radius: 8px;
@@ -177,10 +210,10 @@
 
 .responsiveNav {
   position: absolute;
-  top: 35%;
-  left: 33%;
-  width: 400px;
-  height: 150px;
+  top: 11%;
+  right: 7%;
+  width: fit-content;
+  height: fit-content;
   gap: 20px;
   display: flex;
   flex-direction: column;
@@ -189,8 +222,9 @@
   margin: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 100;
-  background-color: #e3e3e3d2;
+  background-color: #e3e3e3;
   border-radius: 15px;
+  padding: 20px 30px;
 
 }
 
@@ -222,9 +256,9 @@
   }
 
   .responsiveNav {
-    top: 27%;
+    /* top: 27%;
     left: 19%;
-    width: 290px;
+    width: 290px; */
   }
 }
 
@@ -254,9 +288,9 @@
   }
 
   .responsiveNav {
-    top: 27%;
+    /* top: 27%;
     left: 19%;
-    width: 290px;
+    width: 290px; */
   }
 
 
@@ -284,9 +318,9 @@
   }
 
   .responsiveNav {
-    top: 27%;
+    /* top: 27%;
     left: 19%;
-    width: 290px;
+    width: 290px; */
   }
 }
 
@@ -312,9 +346,9 @@
   }
 
   .responsiveNav {
-    top: 26%;
+    /* top: 26%;
     left: 24%;
-    width: 315px;
+    width: 315px; */
   }
 }
 
@@ -343,9 +377,9 @@
   }
 
   .responsiveNav {
-    top: 31%;
+    /* top: 31%;
     left: 28%;
-    width: 350px;
+    width: 350px; */
   }
 }
 

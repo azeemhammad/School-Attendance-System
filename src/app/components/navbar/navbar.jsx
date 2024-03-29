@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import styles from "./navbar.module.css";
 import { IoIosArrowDown } from "react-icons/io";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { ACCESS_LEVELS, LNGS } from "@/app/utils/constants";
 import translation from "../../lang/translation";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -15,16 +15,39 @@ const Navbar = () => {
   const [isEnglish, setIsEnglish] = useState(true);
   const [isShow, setIsShow] = useState(false);
 
+  // useEffect(() => {
+  //   const storedIsEnglish = localStorage.getItem("isEnglish");
+  //   const initialIsEnglish =
+  //     storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
+  //   setIsEnglish(initialIsEnglish);
+  // }, []);
+
+  // useEffect(() => {
+  //   const data = localStorage.getItem("user_data");
+  //   setUser(data ? JSON.parse(data) : null);
+  // }, []);
+
+  const burgerRef = useRef(null);
+
   useEffect(() => {
     const storedIsEnglish = localStorage.getItem("isEnglish");
     const initialIsEnglish =
       storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
     setIsEnglish(initialIsEnglish);
-  }, []);
 
-  useEffect(() => {
     const data = localStorage.getItem("user_data");
     setUser(data ? JSON.parse(data) : null);
+
+    const handleOutsideClick = (event) => {
+      if (burgerRef.current && !burgerRef.current.contains(event.target)) {
+        setIsShow(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
   }, []);
 
   function hamburger() {
@@ -126,37 +149,39 @@ const Navbar = () => {
 
           {/* <RxHamburgerMenu className={styles.handburger} /> */}
 
-          <div onClick={hamburger} className={styles.handburger}>
-            {isShow ? (
-              <AiOutlineClose fill="black" size={25} />
-            ) : (
-              <GiHamburgerMenu fill="black" size={25} />
-            )}
-          </div>
-
-          {isShow ? (
-            <div className={styles.responsiveNav}>
-              {user?.role_id == ACCESS_LEVELS.super_admin && (
-                <button
-                  className={styles.usermanagementbutton}
-                  onClick={() => navigate.push("/dashboard/user-management")}
-                >
-                  {isEnglish
-                    ? translation.en.user_management
-                    : translation.mg.user_management}
-                </button>
+          <div ref={burgerRef}>
+            <div onClick={hamburger} className={styles.handburger}>
+              {isShow ? (
+                <AiOutlineClose fill="black" size={25} />
+              ) : (
+                <GiHamburgerMenu fill="black" size={25} />
               )}
-              <button
-                className={styles.logout__button}
-                onClick={() => {
-                  localStorage.removeItem("user_data");
-                  navigate.push("/", undefined, { shallow: true });
-                }}
-              >
-                {isEnglish ? translation.en.logout : translation.mg.logout}
-              </button>
             </div>
-          ) : null}
+
+            {isShow ? (
+              <div className={styles.responsiveNav}>
+                {user?.role_id == ACCESS_LEVELS.super_admin && (
+                  <button
+                    className={styles.responsiveUserManagementbutton}
+                    onClick={() => navigate.push("/dashboard/user-management")}
+                  >
+                    {isEnglish
+                      ? translation.en.user_management
+                      : translation.mg.user_management}
+                  </button>
+                )}
+                <button
+                  className={styles.responsive__logout__button}
+                  onClick={() => {
+                    localStorage.removeItem("user_data");
+                    navigate.push("/", undefined, { shallow: true });
+                  }}
+                >
+                  {isEnglish ? translation.en.logout : translation.mg.logout}
+                </button>
+              </div>
+            ) : null}
+          </div>
         </div>
       </div>
     </div>

@@ -24,30 +24,37 @@ const Employees = () => {
     startDate: new Date(),
     endDate: new Date(),
     numberOfWeeks: 7,
-  })
+  });
   const [isProcessing, setIsProcessing] = useState(false);
   const [isWeeklyOrFortnightly, setIsWeeklyOrFortnightly] = useState(2);
-  const [isEnglish, setIsEnglish] = useState(true)
+  const [isEnglish, setIsEnglish] = useState(true);
 
   useEffect(() => {
     const storedIsEnglish = localStorage.getItem("isEnglish");
-    const initialIsEnglish = storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
+    const initialIsEnglish =
+      storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
     setIsEnglish(initialIsEnglish);
   }, []);
 
   useEffect(() => {
     let data = localStorage.getItem("employeeObject");
     data = JSON.parse(data);
-    setState(prevState => ({ ...prevState, startDate: new Date(data.start), endDate: new Date(data.end), numberOfWeeks: data.numberOfWeeks, schoolData: data.schoolData }))
-    setIsWeeklyOrFortnightly(data.numberOfWeeks == 7 ? 1 : 2)
-  }, [])
+    setState((prevState) => ({
+      ...prevState,
+      startDate: new Date(data.start),
+      endDate: new Date(data.end),
+      numberOfWeeks: data.numberOfWeeks,
+      schoolData: data.schoolData,
+    }));
+    setIsWeeklyOrFortnightly(data.numberOfWeeks == 7 ? 1 : 2);
+  }, []);
 
   useEffect(() => {
     if (state.startDate && state.endDate && state.schoolData) {
       generatesDates();
       getEtabRecord();
     }
-  }, [isWeeklyOrFortnightly, state.startDate, state.endDate, state.schoolData])
+  }, [isWeeklyOrFortnightly, state.startDate, state.endDate, state.schoolData]);
 
   function generatesDates() {
     // Generate an array of dates for the specified number of weeks
@@ -66,16 +73,20 @@ const Employees = () => {
       dayjs(state.startDate).format("YYYY-MM-DD"),
       dayjs(state.endDate).format("YYYY-MM-DD"),
       state.schoolData.code_etab
-    ).then(({ data }) => {
-      setIsProcessing(false);
-      if (data.error_code == 0)
-        setState(prevState => ({ ...prevState, employeeData: data.result }))
-      else
-        setState(prevState => ({ ...prevState, employeeData: [] }))
-    }).catch(err => {
-      console.log("err", err);
-      setIsProcessing(false);
-    })
+    )
+      .then(({ data }) => {
+        setIsProcessing(false);
+        if (data.error_code == 0)
+          setState((prevState) => ({
+            ...prevState,
+            employeeData: data.result,
+          }));
+        else setState((prevState) => ({ ...prevState, employeeData: [] }));
+      })
+      .catch((err) => {
+        console.log("err", err);
+        setIsProcessing(false);
+      });
   }
 
   return (
@@ -100,28 +111,42 @@ const Employees = () => {
         <div className={styles.location}>
           <span>{isEnglish ? translation.en.home : translation.mg.home}</span>
           <IoIosArrowForward />
-          {isWeeklyOrFortnightly === 1 && <span>{isEnglish ? translation.en.weekly : translation.mg.weekly}</span>}
-          {isWeeklyOrFortnightly === 2 && <span>{isEnglish ? translation.en.fortnightly : translation.mg.fortnightly}</span>}
+          {isWeeklyOrFortnightly === 1 && (
+            <span>
+              {isEnglish ? translation.en.weekly : translation.mg.weekly}
+            </span>
+          )}
+          {isWeeklyOrFortnightly === 2 && (
+            <span>
+              {isEnglish
+                ? translation.en.fortnightly
+                : translation.mg.fortnightly}
+            </span>
+          )}
           <IoIosArrowForward />
-          <span>{isEnglish ? translation.en.employees : translation.mg.employees}</span>
+          <span>
+            {isEnglish ? translation.en.employees : translation.mg.employees}
+          </span>
         </div>
         <div style={{ marginTop: "10px" }}>
-          {isWeeklyOrFortnightly === 1 &&
+          {isWeeklyOrFortnightly === 1 && (
             <WeeklyEmployees
               employeeData={state.employeeData}
               dates={state.dates}
               startDate={state.startDate}
               endDate={state.endDate}
               isEnglish={isEnglish}
-            />}
-          {isWeeklyOrFortnightly === 2 &&
+            />
+          )}
+          {isWeeklyOrFortnightly === 2 && (
             <FortnightlyEmployees
               employeeData={state.employeeData}
               dates={state.dates}
               startDate={state.startDate}
               endDate={state.endDate}
               isEnglish={isEnglish}
-            />}
+            />
+          )}
         </div>
       </div>
       {isProcessing && <ProcessingLoader />}
