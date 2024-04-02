@@ -10,7 +10,7 @@
   width: 100%;
   max-width: 100vw;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
 
 }
 
@@ -119,10 +119,12 @@
   font-size: 16px;
   font-weight: 500;
   color: #9595ad;
+  width: 20%;
 }
 
 .addemployeemodalname input {
-  width: 550px;
+  /* width: 550px; */
+  width: 100%;
   height: 48px;
   border-radius: 10px;
   background-color: #f6f8fc;
@@ -131,8 +133,11 @@
   padding-left: 20px;
 }
 
+.fieldMainContainer {
+  width: 75%;
+}
+
 .addemployeemodaldropdowns {
-  display: flex;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -147,7 +152,8 @@
 }
 
 .reactselect {
-  width: 550px;
+  /* width: 550px; */
+  width: 75%;
   min-height: 48px;
   border-radius: 10px;
   background-color: #f6f8fc;
@@ -265,6 +271,20 @@
 
 
 @media (max-width: 320px) {
+  .deleteemployeecancel div {
+    font-size: 13px;
+  }
+
+  .addemployeemodaldropdowns span {
+    font-size: 13px;
+    width: 40%;
+  }
+
+  .addemployeemodalname span {
+    font-size: 12px;
+    width: 40%;
+  }
+
   .addemployeemodal {
     width: 90%;
     /* margin: 2% 5% 0% 5%; */
@@ -272,7 +292,7 @@
 
   .deleteemployeemodal {
     width: 80%;
-    height: 320px;
+    height: 345px;
   }
 }
 
@@ -281,9 +301,19 @@
     width: 90%;
   }
 
+  .addemployeemodalname span {
+    font-size: 13px;
+    width: 40%;
+  }
+
+  .addemployeemodaldropdowns span {
+    font-size: 13px;
+    width: 40%;
+  }
+
   .deleteemployeemodal {
     width: 80%;
-    height: 300px;
+    height: 330px;
   }
 }
 
@@ -292,9 +322,19 @@
     width: 90%;
   }
 
+  .addemployeemodalname span {
+    font-size: 13px;
+    width: 40%;
+  }
+
+  .addemployeemodaldropdowns span {
+    font-size: 13px;
+    width: 40%;
+  }
+
   .deleteemployeemodal {
     width: 80%;
-    height: 300px;
+    height: 330px;
   }
 }
 

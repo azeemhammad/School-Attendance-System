@@ -522,21 +522,24 @@ const UserManagenemt = () => {
                 ? translation.en.employees_name
                 : translation.mg.employees_name}
             </span>
-            <input
-              type="text"
-              placeholder={
-                isEnglish
-                  ? translation.en.enter_employee_name
-                  : translation.mg.enter_employee_name
-              }
-              value={state.name}
-              onChange={(e) =>
-                setState((prevState) => ({
-                  ...prevState,
-                  name: e.target.value,
-                }))
-              }
-            />
+
+            <div className={styles.fieldMainContainer}>
+              <input
+                type="text"
+                placeholder={
+                  isEnglish
+                    ? translation.en.enter_employee_name
+                    : translation.mg.enter_employee_name
+                }
+                value={state.name}
+                onChange={(e) =>
+                  setState((prevState) => ({
+                    ...prevState,
+                    name: e.target.value,
+                  }))
+                }
+              />
+            </div>
           </div>
           <div className={styles.addemployeemodalname}>
             <span>
@@ -544,21 +547,24 @@ const UserManagenemt = () => {
                 ? translation.en.Email_Address
                 : translation.mg.Email_Address}
             </span>
-            <input
-              type="email"
-              placeholder={
-                isEnglish
-                  ? translation.en.Email_Address
-                  : translation.mg.Email_Address
-              }
-              value={state.email}
-              onChange={(e) =>
-                setState((prevState) => ({
-                  ...prevState,
-                  email: e.target.value,
-                }))
-              }
-            />
+
+            <div className={styles.fieldMainContainer}>
+              <input
+                type="email"
+                placeholder={
+                  isEnglish
+                    ? translation.en.Email_Address
+                    : translation.mg.Email_Address
+                }
+                value={state.email}
+                onChange={(e) =>
+                  setState((prevState) => ({
+                    ...prevState,
+                    email: e.target.value,
+                  }))
+                }
+              />
+            </div>
           </div>
           <div className={styles.addemployeemodaldropdowns}>
             <span>
@@ -566,6 +572,7 @@ const UserManagenemt = () => {
                 ? translation.en.access_level
                 : translation.mg.access_level}
             </span>
+
             <Select
               className={styles.reactselect}
               styles={Styles}
@@ -599,6 +606,7 @@ const UserManagenemt = () => {
               <span>
                 {isEnglish ? translation.en.region : translation.mg.region}
               </span>
+
               <Select
                 className={styles.reactselect}
                 styles={Styles}
@@ -632,6 +640,7 @@ const UserManagenemt = () => {
               <span>
                 {isEnglish ? translation.en.cisco : translation.mg.cisco}
               </span>
+
               <Select
                 className={styles.reactselect}
                 styles={Styles}
@@ -662,6 +671,7 @@ const UserManagenemt = () => {
                 <span>
                   {isEnglish ? translation.en.zap : translation.mg.zap}
                 </span>
+
                 <Select
                   className={styles.reactselect}
                   styles={Styles}
@@ -691,21 +701,24 @@ const UserManagenemt = () => {
                     ? translation.en.Password
                     : translation.mg.Password}
                 </span>
-                <input
-                  type="password"
-                  placeholder={
-                    isEnglish
-                      ? translation.en.Password
-                      : translation.mg.Password
-                  }
-                  value={state.password}
-                  onChange={(e) =>
-                    setState((prevState) => ({
-                      ...prevState,
-                      password: e.target.value,
-                    }))
-                  }
-                />
+
+                <div className={styles.fieldMainContainer}>
+                  <input
+                    type="password"
+                    placeholder={
+                      isEnglish
+                        ? translation.en.Password
+                        : translation.mg.Password
+                    }
+                    value={state.password}
+                    onChange={(e) =>
+                      setState((prevState) => ({
+                        ...prevState,
+                        password: e.target.value,
+                      }))
+                    }
+                  />
+                </div>
               </div>
               <div className={styles.addemployeemodalname}>
                 <span>
@@ -713,21 +726,24 @@ const UserManagenemt = () => {
                     ? translation.en.confirm_password
                     : translation.mg.confirm_password}
                 </span>
-                <input
-                  type="password"
-                  placeholder={
-                    isEnglish
-                      ? translation.en.confirm_password
-                      : translation.mg.confirm_password
-                  }
-                  value={state.confirmPassword}
-                  onChange={(e) =>
-                    setState((prevState) => ({
-                      ...prevState,
-                      confirmPassword: e.target.value,
-                    }))
-                  }
-                />
+
+                <div className={styles.fieldMainContainer}>
+                  <input
+                    type="password"
+                    placeholder={
+                      isEnglish
+                        ? translation.en.confirm_password
+                        : translation.mg.confirm_password
+                    }
+                    value={state.confirmPassword}
+                    onChange={(e) =>
+                      setState((prevState) => ({
+                        ...prevState,
+                        confirmPassword: e.target.value,
+                      }))
+                    }
+                  />
+                </div>
               </div>
             </>
           ) : null}
