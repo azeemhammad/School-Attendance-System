@@ -140,7 +140,7 @@
 .greenfield {
   display: flex;
   justify-content: space-between;
-  padding: 5px 20px;
+  padding: 5px 10px;
   gap: 10px;
 }
 
@@ -148,17 +148,18 @@
   background-color: white;
   width: 19.5%;
   min-width: 155px;
-  height: 124px;
+  height: 140px;
   display: flex;
   align-items: center;
   border-radius: 8px;
+  padding: 5px;
 }
 
 .greenfieldcontent {
   background-color: white;
   width: 19.5%;
   min-width: 165px;
-  height: 124px;
+  height: 140px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -192,6 +193,7 @@
   color: #8c8888;
   /* margin-top: 20%; */
   margin-left: 3%;
+  font-size: 14px;
 }
 
 .countandpercentage {
