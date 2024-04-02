@@ -148,7 +148,7 @@
   background-color: white;
   width: 19.5%;
   min-width: 155px;
-  height: 140px;
+  height: 150px;
   display: flex;
   align-items: center;
   border-radius: 8px;
@@ -159,7 +159,7 @@
   background-color: white;
   width: 19.5%;
   min-width: 165px;
-  height: 140px;
+  height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -271,7 +271,7 @@
 
 .greenfieldbuttons div {
   color: #06a5ff;
-  padding: 5px 5px 5px 10px;
+  padding: 5px 5px 10px 10px;
   width: 50%;
   font-size: 12px;
   font-weight: 500;
