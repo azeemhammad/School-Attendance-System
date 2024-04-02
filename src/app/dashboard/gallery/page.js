@@ -103,6 +103,7 @@ const Gallery = () => {
         startDate={state.startDate}
         endDate={state.endDate}
         showRestFilters={false}
+        isEnglish={isEnglish}
       />
       <div className={styles.wrapper}>
         <div className={styles.backbox}>
