@@ -31,8 +31,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const storedIsEnglish = localStorage.getItem("isEnglish");
-    const initialIsEnglish =
-      storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
+    const initialIsEnglish = storedIsEnglish !== null ? JSON.parse(storedIsEnglish) : true;
     setIsEnglish(initialIsEnglish);
 
     const data = localStorage.getItem("user_data");
@@ -58,9 +57,8 @@ const Navbar = () => {
     <div className={styles.wrapper}>
       <div className={styles.logo}>
         <div className={styles.logoContainer}>
-          <img src="/logo.svg" alt="logo" className={styles.logoImg} />
+          <img src="/logo.jpeg" alt="logo" className={styles.logoImg} />
         </div>
-        {/* <img src="/logo.svg" alt="logo" height={60} /> */}
 
         <div className={styles.logoContainer}>
           <img src="/logo2.svg" alt="logo2" className={styles.logoImg} />
@@ -86,9 +84,7 @@ const Navbar = () => {
               className={`${styles.usermanagementbutton} ${styles.hideIcon}`}
               onClick={() => navigate.push("/dashboard/user-management")}
             >
-              {isEnglish
-                ? translation.en.user_management
-                : translation.mg.user_management}
+              {isEnglish ? translation.en.user_management : translation.mg.user_management}
             </button>
           )}
           {/* <div className={styles.personaccount}>
@@ -102,9 +98,7 @@ const Navbar = () => {
                   src={isEnglish ? "/ukflag.svg" : "/madgascar_flag.svg"}
                   style={{ width: "18px", height: "18px" }}
                 />
-                <span className={styles.shortenSpan}>
-                  {isEnglish ? "English" : "Malagasy"}
-                </span>
+                <span className={styles.shortenSpan}>{isEnglish ? "English" : "Malagasy"}</span>
               </div>
               <IoIosArrowDown />
             </div>
@@ -122,10 +116,7 @@ const Navbar = () => {
                     }}
                     key={lng.country_code}
                     onClick={async () => {
-                      localStorage.setItem(
-                        "isEnglish",
-                        lng.code == "en" ? true : false
-                      );
+                      localStorage.setItem("isEnglish", lng.code == "en" ? true : false);
                       window.location.reload();
                     }}
                   >
@@ -165,9 +156,7 @@ const Navbar = () => {
                     className={styles.responsiveUserManagementbutton}
                     onClick={() => navigate.push("/dashboard/user-management")}
                   >
-                    {isEnglish
-                      ? translation.en.user_management
-                      : translation.mg.user_management}
+                    {isEnglish ? translation.en.user_management : translation.mg.user_management}
                   </button>
                 )}
                 <button

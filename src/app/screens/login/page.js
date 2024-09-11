@@ -126,7 +126,7 @@ const LoginPage = () => {
           </div>
 
           <div className={styles.logo}>
-            <img src="/logo.svg" width={110} />
+            <img src="/logo.jpeg" width={110} />
             <img src="/logo2.svg" width={120} />
           </div>
           <h1>{isEnglish ? translation.en.Welcome : translation.mg.Welcome}</h1>
@@ -195,15 +195,9 @@ const LoginPage = () => {
             {isProcessing
               ? "Processing..."
               : isEnglish
-              ? translation.en.Sign_in
-              : translation.mg.Sign_in}
+                ? translation.en.Sign_in
+                : translation.mg.Sign_in}
           </button>
-          {/* <span
-            className={styles.forgotpassword}
-            onClick={() => navigate.push("/screens/forgotPassword")}
-          >
-            Forgot password?
-          </span> */}
         </div>
       </div>
       <div className={styles.rightside}>
