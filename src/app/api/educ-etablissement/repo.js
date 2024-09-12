@@ -67,7 +67,8 @@ export const getGalleryCall = (images, role_id) => {
     }
     params += `role_id=${role_id}`;
 
-    let route = `https://datafetcher-school-system-worldbank.dsmeglobal.com/api/educ-etablissement/gallery?${params}`;
+    // let route = `https://datafetcher-school-system-worldbank.dsmeglobal.com/api/educ-etablissement/gallery?${params}`;
+    let route = `https://datafetcher-school.vitrika.digital.gov.mg/api/educ-etablissement/gallery?${params}`;
     console.log("route", route)
 
     return axios.get(route)
